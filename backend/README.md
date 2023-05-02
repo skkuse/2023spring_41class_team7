@@ -1,0 +1,1 @@
+가상환경 설정 후, `pip install -r requirements.txt`
