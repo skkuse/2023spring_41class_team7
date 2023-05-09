@@ -1,8 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Input from './components/Input';
 
 function App() {
+  const handleBlur = () => {
+    console.log("blurred");
+  };
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
   return (
     <div className="App">
       <header className="App-header">
