@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# default application
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# own application
+INSTALLED_APPS += [
+    'course.apps.CourseConfig',
+    'user.apps.UserConfig'
+]
+
+# external application
 INSTALLED_APPS += [
     'rest_framework',
     'corsheaders',
