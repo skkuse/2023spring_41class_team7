@@ -2,7 +2,13 @@ import { InputBox } from "./style";
 
 function Input(props) {
     return(
-        <InputBox></InputBox>
+        <InputBox
+            name={props.name}
+            type={props.type}
+            placeholder={props.placeholder}
+            onBlur={props.onBlur}
+            onChange={props.onChange}
+        />
     );
 }
 
