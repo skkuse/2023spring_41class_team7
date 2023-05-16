@@ -1,12 +1,17 @@
 import styled from "@emotion/styled";
 import Input from "../../components/Input";
 import { useState} from "react";
-import { ErrorMessageBox, RegisterContainer, RegisterForm, SubmitInput } from "./style";
+import { ErrorMessageBox, FormContainer, InputContainer, InstructorMode, ModeContainer, RegisterContainer, RegisterForm, StudentMode, SubmitInput, ToLogin, ToLoginParagraph } from "./style";
+import { Link } from "react-router-dom";
 
 function RegisterPage(props) {
 
     
+    const [mode, setMode] = useState("student");
     
+    const [isStudent, setIsStudent] = useState(true);
+
+
     const [userId, setUserId] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,6 +27,17 @@ function RegisterPage(props) {
     const [passwordError, setPasswordError] = useState("");
     const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
+
+
+    const handleModeChange = (e) => {
+        setMode(e.target.value);
+        if(e.target.value === "student") {
+            setIsStudent(true);
+        }
+        else {
+            setIsStudent(false);
+        }
+    }   
 
 
     const handleUserIdChange = (e) => {
@@ -110,48 +126,68 @@ function RegisterPage(props) {
 
    return(
     <RegisterContainer>
-        <RegisterForm onSubmit={handleSubmit}>
-        <Input
-            id="userid"
-            name="userid"
-            type="text"
-            placeholder="아이디"
-            onChange={handleUserIdChange}
-            >
-        </Input>
-        <ErrorMessageBox>{userIdError}</ErrorMessageBox>
-        <p>{String(isUserIdValid)}</p>
-        <Input
-            id="email"
-            name="email"
-            type="text"
-            placeholder="이메일"
-            onChange={handleEmailChange}>
-        </Input>
-        <ErrorMessageBox>{emailError}</ErrorMessageBox>
-        <p>{String(isEmailValid)}</p>
-        <Input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="비밀번호"
-            onChange={handlePasswordChange}>
-        </Input>
-        <ErrorMessageBox>{passwordError}</ErrorMessageBox>
-        <p>{password}</p>
-        <p>{String(isPasswordValid)}</p>
-        <Input
-            id="passwordConfirm"
-            name="passwordConfirm"
-            type="password"
-            placeholder="비밀번호 확인"
-            onChange={handlePasswordConfirmChange}>
-        </Input>
-        <ErrorMessageBox>{passwordConfirmError}</ErrorMessageBox>
-        <p>{passwordConfirm}</p>
-        <p>{String(isPasswordConfirmValid)}</p>
-        <SubmitInput type="submit" value="회원가입"></SubmitInput>
-    </RegisterForm>
+        <FormContainer>
+            <RegisterForm onSubmit={handleSubmit}>
+                <ModeContainer>
+                    <StudentMode style={{background: isStudent ? "#F8D57E" : "white"}}>
+                        <input type="radio" name="mode" value="student" defaultChecked onChange={handleModeChange}/>학생
+                    </StudentMode>
+                    <InstructorMode style={{background: isStudent ? "white" : "#F8D57E"}}>
+                        <input type="radio" name="mode" value="instructor" onChange={handleModeChange}/>강사
+                    </InstructorMode>
+                </ModeContainer>
+            <InputContainer>
+                {mode} <br/>
+                {String(isStudent)} <br/>
+                <Input
+                        id="userid"
+                        name="userid"
+                        type="text"
+                        placeholder="아이디"
+                        onChange={handleUserIdChange}
+                        >
+                    </Input>
+                    <ErrorMessageBox>{userIdError}</ErrorMessageBox>
+                    <p>{String(isUserIdValid)}</p>
+                    <Input
+                        id="email"
+                        name="email"
+                        type="text"
+                        placeholder="이메일"
+                        onChange={handleEmailChange}>
+                    </Input>
+                    <ErrorMessageBox>{emailError}</ErrorMessageBox>
+                    <p>{String(isEmailValid)}</p>
+                    <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="비밀번호"
+                        onChange={handlePasswordChange}>
+                    </Input>
+                    <ErrorMessageBox>{passwordError}</ErrorMessageBox>
+                    <p>{password}</p>
+                    <p>{String(isPasswordValid)}</p>
+                    <Input
+                        id="passwordConfirm"
+                        name="passwordConfirm"
+                        type="password"
+                        placeholder="비밀번호 확인"
+                        onChange={handlePasswordConfirmChange}>
+                    </Input>
+                    <ErrorMessageBox>{passwordConfirmError}</ErrorMessageBox>
+                    <p>{passwordConfirm}</p>
+                    <p>{String(isPasswordConfirmValid)}</p>
+                    <SubmitInput type="submit" value="회원가입"></SubmitInput>
+                    <ToLoginParagraph>
+                        계정이 이미 있으세요?{" "}
+                        <ToLogin>
+                            <a to="/">로그인</a>
+                        </ToLogin>
+                    </ToLoginParagraph>
+            </InputContainer>
+            </RegisterForm>
+        </FormContainer>
     </RegisterContainer>
    );
 }
