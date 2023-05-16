@@ -1,14 +1,17 @@
-import { InputBox } from "./style";
+import { ErrorMessageBox, InputBox, InputContainer } from "./style";
 
 function Input(props) {
     return(
-        <InputBox
-            name={props.name}
-            type={props.type}
-            placeholder={props.placeholder}
-            onBlur={props.onBlur}
-            onChange={props.onChange}
-        />
+        <InputContainer>
+            <InputBox
+                id={props.id}
+                name={props.name}
+                type={props.type}
+                placeholder={props.placeholder}
+                onBlur={props.onBlur}
+                onChange={props.onChange}>  
+            </InputBox>
+        </InputContainer>
     );
 }
 
