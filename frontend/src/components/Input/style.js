@@ -7,7 +7,7 @@ export const InputBox = styled.input`
     border: 3px solid black;
     border-radius: 10px;
     text-indent: 16px;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 16px;
     
 `;

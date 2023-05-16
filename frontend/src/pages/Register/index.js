@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import Input from "../../components/Input";
 import { useState} from "react";
 import { ErrorMessageBox, FormContainer, InputContainer, InstructorMode, ModeContainer, RegisterContainer, RegisterForm, StudentMode, SubmitInput, ToLogin, ToLoginParagraph } from "./style";
@@ -7,8 +6,7 @@ import { Link } from "react-router-dom";
 function RegisterPage(props) {
 
     
-    const [mode, setMode] = useState("student");
-    
+    const [mode, setMode] = useState("student")
     const [isStudent, setIsStudent] = useState(true);
 
 
@@ -136,10 +134,9 @@ function RegisterPage(props) {
                         <input type="radio" name="mode" value="instructor" onChange={handleModeChange}/>강사
                     </InstructorMode>
                 </ModeContainer>
-            <InputContainer>
-                {mode} <br/>
-                {String(isStudent)} <br/>
-                <Input
+                <InputContainer>
+                    {/* {mode} <br/> */}
+                    <Input
                         id="userid"
                         name="userid"
                         type="text"
@@ -148,7 +145,7 @@ function RegisterPage(props) {
                         >
                     </Input>
                     <ErrorMessageBox>{userIdError}</ErrorMessageBox>
-                    <p>{String(isUserIdValid)}</p>
+                    {/* <p>{String(isUserIdValid)}</p> */}
                     <Input
                         id="email"
                         name="email"
@@ -157,7 +154,7 @@ function RegisterPage(props) {
                         onChange={handleEmailChange}>
                     </Input>
                     <ErrorMessageBox>{emailError}</ErrorMessageBox>
-                    <p>{String(isEmailValid)}</p>
+                    {/* <p>{String(isEmailValid)}</p> */}
                     <Input
                         id="password"
                         name="password"
@@ -166,8 +163,8 @@ function RegisterPage(props) {
                         onChange={handlePasswordChange}>
                     </Input>
                     <ErrorMessageBox>{passwordError}</ErrorMessageBox>
-                    <p>{password}</p>
-                    <p>{String(isPasswordValid)}</p>
+                    {/* <p>{password}</p>
+                    <p>{String(isPasswordValid)}</p> */}
                     <Input
                         id="passwordConfirm"
                         name="passwordConfirm"
@@ -176,8 +173,8 @@ function RegisterPage(props) {
                         onChange={handlePasswordConfirmChange}>
                     </Input>
                     <ErrorMessageBox>{passwordConfirmError}</ErrorMessageBox>
-                    <p>{passwordConfirm}</p>
-                    <p>{String(isPasswordConfirmValid)}</p>
+                    {/* <p>{passwordConfirm}</p>
+                    <p>{String(isPasswordConfirmValid)}</p> */}
                     <SubmitInput type="submit" value="회원가입"></SubmitInput>
                     <ToLoginParagraph>
                         계정이 이미 있으세요?{" "}
@@ -185,7 +182,7 @@ function RegisterPage(props) {
                             <a to="/">로그인</a>
                         </ToLogin>
                     </ToLoginParagraph>
-            </InputContainer>
+                </InputContainer>
             </RegisterForm>
         </FormContainer>
     </RegisterContainer>
