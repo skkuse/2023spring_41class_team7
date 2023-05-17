@@ -1,5 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import Chatting from './components/Chatting';
+import SubChapterModal from './components/SubChapterModal';
+
+
 
 function App() {
   return (
@@ -18,6 +22,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <Chatting></Chatting>
+      <SubChapterModal></SubChapterModal>
     </div>
   );
 }

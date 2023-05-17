@@ -1,4 +1,4 @@
-import { ErrorMessageBox, InputBox, InputContainer } from "./style";
+import {InputBox} from "./style";
 
 function Input(props) {
     return(
