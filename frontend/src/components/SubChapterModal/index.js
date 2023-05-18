@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { CancelButton, ButtonContainer, SubChapterForm, SubChapterInput, SubChapterModalContainer, TitleContainer, SaveInput } from "./style";
 
-function SubChapterModal() {
+function SubChapterModal(props) {
+    
     
     const [title, setTitle] = useState("");
 
@@ -9,12 +10,14 @@ function SubChapterModal() {
         setTitle(e.target.value);
     }
     
-    const handleCancelPress =(e) => {
-
+    const handleCancelClick =(e) => {
+        // 중단원 추가 모달창 닫기
+        alert("중단원 추가 모달창 닫기");
+        props.setSubChapterModalOpen(false);
     }
     
-    const handleSavePress = (e) => {
-
+    const handleSaveClick = (e) => {
+        alert("저장하기");
     }
     
 
@@ -29,10 +32,9 @@ function SubChapterModal() {
                     placeholder="중단원명을 작성해주세요!"
                     onChange={handleTitleChange}>
                 </SubChapterInput>
-                {title}
                 <ButtonContainer>
-                    <CancelButton onPress={handleCancelPress}>취소</CancelButton>
-                    <SaveInput type="submit" value="저장" onPress={handleSavePress}></SaveInput>
+                    <CancelButton onClick={handleCancelClick}>취소</CancelButton>
+                    <SaveInput type="submit" value="저장" onClick={handleSaveClick}></SaveInput>
                 </ButtonContainer>
             </SubChapterForm>
         </SubChapterModalContainer>

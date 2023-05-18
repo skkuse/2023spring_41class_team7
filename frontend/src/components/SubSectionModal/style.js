@@ -1,18 +1,16 @@
 import styled from "@emotion/styled";
 
-export const SubChapterModalContainer = styled.div`
+export const SubSectionModalContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 35px 60px;
     gap: 35px;
     width: 960px;
-    height: 480px;
     background-color: white;
     border: 5px solid black;
     border-radius: 30px;
 `;
-
 
 export const TitleContainer = styled.div`
     display: flex;
@@ -25,10 +23,9 @@ export const TitleContainer = styled.div`
     font-size: 20px;
     width: 100%;
     text-indent: 20px;
-    
 `;
 
-export const SubChapterForm = styled.form`
+export const SubSectionForm = styled.form`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -38,7 +35,7 @@ export const SubChapterForm = styled.form`
     padding: 0;
 `;
 
-export const SubChapterInput = styled.input`
+export const SubSectionInput = styled.input`
     padding: 20px;
     border-radius: 10px;
     font-weight: 500;
@@ -46,12 +43,24 @@ export const SubChapterInput = styled.input`
     border: 3px solid black;
 `;
 
+export const SubSectionTextArea = styled.textarea`
+    padding: 20px;
+    height: 320px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    border: 3px solid black;
+    font-family: 'Segoe UI';
+
+`;
+
+
 export const ButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 100%;
+    height: 100px;
     border-radius: 10px;
     gap: 20px;
 `;

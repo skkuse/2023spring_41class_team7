@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Chatting from './components/Chatting';
 import SubChapterModal from './components/SubChapterModal';
+import SubSectionModal from './components/SubSectionModal';
 
 
 
@@ -22,8 +23,6 @@ function App() {
           Learn React
         </a>
       </header>
-      <Chatting></Chatting>
-      <SubChapterModal></SubChapterModal>
     </div>
   );
 }

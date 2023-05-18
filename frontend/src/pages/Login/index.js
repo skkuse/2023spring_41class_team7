@@ -48,10 +48,10 @@ function LoginPage(props) {
                 <LoginForm onSubmit={handleSubmit}>
                     <FormContainer>
                         <ModeContainer>
-                            <StudentMode style={{background: isStudent ? "#F8D57E" : "white"}}>
+                            <StudentMode style={{background: isStudent ? "#FFE6A8" : "#FAF7F2"}}>
                                 <input type="radio" name="mode" value="student" defaultChecked onChange={handleModeChange}/>학생
                             </StudentMode>
-                            <InstructorMode style={{background: isStudent ? "white" : "#F8D57E"}}>
+                            <InstructorMode style={{background: isStudent ? "#FAF7F2" : "#FFE6A8"}}>
                                 <input type="radio" name="mode" value="instructor" onChange={handleModeChange}/>강사
                             </InstructorMode>
                         </ModeContainer>
