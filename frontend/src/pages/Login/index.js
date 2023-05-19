@@ -1,4 +1,4 @@
-import { FormContainer, InputContainer, InstructorMode, LoginForm, LoginInnerLeftContainer, LoginInnerRightContainer, LoginOuterContainer, LogoImage, ModeContainer, StudentMode, SubmitInput, TitleContainer, ToRegister, ToRegisterParagraph } from "./style";
+import { FormContainer, InputContainer, InstructorMode, LoginForm, LoginInnerContainer, LoginInnerLeftContainer, LoginInnerRightContainer, LoginOuterContainer, LogoImage, ModeContainer, StudentMode, SubmitInput, TitleContainer, ToRegister, ToRegisterParagraph } from "./style";
 import logo from "../../assets/images/logo.png"
 import Input from "../../components/Input";
 import { useState } from "react";
@@ -36,23 +36,19 @@ function LoginPage(props) {
 
     return(
         <LoginOuterContainer>
-            <LoginInnerLeftContainer>
+            <LoginInnerContainer>
                 <TitleContainer>
-                    Code with <br/> 
-                    Star
+                    Code with Star
+                    <LogoImage src={logo}></LogoImage>
                 </TitleContainer>
-                <LogoImage src={logo}>
-                </LogoImage>
-            </LoginInnerLeftContainer>
-            <LoginInnerRightContainer>
                 <LoginForm onSubmit={handleSubmit}>
                     <FormContainer>
                         <ModeContainer>
-                            <StudentMode style={{background: isStudent ? "#FFE6A8" : "#FAF7F2"}}>
-                                <input type="radio" name="mode" value="student" defaultChecked onChange={handleModeChange}/>학생
+                            <StudentMode style={{background: isStudent ? "#F0F5FF" : "white"}}>
+                                <input type="radio" name="mode" value="student" defaultChecked onChange={handleModeChange} style={{marginRight: 20,}}/>학생
                             </StudentMode>
-                            <InstructorMode style={{background: isStudent ? "#FAF7F2" : "#FFE6A8"}}>
-                                <input type="radio" name="mode" value="instructor" onChange={handleModeChange}/>강사
+                            <InstructorMode style={{background: isStudent ? "white" : "#F0F5FF"}}>
+                                <input type="radio" name="mode" value="instructor" onChange={handleModeChange} style={{marginRight: 20,}}/>강사
                             </InstructorMode>
                         </ModeContainer>
                         <InputContainer>
@@ -84,7 +80,7 @@ function LoginPage(props) {
                         </InputContainer>
                     </FormContainer>
                 </LoginForm>
-            </LoginInnerRightContainer>
+            </LoginInnerContainer>
         </LoginOuterContainer>
     );
 }

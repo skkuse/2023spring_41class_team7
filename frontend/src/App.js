@@ -1,10 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Chatting from './components/Chatting';
-import ChapterModal from './components/ChapterModal';
+import LoginPage from './pages/Login';
 
-import CourseInfo from './components/CourseInfo';
-import RegisterPage from './pages/Register';
 
 
 
@@ -25,7 +22,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <RegisterPage></RegisterPage>
+      <LoginPage></LoginPage>
     </div>
   );
 }

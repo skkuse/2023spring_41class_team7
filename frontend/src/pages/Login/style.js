@@ -2,45 +2,41 @@ import styled from "@emotion/styled";
 
 export const LoginOuterContainer = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 50px;
     height: 100vh;
-    background-color: #FAF7F2;
+    background-color: white;
 
 `;
 
-export const LoginInnerLeftContainer = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: 50px;
-background: radial-gradient(50% 50% at 50% 55%, #FFD886 0%, rgba(255, 255, 255, 0) 100%);
-height: 100vh;
-`;
 
-export const TitleContainer = styled.div`
-    
-    font-style: normal;
-    font-weight: 700;
-    font-size: 80px;
-    text-align: center;
-`;
 
-export const LogoImage = styled.img`
-    width: 256px;
-    height: 256px;
-`;
-
-export const LoginInnerRightContainer = styled.div`
+export const LoginInnerContainer = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 100px;
+`;
+
+
+export const TitleContainer = styled.div`   
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 80px;
+    text-align: center;
+    align-items: center;
+`;
+
+export const LogoImage = styled.img`
+    width: 128px;
+    height: 128px;
 `;
 
 export const LoginForm = styled.form`
@@ -58,7 +54,7 @@ export const FormContainer = styled.div`
     align-items: center;
     padding: 0px;
     border-radius: 20px;
-    border: 3px solid black;
+    border: 3px solid #94B4FF;
     
 `;
 
@@ -68,8 +64,8 @@ export const ModeContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0px;
-    width: 100%;
-    height: 82px;
+    width: 521px;
+    height: 86px;
     border-radius: 20px;
 
     
@@ -82,7 +78,7 @@ export const StudentMode = styled.div`
     height: 100%;
     text-align: center;
     border-radius: 20px 0 0 0;
-    border-bottom: 3px solid #000000;
+    border-bottom: 3px solid #94B4FF;
     font-weight: 700;
     font-size: 16px; 
     
@@ -94,8 +90,7 @@ export const InstructorMode = styled.div`
     height: 100%;
     text-align: center;
     border-radius: 0 20px 0 0;
-    border-left: 3px solid #000000;
-    border-bottom: 3px solid #000000;
+    border-bottom: 3px solid #94B4FF;
     font-weight: 700;
     font-size: 16px;
 `;
@@ -116,7 +111,8 @@ export const SubmitInput = styled.input`
     border-radius: 10px;
     font-weight: 700;
     font-size: 16px;
-    background-color: white;
+    background-color: #F0F5FF;
+    border: none;
 `;
 
 export const ToRegisterParagraph = styled.p`
