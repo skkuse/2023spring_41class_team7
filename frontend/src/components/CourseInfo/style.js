@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 export const CourseInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 35px;
     gap: 35px;
 `;
@@ -12,7 +11,7 @@ export const CourseTitleLanguageContainer = styled.div`
     
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between
     padding: 0px;
     gap: 20px;
     border-radius: 10px;

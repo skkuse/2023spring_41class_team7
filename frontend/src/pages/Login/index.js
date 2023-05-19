@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import { useState } from "react";
 import { Link  } from "react-router-dom";
 
-function LoginPage(props) {
+function Login(props) {
 
     const [mode, setMode] = useState("student")
     const [isStudent, setIsStudent] = useState(true);
@@ -86,4 +86,4 @@ function LoginPage(props) {
     );
 }
 
-export default LoginPage;
+export default Login;

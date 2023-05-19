@@ -1,16 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/Login';
-import RegisterPage from './pages/Register';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AddCourse from './pages/AddCourse';
+import ManageCourse from './pages/ManageCourse';
+import UserInstructor from './pages/UserInstructor';
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
       <Routes>
         <Route path="/" element={<Navigate to="/login"></Navigate>}></Route>
-        <Route path="/login" element={<LoginPage/>}></Route>
-        <Route path="/register" element={<RegisterPage/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/register" element={<Register/>}></Route>
+        <Route path="/user/instructor" element={<UserInstructor/>}></Route>
+        <Route path="/addcourse" element={<AddCourse/>}></Route>
+        <Route path="/mngcourse" element={<ManageCourse/>}></Route>
+        
       </Routes>
     </div>
     </BrowserRouter>

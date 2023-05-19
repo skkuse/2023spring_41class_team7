@@ -3,7 +3,7 @@ import { useState} from "react";
 import { ErrorMessageBox, FormContainer, InputContainer, InstructorMode, ModeContainer, RegisterContainer, RegisterForm, StudentMode, SubmitInput, ToLogin, ToLoginParagraph } from "./style";
 import { Link} from "react-router-dom";
 
-function RegisterPage(props) {
+function Register(props) {
 
     
     const [mode, setMode] = useState("student")
@@ -189,4 +189,4 @@ function RegisterPage(props) {
    );
 }
 
-export default RegisterPage;
+export default Register;
