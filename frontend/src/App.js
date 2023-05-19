@@ -4,6 +4,7 @@ import Chatting from './components/Chatting';
 import ChapterModal from './components/ChapterModal';
 
 import CourseInfo from './components/CourseInfo';
+import RegisterPage from './pages/Register';
 
 
 
@@ -24,8 +25,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <ChapterModal></ChapterModal>
-      <CourseInfo></CourseInfo>
+      <RegisterPage></RegisterPage>
     </div>
   );
 }

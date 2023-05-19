@@ -6,7 +6,7 @@ export const RegisterContainer = styled.div`
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #FAF7F2;
+    background-color: "white";
    
 `;
 
@@ -19,9 +19,9 @@ export const RegisterForm = styled.form`
 `;
 
 export const FormContainer = styled.div`
-    width: 782px;
+    width: 800px;
     border-radius: 20px;
-    border: 3px solid black;
+    border: 3px solid #94B4FF;
     justify-content: center;
     align-items: center;
 `;
@@ -31,8 +31,8 @@ export const ModeContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0px;
-    width: 782px;
-    height: 82px;
+    width: 100%;
+    height: 86px;
     border-radius: 20px;
     
 `;
@@ -43,7 +43,7 @@ export const StudentMode = styled.div`
     height: 100%;
     text-align: center;
     border-radius: 20px 0 0 0;
-    border-bottom: 3px solid #000000;
+    border-bottom: 3px solid #94B4FF;
     font-weight: 700;
     font-size: 16px; 
     
@@ -56,8 +56,7 @@ export const InstructorMode = styled.div`
     height: 100%;
     text-align: center;
     border-radius: 0 20px 0 0;
-    border-left: 3px solid #000000;
-    border-bottom: 3px solid #000000;
+    border-bottom: 3px solid #94B4FF;
     font-weight: 700;
     font-size: 16px;
 `;
@@ -83,17 +82,17 @@ export const ErrorMessageBox = styled.p`
 export const SubmitInput = styled.input`
     width: 316px;
     height: 63px;
-    border: 3px solid #F4B860;
     border-radius: 10px;
     font-weight: 700;
     font-size: 16px;
-    background-color: white;
+    background-color: #F0F5FF;
+    border: none;
 `;
 
 export const ToLoginParagraph = styled.p`
     text-align: center;  
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     color: #6F7680;
     margin-top: 25px;
 

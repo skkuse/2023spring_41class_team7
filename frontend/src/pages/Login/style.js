@@ -122,7 +122,7 @@ export const SubmitInput = styled.input`
 export const ToRegisterParagraph = styled.p`
     text-align: center;  
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     color: #6F7680;
 
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ButtonContainer, CancelButton, SaveButton, ChapterForm, ChapterInput, ChapterModalContainer, ChapterTextArea, TitleContainer } from "./style";
+import { ButtonContainer, ChapterForm, ChapterInput, ChapterModalContainer, ChapterTextArea, TitleContainer } from "./style";
 import Button from "../Button";
 
 function ChapterModal(props) {
