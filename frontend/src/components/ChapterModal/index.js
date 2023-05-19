@@ -42,7 +42,6 @@ function ChapterModal(props) {
             <ChapterTextArea
                 id="content"
                 name="content"
-                type="text"
                 placeholder="단원 컨텐츠를 작성해주세요!"
                 onChange={handleContextChange}>
             </ChapterTextArea>

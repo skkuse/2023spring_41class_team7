@@ -5,30 +5,46 @@ export const CourseInfoContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     padding: 35px;
-    border: 3px dotted black;
+    gap: 35px;
 `;
 
 export const CourseTitleLanguageContainer = styled.div`
-    width: 100%;
+    
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 0px;
-    gap: 35px;
+    gap: 20px;
     border-radius: 10px;
 `;
 
 export const CourseTitleInput = styled.input`
-
     padding: 20px;
     border-radius: 10px;
     font-weight: 500;
     font-size: 16px;
-    border: 3px solid black;
+    border: 1.5px solid black;
     width: 635px;
 `;
 export const CourseLanguageInput = styled.select`
+    border: 1.5px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+`;
+
+export const CourseIntroductionTextarea = styled.textarea`
+    padding: 20px;
+    width : 751px;
+    height: 60px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    border: 1.5px solid black;
+    font-family: 'Arial';
     
-    border: 3px solid black;
+    
 `;
 

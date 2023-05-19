@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CourseInfoContainer, CourseLanguageInput, CourseTitleInput, CourseTitleLanguageContainer } from "./style";
+import { CourseInfoContainer, CourseIntroductionTextarea, CourseLanguageInput, CourseTitleInput, CourseTitleLanguageContainer } from "./style";
 
 function CourseInfo(props) {
 
@@ -34,14 +34,21 @@ function CourseInfo(props) {
                     placeholder="강의명을 작성해주세요!"
                     onChange={handleTitleChange}
                 ></CourseTitleInput>
-                {/* <CourseLanguageInput>
+                <CourseLanguageInput
+                    id="language"
+                    name="language"
+                    onChange={handleLanguageChange}>
                     <option>Python</option>
                     <option>Java</option>
                     <option>C</option>
-                </CourseLanguageInput> */}
-                
-
+                </CourseLanguageInput>
             </CourseTitleLanguageContainer>
+            <CourseIntroductionTextarea
+                id="introduction"
+                name="introduction"
+                placeholder="단원 컨텐츠를 작성해주세요!"
+                onChange={handleIntroductionChange}
+            ></CourseIntroductionTextarea>
         </CourseInfoContainer>
     );
 }

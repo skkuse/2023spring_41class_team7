@@ -80,8 +80,8 @@ export const ErrorMessageBox = styled.p`
 `;
 
 export const SubmitInput = styled.input`
-    width: 316px;
-    height: 63px;
+    width: 320px;
+    height: 67px;
     border-radius: 10px;
     font-weight: 700;
     font-size: 16px;

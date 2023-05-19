@@ -97,7 +97,7 @@ export const InstructorMode = styled.div`
 
 export const InputContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: column;S
     justify-content: center;
     align-items: center;
     padding: 50px;
@@ -105,8 +105,8 @@ export const InputContainer = styled.div`
 `;
 
 export const SubmitInput = styled.input`
-    width: 316px;
-    height: 63px;
+    width: 320px;
+    height: 67px;
     border: 3px solid #F4B860;
     border-radius: 10px;
     font-weight: 700;
