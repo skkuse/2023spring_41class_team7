@@ -3,6 +3,8 @@ import './App.css';
 import Chatting from './components/Chatting';
 import SubChapterModal from './components/SubChapterModal';
 import SubSectionModal from './components/SubSectionModal';
+import RegisterPage from './pages/Register';
+
 
 
 
