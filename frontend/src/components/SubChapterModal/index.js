@@ -10,13 +10,13 @@ function SubChapterModal(props) {
         setTitle(e.target.value);
     }
     
-    const handleCancelClick =(e) => {
+    const handleCancelClick =() => {
         // 중단원 추가 모달창 닫기
         alert("중단원 추가 모달창 닫기");
         props.setSubChapterModalOpen(false);
     }
     
-    const handleSaveClick = (e) => {
+    const handleSaveClick = () => {
         alert("저장하기");
     }
     

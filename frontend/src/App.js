@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import Chatting from './components/Chatting';
-import SubChapterModal from './components/SubChapterModal';
-import SubSectionModal from './components/SubSectionModal';
+import ChapterModal from './components/ChapterModal';
+
+import CourseInfo from './components/CourseInfo';
 
 
 
@@ -23,6 +24,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <ChapterModal></ChapterModal>
+      <CourseInfo></CourseInfo>
     </div>
   );
 }

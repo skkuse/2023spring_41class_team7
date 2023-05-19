@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-
 export const InputBox = styled.input`
     width: 316px;
     height: 63px;
