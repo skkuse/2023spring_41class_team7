@@ -2,6 +2,7 @@ import { FormContainer, InputContainer, InstructorMode, LoginForm, LoginInnerCon
 import logo from "../../assets/images/logo.png"
 import Input from "../../components/Input";
 import { useState } from "react";
+import { Link  } from "react-router-dom";
 
 function LoginPage(props) {
 
@@ -74,7 +75,7 @@ function LoginPage(props) {
                             <ToRegisterParagraph>
                                 Code with Star 이 처음이세요?{" "}
                                 <ToRegister>
-                                    <a to="/">회원가입</a>
+                                    <Link to="/register">회원가입</Link>
                                 </ToRegister>
                             </ToRegisterParagraph>
                         </InputContainer>

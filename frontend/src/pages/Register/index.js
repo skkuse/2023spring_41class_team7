@@ -1,7 +1,7 @@
 import Input from "../../components/Input";
 import { useState} from "react";
 import { ErrorMessageBox, FormContainer, InputContainer, InstructorMode, ModeContainer, RegisterContainer, RegisterForm, StudentMode, SubmitInput, ToLogin, ToLoginParagraph } from "./style";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function RegisterPage(props) {
 
@@ -179,7 +179,7 @@ function RegisterPage(props) {
                     <ToLoginParagraph>
                         계정이 이미 있으세요?{" "}
                         <ToLogin>
-                            <a to="/">로그인</a>
+                            <Link to="/login">로그인</Link>
                         </ToLogin>
                     </ToLoginParagraph>
                 </InputContainer>
