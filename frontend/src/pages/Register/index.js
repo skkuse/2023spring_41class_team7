@@ -128,10 +128,10 @@ function RegisterPage(props) {
             <RegisterForm onSubmit={handleSubmit}>
                 <ModeContainer>
                     <StudentMode style={{background: isStudent ? "#F0F5FF" : "white"}}>
-                        <input type="radio" name="mode" value="student" defaultChecked onChange={handleModeChange}/>학생
+                        <input type="radio" name="mode" value="student" defaultChecked onChange={handleModeChange} style={{marginRight: 20,}}/>학생
                     </StudentMode>
                     <InstructorMode style={{background: isStudent ? "white" : "#F0F5FF"}}>
-                        <input type="radio" name="mode" value="instructor" onChange={handleModeChange}/>강사
+                        <input type="radio" name="mode" value="instructor" onChange={handleModeChange} style={{marginRight: 20,}}/>강사
                     </InstructorMode>
                 </ModeContainer>
                 <InputContainer>
