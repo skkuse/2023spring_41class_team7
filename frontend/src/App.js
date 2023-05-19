@@ -1,9 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import LoginPage from './pages/Login';
-
-
-
 
 function App() {
   return (
@@ -12,7 +8,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-        </p>    
+        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -22,7 +18,6 @@ function App() {
           Learn React
         </a>
       </header>
-      <LoginPage></LoginPage>
     </div>
   );
 }
