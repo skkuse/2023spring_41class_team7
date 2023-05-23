@@ -1,8 +1,7 @@
+import { AddCourseOuterContainer } from "./style";
 
 function AddCourse(props) {
-    return(
-        <div>Addcourse</div>
-    );
+  return <AddCourseOuterContainer></AddCourseOuterContainer>;
 }
 
 export default AddCourse;

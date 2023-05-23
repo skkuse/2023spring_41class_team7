@@ -1,7 +1,7 @@
+import { UserInstructorOuterContainer } from "./style";
+
 function UserInstructor(props) {
-    return(
-        <div>Instructor My Page</div>
-    );
+  return <UserInstructorOuterContainer></UserInstructorOuterContainer>;
 }
 
 export default UserInstructor;

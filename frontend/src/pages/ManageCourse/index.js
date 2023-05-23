@@ -1,12 +1,15 @@
 import InstructorCourseCard from "../../components/InstructorCourseCard";
+import { ManageCourseContainer, ManageCourseOuterContainer } from "./style";
 
 function ManageCourse(props) {
   return (
-    <>
-      <InstructorCourseCard></InstructorCourseCard>
-      <InstructorCourseCard></InstructorCourseCard>
-      <InstructorCourseCard></InstructorCourseCard>
-    </>
+    <ManageCourseOuterContainer>
+      <ManageCourseContainer>
+        <InstructorCourseCard></InstructorCourseCard>
+        <InstructorCourseCard></InstructorCourseCard>
+        <InstructorCourseCard></InstructorCourseCard>
+      </ManageCourseContainer>
+    </ManageCourseOuterContainer>
   );
 }
 
