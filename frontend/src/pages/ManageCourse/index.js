@@ -1,5 +1,13 @@
+import InstructorCourseCard from "../../components/InstructorCourseCard";
+
 function ManageCourse(props) {
-  return <div>ManageCourse</div>;
+  return (
+    <>
+      <InstructorCourseCard></InstructorCourseCard>
+      <InstructorCourseCard></InstructorCourseCard>
+      <InstructorCourseCard></InstructorCourseCard>
+    </>
+  );
 }
 
 export default ManageCourse;

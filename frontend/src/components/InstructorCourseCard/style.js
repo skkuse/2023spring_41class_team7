@@ -56,8 +56,8 @@ export const RowButtonsContainer = styled.div`
 `;
 
 export const FeedbackImage = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
 `;
 
 export const FeedbackContatiner = styled.div`
