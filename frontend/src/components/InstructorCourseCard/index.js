@@ -78,7 +78,7 @@ function InstructorCourseCard(props) {
             <FeedbackImage src={feedback}></FeedbackImage>
           </button>
         </ButtonsContainer>
-        <p>{String(toggleFeedback)}</p>
+        {/* <p>{String(toggleFeedback)}</p> */}
       </InstructorCourseCardContainer>
       {toggleFeedback && (
         <FeedbackContatiner>
