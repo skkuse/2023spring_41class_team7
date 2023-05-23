@@ -6,7 +6,6 @@ import Register from "./pages/Register";
 import AddCourse from "./pages/AddCourse";
 import ManageCourse from "./pages/ManageCourse";
 import UserInstructor from "./pages/UserInstructor";
-import InstructorCourseCard from "./components/InstructorCourseCard";
 
 function App() {
   return (
