@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import AddCourse from './pages/AddCourse';
 import ManageCourse from './pages/ManageCourse';
 import UserInstructor from './pages/UserInstructor';
+import InstructorCourseCard from './components/InstructorCourseCard';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/user/instructor" element={<UserInstructor/>}></Route>
         <Route path="/addcourse" element={<AddCourse/>}></Route>
         <Route path="/mngcourse" element={<ManageCourse/>}></Route>
-        
+        <Route path="/coursecard" element={<InstructorCourseCard/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>

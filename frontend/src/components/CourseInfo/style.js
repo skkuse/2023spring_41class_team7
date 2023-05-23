@@ -5,6 +5,7 @@ export const CourseInfoContainer = styled.div`
     flex-direction: column;
     padding: 35px;
     gap: 35px;
+    border: 1.5px solid black;
 `;
 
 export const CourseTitleLanguageContainer = styled.div`

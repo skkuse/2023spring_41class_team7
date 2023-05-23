@@ -47,7 +47,7 @@ function ChapterModal(props) {
             </ChapterTextArea>
             <ButtonContainer>
                 <Button content="취소" onClick={handleCancelClick} backgroundColor="white"></Button>
-                <Button content="저장" onClick={handleSaveClick} backgroundColor="#DAE5FF">저장</Button>
+                <Button content="저장" onClick={handleSaveClick} backgroundColor="#DAE5FF"></Button>
             </ButtonContainer>
             </ChapterForm>
         </ChapterModalContainer>
