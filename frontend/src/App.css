@@ -1,4 +1,5 @@
 .App {
+<<<<<<< HEAD
   /* text-align: center; */
   height: 100vh;
   
@@ -37,4 +38,6 @@
   to {
     transform: rotate(360deg);
   }
+=======
+>>>>>>> 77b57b8736355571baf5f51d88edac80027dc8db
 }
