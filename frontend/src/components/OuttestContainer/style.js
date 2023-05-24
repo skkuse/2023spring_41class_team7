@@ -6,5 +6,5 @@ gap:35px;
 display:flex;
 align-items:center;
 padding:35px;
-background: pink;
+background: #eeeeee;
 `;
