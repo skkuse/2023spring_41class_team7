@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const ModifyCourseContainer = styled.div`
+export const AddCourseContainer = styled.div`
   -webkit-box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -13,4 +13,22 @@ export const ModifyCourseContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
+`;
+
+export const ButtonsContainer = styled.div`
+  -webkit-box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  gap: 20px;
+`;
+
+export const ChapterAddButton = styled.button`
+  width: 100px;
+  height: 60px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #dae5ff;
+  align-self: flex-end;
 `;

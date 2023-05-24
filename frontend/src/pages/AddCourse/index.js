@@ -43,7 +43,7 @@ function AddCourse(props) {
           ></Button>
         </ButtonsContainer>
         <CourseInfo></CourseInfo>
-        <ChapterAddButton onClick={handleAddClick}>강의 추가</ChapterAddButton>
+        <ChapterAddButton onClick={handleAddClick}>단원 추가</ChapterAddButton>
         {showModal && <ChapterModal setShowModal={setShowModal}></ChapterModal>}
       </AddCourseContainer>
     </OuttestContainer>

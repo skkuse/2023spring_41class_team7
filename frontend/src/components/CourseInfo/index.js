@@ -33,15 +33,17 @@ function CourseInfo(props) {
           type="text"
           placeholder="강의명을 작성해주세요!"
           onChange={handleTitleChange}
+          value={props.title}
         ></CourseTitleInput>
         <CourseLanguageInput
           id="language"
           name="language"
           onChange={handleLanguageChange}
+          defaultValue={props.language}
         >
-          <option>Python</option>
-          <option>Java</option>
-          <option>C</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="c">C</option>
         </CourseLanguageInput>
       </CourseTitleLanguageContainer>
       <CourseIntroductionTextarea
@@ -49,6 +51,7 @@ function CourseInfo(props) {
         name="introduction"
         placeholder="강의에 대한 간단한 소개를 작성해주세요!"
         onChange={handleIntroductionChange}
+        value={props.introduction}
       ></CourseIntroductionTextarea>
     </CourseInfoContainer>
   );
