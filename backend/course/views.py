@@ -1,26 +1,19 @@
 from django.shortcuts import get_object_or_404
-from course.models import Course
-from course.serializers import CourseSerializer
+from course.models import Course, Tag
+from course.serializers import CourseSerializer, TagSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
-class CourseList(APIView):
+class CourseList(generics.ListCreateAPIView):
+    queryset = Course.objects.all()
     serializer_class = CourseSerializer
-
-    def get(self, request, format=None):
-        courses = Course.objects.all()
-        serializer = CourseSerializer(courses, many=True)
-        return Response(serializer.data)
-    
-    def post(self, request, format=None):
-        serializer = CourseSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['tag']
+    search_fields = ['title'] # Later, author should be added
 
 class CourseDetail(APIView):
     serializer_class = CourseSerializer
@@ -50,3 +43,10 @@ class CourseDetail(APIView):
         """
         course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class TagList(APIView):
+
+    def get(self, request, format=None):
+        tags = Tag.objects.all()
+        serializer = TagSerializer(tags, many=True)
+        return Response(serializer.data)
