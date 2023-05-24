@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const LetfContainer = styled.div`
     width: 180px;
-    height: 530px;
+    height: 560px;
     background: #FFFFFF;
     box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.09);
     border-radius: 20px;
@@ -11,7 +11,7 @@ export const LetfContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 35px;
+    padding: 25px;
 `;
 
 export const ProfileContainer = styled.div`
@@ -31,11 +31,13 @@ background-color: #DFE4E7;
 
 export const PageBtn = styled.button`
 font-size: 15px;
-padding: 6px 45px;
+padding: 8px 45px;
 letter-spacing: 0.06em;
-background-color: #ffffffff;
-border: 2px solid #F4B860;
-border-radius: 20px;
+font-weight: 700;
+background-color: #E1E7F5;
+border: none;
+color : #282726;
+border-radius: 10px;
 cursor: pointer;
 `;
 

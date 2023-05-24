@@ -40,9 +40,9 @@ function Navbar() {
                 
                 {/* links */}
                 
-                <NavElement><FontAwesomeIcon icon={faCode} /><Link to={"/"} style={{ textDecoration: "none", color: "#48413D"}}>PYTHON</Link></NavElement>
-                <NavElement><FontAwesomeIcon icon={faCode} /><Link to={"/"} style={{ textDecoration: "none",color: "#48413D" }}>JAVA</Link></NavElement>
-                <NavElement><FontAwesomeIcon icon={faCode} /><Link to={"/"} style={{ textDecoration: "none",color: "#48413D" }}>C</Link></NavElement>
+                <NavElement><FontAwesomeIcon icon={faCode} /><Link to={"/"} style={{ textDecoration: "none", color: "#48413D"}}>파이썬</Link></NavElement>
+                <NavElement><FontAwesomeIcon icon={faCode} /><Link to={"/"} style={{ textDecoration: "none",color: "#48413D" }}>자바</Link></NavElement>
+                <NavElement><FontAwesomeIcon icon={faCode} /><Link to={"/"} style={{ textDecoration: "none",color: "#48413D" }}>C언어</Link></NavElement>
                 
             </NavContainer>
         </LetfContainer>
