@@ -1,6 +1,6 @@
 import Button from "../Button";
 import {
-  AIImage,
+  StarImage,
   ButtonsContainer,
   CourseInfoContainer,
   CourseIntroductionContainer,
@@ -12,8 +12,10 @@ import {
   InstructorCourseCardContainer,
   InstructorCourseCardOuterContainer,
   RowButtonsContainer,
+  NonButtonContainer,
 } from "./style";
 import feedback from "../../assets/images/feedback.png";
+import star from "../../assets/images/star.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +32,7 @@ function InstructorCourseCard(props) {
   const [toggleFeedback, setToggleFeedback] = useState(false);
 
   const handleModifyClick = () => {
-    navigate("/course/modify");
+    navigate("/modify");
   };
 
   const handleCancelClick = () => {
@@ -47,13 +49,15 @@ function InstructorCourseCard(props) {
   return (
     <InstructorCourseCardOuterContainer>
       <InstructorCourseCardContainer>
-        <CourseLogo></CourseLogo>
-        <CourseInfoContainer>
-          <CourseTitleContainer>{courseTitle}</CourseTitleContainer>
-          <CourseIntroductionContainer>
-            {courseIntroduction}
-          </CourseIntroductionContainer>
-        </CourseInfoContainer>
+        <NonButtonContainer>
+          <CourseLogo></CourseLogo>
+          <CourseInfoContainer>
+            <CourseTitleContainer>{courseTitle}</CourseTitleContainer>
+            <CourseIntroductionContainer>
+              {courseIntroduction}
+            </CourseIntroductionContainer>
+          </CourseInfoContainer>
+        </NonButtonContainer>
         <ButtonsContainer>
           <RowButtonsContainer>
             <Button
@@ -85,7 +89,7 @@ function InstructorCourseCard(props) {
       </InstructorCourseCardContainer>
       {toggleFeedback && (
         <FeedbackContatiner>
-          <AIImage></AIImage>
+          <StarImage src={star}></StarImage>
           <FeedbackMessageContainer>{feedbackMessage}</FeedbackMessageContainer>
         </FeedbackContatiner>
       )}

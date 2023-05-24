@@ -16,7 +16,7 @@ function UserInstructor(props) {
   const navigate = useNavigate();
 
   const handleAddClick = () => {
-    navigate("/course/add");
+    navigate("/add");
   };
 
   return (
@@ -34,6 +34,8 @@ function UserInstructor(props) {
           </Title>
         </TitleContainer>
         <CourseContainer>
+          <InstructorCourseCard></InstructorCourseCard>
+          <InstructorCourseCard></InstructorCourseCard>
           <InstructorCourseCard></InstructorCourseCard>
           <InstructorCourseCard></InstructorCourseCard>
         </CourseContainer>

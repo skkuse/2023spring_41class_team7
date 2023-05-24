@@ -4,17 +4,26 @@ export const InstructorCourseCardOuterContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 35px;
+  width: 100%;
 `;
 
 export const InstructorCourseCardContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 35px;
   gap: 35px;
   border-radius: 10px;
   box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
+`;
+
+export const NonButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 35px;
 `;
 
 export const CourseLogo = styled.img`
@@ -25,7 +34,7 @@ export const CourseLogo = styled.img`
 export const CourseInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-self: flex-start;
   padding: 10px;
   gap: 10px;
 `;
@@ -44,7 +53,6 @@ export const CourseIntroductionContainer = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 35px;
 `;
 
@@ -68,7 +76,7 @@ export const FeedbackContatiner = styled.div`
   gap: 10px;
 `;
 
-export const AIImage = styled.img`
+export const StarImage = styled.img`
   width: 64px;
   height: 64px;
 `;

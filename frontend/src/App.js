@@ -15,8 +15,8 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/user/instructor" element={<UserInstructor />}></Route>
-          <Route path="/course/add" element={<AddCourse />}></Route>
-          <Route path="/course/modify" element={<ModifyCourse />}></Route>
+          <Route path="/add" element={<AddCourse />}></Route>
+          <Route path="/modify" element={<ModifyCourse />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
