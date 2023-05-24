@@ -21,14 +21,13 @@ function LectureProgress() {
             <InfoContainer>   
                 {/* lecture title */}
                 <TitleContainer>
-                    <span>강의 제목 올 자리</span>
+                    강의 제목 올 자리
                 </TitleContainer>
                 {/* more info */}
                 <MoreInfoContainer>
-                    <ProgressContainer>
-                        {/* progress */}
-                        <span>60%</span>
-                    </ProgressContainer>
+
+                    {/* progress */}
+                    <ProgressContainer>60%</ProgressContainer>
                     <EtcContainer>
                         {/* teacher & language */}
                         <span>OOO 선생님</span>
