@@ -5,7 +5,8 @@ import './App.css';
 //import LearningPage from "./pages/Learning";
 // import styled from '@emotion/styled';
 //import ChattingInterface from "./components/Chatting"
-import StudentPage from "./pages/Student"
+//import StudentPage from "./pages/Student"
+import LectureProgress from './components/LectureProgress';
 
 
 // const AppContainer = styled.div`
@@ -24,7 +25,7 @@ function App() {
     // </BrowserRouter>
     //<LearningPage/>
     //<ChattingInterface/>
-    <StudentPage/>
+    <LectureProgress/>
   );
 }
 
