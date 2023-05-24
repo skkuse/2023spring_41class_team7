@@ -19,14 +19,14 @@ function ShowChapter(props) {
     <ShowOuterContainer>
       <ShowChapterContainer>
         <ChapterNumberContainer>1주차</ChapterNumberContainer>
-        <ChapterTitle value=""></ChapterTitle>
+        <ChapterTitle defaultValue=""></ChapterTitle>
         <Button
           content="보기"
           onClick={handleContentClick}
           backgroundColor="white"
         ></Button>
       </ShowChapterContainer>
-      {showContent && <ChapterContent value=""></ChapterContent>}
+      {showContent && <ChapterContent defaultValue=""></ChapterContent>}
     </ShowOuterContainer>
   );
 }
