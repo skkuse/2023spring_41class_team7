@@ -3,8 +3,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddCourse from "./pages/AddCourse";
-import ManageCourse from "./pages/ManageCourse";
 import UserInstructor from "./pages/UserInstructor";
+import ModifyCourse from "./pages/ModifyCourse";
 
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/user/instructor" element={<UserInstructor />}></Route>
-          <Route path="/addcourse" element={<AddCourse />}></Route>
-          <Route path="/mngcourse" element={<ManageCourse />}></Route>
+          <Route path="/course/add" element={<AddCourse />}></Route>
+          <Route path="/course/modify" element={<ModifyCourse />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
