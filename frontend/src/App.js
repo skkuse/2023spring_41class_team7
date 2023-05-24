@@ -1,31 +1,26 @@
-import './App.css';
-// import { BrowserRouter } from 'react-router-dom';
-// import Navbar from "./components/Navbar"
-// import MainPage from './pages/Main';
-//import LearningPage from "./pages/Learning";
-// import styled from '@emotion/styled';
-//import ChattingInterface from "./components/Chatting"
-//import StudentPage from "./pages/Student"
-import LectureProgress from './components/LectureProgress';
-
-
-// const AppContainer = styled.div`
-// display: flex;
-// justify-content: flex-start;
-// gap: 30px;
-// `;
+import "./App.css";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AddCourse from "./pages/AddCourse";
+import ManageCourse from "./pages/ManageCourse";
+import UserInstructor from "./pages/UserInstructor";
 
 function App() {
   return (
-    // <BrowserRouter>
-    // <AppContainer>
-    //     <Navbar/>
-    //     <MainPage/>
-    // </AppContainer>
-    // </BrowserRouter>
-    //<LearningPage/>
-    //<ChattingInterface/>
-    <LectureProgress/>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Navigate to="/login"></Navigate>}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/user/instructor" element={<UserInstructor />}></Route>
+          <Route path="/addcourse" element={<AddCourse />}></Route>
+          <Route path="/mngcourse" element={<ManageCourse />}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
+
   );
 }
 
