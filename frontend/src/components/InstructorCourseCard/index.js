@@ -15,8 +15,11 @@ import {
 } from "./style";
 import feedback from "../../assets/images/feedback.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function InstructorCourseCard(props) {
+  const navigate = useNavigate();
+
   const [courseTitle, setCourseTitle] = useState("입문자를 위한 파이썬 기초");
   const [courseIntroduction, setCourseIntroduction] = useState(
     "파이썬 기초부터 탄탄하게 공부해요 ^*^"
@@ -27,7 +30,7 @@ function InstructorCourseCard(props) {
   const [toggleFeedback, setToggleFeedback] = useState(false);
 
   const handleModifyClick = () => {
-    alert("수정하기");
+    navigate("/course/modify");
   };
 
   const handleCancelClick = () => {

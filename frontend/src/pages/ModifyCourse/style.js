@@ -24,6 +24,7 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const ChapterAddButton = styled.button`
+  -webkit-box-sizing: border-box;
   width: 100px;
   height: 60px;
   border-radius: 10px;
@@ -31,4 +32,22 @@ export const ChapterAddButton = styled.button`
   font-size: 16px;
   background-color: #dae5ff;
   align-self: flex-end;
+`;
+
+export const ShowCourseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: "Arial";
+  gap: 35px;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+    background: #ffffff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #eeeeee;
+    border-radius: 6px;
+  }
 `;

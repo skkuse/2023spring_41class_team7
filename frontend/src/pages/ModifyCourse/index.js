@@ -5,10 +5,12 @@ import {
   AddCourseContainer,
   ButtonsContainer,
   ChapterAddButton,
+  ShowCourseContainer,
 } from "./style";
 import Button from "../../components/Button";
 import CourseInfo from "../../components/CourseInfo";
 import ChapterModal from "../../components/ChapterModal";
+import ShowChapter from "../../components/ShowChapter";
 
 function ModifyCourse(props) {
   const [showModal, setShowModal] = useState(false);
@@ -50,8 +52,14 @@ function ModifyCourse(props) {
           language={language}
           introduction={introduction}
         ></CourseInfo>
-        <ChapterAddButton onClick={handleAddClick}>단원 추가</ChapterAddButton>
+        <ChapterAddButton onClick={handleAddClick} disabled={showModal}>
+          단원 추가
+        </ChapterAddButton>
         {showModal && <ChapterModal setShowModal={setShowModal}></ChapterModal>}
+        <ShowCourseContainer>
+          <ShowChapter></ShowChapter>
+          <ShowChapter></ShowChapter>
+        </ShowCourseContainer>
       </AddCourseContainer>
     </OuttestContainer>
   );

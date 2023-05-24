@@ -18,6 +18,7 @@ function UserInstructor(props) {
   const handleAddClick = () => {
     navigate("/course/add");
   };
+
   return (
     <OuttestContainer>
       <Navbar></Navbar>
