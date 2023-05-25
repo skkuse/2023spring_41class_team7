@@ -27,7 +27,7 @@ class CourseTake(APIView):
         if chapter_id:
             '해당 챕터 정보만 반환'
             if not chapter_id.isnumeric():
-                return Response(None, status=status.HTTP_400_BAD_REQUEST)
+                return Response('wrong chapter id', status=status.HTTP_400_BAD_REQUEST)
             chapter_room, created = ChapterRoom.objects.get_or_create(course_room=course_room, chapter_id=int(chapter_id))
             chapter_room.save()
 
@@ -59,9 +59,12 @@ class CourseTake(APIView):
         '''
         serializer = ChapterChatSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
         chapter_id = request.query_params.get('chapter')
+
         if chapter_id is None or not chapter_id.isnumeric():
-            return Response(None, status=status.HTTP_400_BAD_REQUEST)
+            return Response('wrong chapter id', status=status.HTTP_400_BAD_REQUEST)
+        
         course_room = get_object_or_404(CourseRoom, course_id=course_id, learner=request.user)
         chapter_room = get_object_or_404(ChapterRoom, course_room=course_room, chapter_id=int(chapter_id))
         serializer.save(room=chapter_room)
