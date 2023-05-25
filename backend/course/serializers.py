@@ -1,4 +1,4 @@
-from course.models import Course, Tag, Chapter
+from .models import Course, Tag, Chapter
 from rest_framework import serializers
 from django.conf import settings
 import os
@@ -22,7 +22,7 @@ class ChapterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chapter
-        fields = ['id', 'course', 'title', 'intro', 'content']
+        fields = ['id', 'course', 'title', 'intro', 'content', 'created_at', 'modified_at']
 
     def create(self, validated_data):
         chapter = Chapter.objects.create(**validated_data)

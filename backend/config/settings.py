@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'course.apps.CourseConfig',
     'user.apps.UserConfig',
-    'learn.apps.LearnConfig'
+    'learn.apps.LearnConfig',
+    'feedback.apps.FeedbackConfig'
 ]
 
 # external application
