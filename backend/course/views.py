@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
-from course.models import Course, Tag
-from course.serializers import CourseSerializer, TagSerializer
-from django.http import Http404
+from course.models import Course, Tag, Chapter
+from course.serializers import CourseSerializer, TagSerializer, ChapterSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, filters
@@ -50,3 +49,43 @@ class TagList(APIView):
         tags = Tag.objects.all()
         serializer = TagSerializer(tags, many=True)
         return Response(serializer.data)
+    
+class ChapterList(APIView):
+    serializer_class = ChapterSerializer
+
+    def get(self, request, format=None):
+        chapters = Chapter.objects.all()
+        serializer = ChapterSerializer(chapters, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = ChapterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ChapterDetail(APIView):
+    serializer_class = ChapterSerializer
+
+    def get(self, request, pk, format=None):
+        chapter = get_object_or_404(Chapter, pk=pk)
+        serializer = ChapterSerializer(chapter)
+        return Response(serializer.data)
+    
+    def put(slef, request, pk, formant=None):
+        chapter = get_object_or_404(Chapter, pk=pk)
+        """
+        if request.author != chapter.course.author:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        """
+        serializer = ChapterSerializer(chapter, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        chapter = get_object_or_404(Chapter, pk=pk)
+        chapter.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

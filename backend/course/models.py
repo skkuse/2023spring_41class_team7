@@ -1,6 +1,17 @@
+from typing import Optional
 from django.db import models
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import os
 
 # Create your models here.
+
+class OverwriteStorage(FileSystemStorage):
+    
+    def get_available_name(self, name, max_length=None):
+        if self.exists(name):
+            os.remove(os.path.join(settings.MEDIA_ROOT, name))
+        return name
 
 class Tag(models.Model):
     category = models.CharField(max_length=30)
@@ -11,8 +22,8 @@ class Tag(models.Model):
 
 class Course(models.Model):
     title = models.CharField(max_length=100)
-    mascot = models.ImageField(upload_to='mascot', default='mascot/default_image.jpeg')
-    thumbnail = models.ImageField(upload_to='thumbnail', default='thumbnail/default_thumbnail.jpeg')
+    mascot = models.ImageField(upload_to='mascot', default='mascot/default_image.jpeg', storage=OverwriteStorage)
+    thumbnail = models.ImageField(upload_to='thumbnail', default='thumbnail/default_thumbnail.jpeg', storage=OverwriteStorage)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     learner_count = models.PositiveIntegerField(default=0)
@@ -21,3 +32,22 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+def chapter_path(instance, filename):
+    return f"content/course_{instance.course.id}/{filename}"
+
+def index_path():
+    return os.path.join(settings.MEDIA_ROOT, 'index')
+
+class Chapter(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    intro = models.TextField()
+    content = models.FileField(upload_to=chapter_path, storage=OverwriteStorage)
+    index = models.FilePathField(path=index_path)
+
+    class Meta:
+        order_with_respect_to = "course"
+
+    def __str__(self) -> str:
+        return str(self.course.title) + ' - ' + self.title
