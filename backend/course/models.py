@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import os
 
+from user.models import User
 # Create your models here.
 
 class OverwriteStorage(FileSystemStorage):
@@ -24,7 +25,7 @@ class Course(models.Model):
     title = models.CharField(max_length=100)
     mascot = models.ImageField(upload_to='mascot', default='mascot/default_image.jpeg', storage=OverwriteStorage)
     thumbnail = models.ImageField(upload_to='thumbnail', default='thumbnail/default_thumbnail.jpeg', storage=OverwriteStorage)
-    # author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     learner_count = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)

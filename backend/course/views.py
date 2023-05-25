@@ -24,10 +24,10 @@ class CourseDetail(APIView):
     
     def put(self, request, pk, format=None):
         course = get_object_or_404(Course, pk=pk)
-        """
-        if request.user != course.author:
+        
+        if request.user != course.author or request.user.educator == False:
             return Response(status=status.HTTP_403_FORBIDDEN)
-        """
+        
         serializer = CourseSerializer(course, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -36,10 +36,10 @@ class CourseDetail(APIView):
     
     def delete(self, request, pk, format=None):
         course = get_object_or_404(Course, pk=pk)
-        """
-        if request.user != course.author:
+        
+        if request.user != course.author or request.user.educator == False:
             return Response(status=status.HTTP_403_FORBIDDEN)
-        """
+        
         course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
@@ -75,10 +75,10 @@ class ChapterDetail(APIView):
     
     def put(slef, request, pk, formant=None):
         chapter = get_object_or_404(Chapter, pk=pk)
-        """
-        if request.author != chapter.course.author:
+        
+        if request.author != chapter.course.author or request.user.educator == False:
             return Response(status=status.HTTP_403_FORBIDDEN)
-        """
+        
         serializer = ChapterSerializer(chapter, data=request.data)
         if serializer.is_valid():
             serializer.save()

@@ -1,21 +1,23 @@
 from django.db import models
 
 from user.models import User
+from course.models import Course, Chapter
+from feedback.models import Quiz
 # Create your models here.
 class CourseRoom(models.Model):
-    # course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     learner = models.ForeignKey(User, on_delete=models.CASCADE)
     last_attempt = models.DateTimeField(auto_now=True)
 
 
 class ChapterRoom(models.Model):
     course_room = models.ForeignKey(CourseRoom, on_delete=models.CASCADE, related_name='chapter_rooms')
-    # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
     last_attempt = models.DateTimeField(auto_now=True)
 
 
 class QuizRoom(models.Model):
-    #quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     learner = models.ForeignKey(User, on_delete=models.CASCADE)
     last_attempt = models.DateTimeField(auto_now=True)
 

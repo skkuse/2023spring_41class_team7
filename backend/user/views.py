@@ -28,7 +28,7 @@ class UserLogin(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
         login(request, user)
-        return Response(UserSerializer(user).data)
+        return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
     
     def get(self, request):
         logout(request)
