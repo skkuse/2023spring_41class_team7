@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 # own application
 INSTALLED_APPS += [
     'course.apps.CourseConfig',
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    'learn.apps.LearnConfig'
 ]
 
 # external application
@@ -149,3 +150,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = 'user.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
