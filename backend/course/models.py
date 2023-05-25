@@ -45,6 +45,8 @@ class Chapter(models.Model):
     intro = models.TextField()
     content = models.FileField(upload_to=chapter_path, storage=OverwriteStorage)
     index = models.FilePathField(path=index_path)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True) 
 
     class Meta:
         order_with_respect_to = "course"
