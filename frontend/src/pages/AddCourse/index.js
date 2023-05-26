@@ -12,6 +12,7 @@ import CourseInfo from "../../components/CourseInfo";
 import ChapterModal from "../../components/ChapterModal";
 import ShowChapter from "../../components/ShowChapter";
 import Header from "../../components/Header";
+import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 
 function AddCourse(props) {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +29,7 @@ function AddCourse(props) {
     setShowModal(!showModal);
   };
   return (
-    <>
+    <MostOuterDiv>
       <Header></Header>
       <OuttestContainer>
         <Navbar></Navbar>
@@ -63,7 +64,7 @@ function AddCourse(props) {
           </ShowCourseContainer>
         </AddCourseContainer>
       </OuttestContainer>
-    </>
+    </MostOuterDiv>
   );
 }
 

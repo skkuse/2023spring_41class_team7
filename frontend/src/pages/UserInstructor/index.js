@@ -12,6 +12,7 @@ import {
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../../components/Header";
+import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 
 function UserInstructor(props) {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function UserInstructor(props) {
   };
 
   return (
-    <>
+    <MostOuterDiv>
       <Header></Header>
       <OuttestContainer>
         <Navbar></Navbar>
@@ -44,7 +45,7 @@ function UserInstructor(props) {
           </CourseContainer>
         </UserInstructorContainer>
       </OuttestContainer>
-    </>
+    </MostOuterDiv>
   );
 }
 
