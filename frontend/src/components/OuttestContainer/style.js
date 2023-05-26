@@ -6,6 +6,6 @@ export const OuttestContainer = styled.div`
   gap: 35px;
   display: flex;
   align-items: center;
-  padding: 35px;
+  padding: 10px 35px;
   background: #eeeeee;
 `;

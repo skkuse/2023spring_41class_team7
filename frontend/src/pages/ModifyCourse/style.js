@@ -1,5 +1,12 @@
 import styled from "@emotion/styled";
 
+export const MostOuterContainer = styled.div`
+  -webkit-box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ModifyCourseContainer = styled.div`
   -webkit-box-sizing: border-box;
   width: 100%;
