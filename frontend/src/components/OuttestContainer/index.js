@@ -1,13 +1,7 @@
-import {
-    OuttestContainer
-}from "./style"
+import { OuttestContainer as styleContainer } from "./style";
 
 function OuttestContainer() {
-    return ( 
-        <OuttestContainer>
-            
-        </OuttestContainer>
-     );
+  return <styleContainer></styleContainer>;
 }
 
 export default OuttestContainer;
