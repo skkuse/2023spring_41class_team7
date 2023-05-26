@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import {
-  AddCourseContainer,
+  ModifyCourseContainer,
   ButtonsContainer,
   ChapterAddButton,
   ShowCourseContainer,
@@ -32,7 +32,7 @@ function ModifyCourse(props) {
   return (
     <OuttestContainer>
       <Navbar></Navbar>
-      <AddCourseContainer>
+      <ModifyCourseContainer>
         <ButtonsContainer>
           <Button
             content="저장"
@@ -60,7 +60,7 @@ function ModifyCourse(props) {
           <ShowChapter></ShowChapter>
           <ShowChapter></ShowChapter>
         </ShowCourseContainer>
-      </AddCourseContainer>
+      </ModifyCourseContainer>
     </OuttestContainer>
   );
 }
