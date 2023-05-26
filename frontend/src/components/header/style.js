@@ -7,8 +7,8 @@ export const StyledHeader = styled.div`
     align-items: center;
     padding: 20px 70px;
     gap: 10px;
-    width: fill-available;
-    height: 124px;
+    width: 100%;
+    height: 5%;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -27,8 +27,9 @@ export const LogoContainer = styled.div`
     padding: 10px;
     gap: 10px;
     color: black;
-    width: 237px;
-    height: 84px;
+    width: 10%;
+    height: 100%;
+
     /* Inside auto layout */
     flex: none;
     order: 0;
@@ -38,8 +39,8 @@ export const LogoContainer = styled.div`
 `;
  
 export const LogoContents = styled.div`
-    width: 143px;
-    height: 47px;
+    width: 60%;
+    height: 100%;
     
     font-family: 'Roboto';
     font-style: normal;
@@ -58,8 +59,8 @@ export const LogoContents = styled.div`
 `;
 
 export const LogoImage = styled.img`
-    width: 64px;
-    height: 64px;
+    width: 30%;
+    height: 100%;
     background: url(free-icon-exclusive-4926953.png);
     /* Inside auto layout */
     flex: none;

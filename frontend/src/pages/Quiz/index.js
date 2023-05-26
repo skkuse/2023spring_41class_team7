@@ -13,7 +13,12 @@ import {
 } from "./style";
 import SearchHeader from "../../components/SearchHeader";
 
-function QuizPage(props) {
+
+
+function QuizPage(props) { 
+    const handleClick=()=>{
+        alert("@!#!@#!@#!@");
+    }
   return (
     <QuizOuterContainer>
       <Header></Header>
@@ -22,7 +27,7 @@ function QuizPage(props) {
           <QuizTitleContainer></QuizTitleContainer>
         </QuizUtilContainer>
         <QuizEditorContainer>
-          <CodeEditorCpp></CodeEditorCpp>
+          <CodeEditorCpp onClick={handleClick}></CodeEditorCpp>
         </QuizEditorContainer>
       </QuizInnerContainer>
     </QuizOuterContainer>

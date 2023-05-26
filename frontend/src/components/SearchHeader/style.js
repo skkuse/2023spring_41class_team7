@@ -8,7 +8,7 @@ export const StyledHeader = styled.div`
     padding: 20px 70px;
     gap: 10px;
     width: fill-available;
-    height: 124px;
+    height: 5%;
     flex: none;
     order: 0;
     align-self: stretch;
