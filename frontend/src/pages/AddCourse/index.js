@@ -16,14 +16,19 @@ import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 import { useNavigate } from "react-router-dom";
 
 function AddCourse(props) {
+  const [courseid, setCourseid] = useState();
   const [showModal, setShowModal] = useState(false);
-
+  const [isCourseInitialized, setIsCourseInitialized] = useState(false);
+  const [isEntered, setIsEntered] = useState(true);
   const navigate = useNavigate();
 
   const handleAddCourseSubmit = (e) => {};
 
   const handleSaveClick = () => {
-    alert("저장하기");
+    /* Course title, introduction POST */
+    /* POST 성공 시 */
+    setIsCourseInitialized(true);
+    /* setCourseid(REPONSE로 날라온 id 값) */
   };
 
   const handleCancelClick = () => {
@@ -32,6 +37,7 @@ function AddCourse(props) {
 
   const handleAddClick = () => {
     setShowModal(!showModal);
+    setIsEntered(false);
   };
   return (
     <MostOuterDiv>
@@ -44,7 +50,7 @@ function AddCourse(props) {
               content="저장"
               onClick={handleSaveClick}
               backgroundColor="#DAE5FF"
-              disabled={showModal}
+              disabled={isCourseInitialized}
             ></Button>
             <Button
               content="취소"
@@ -55,15 +61,22 @@ function AddCourse(props) {
             ></Button>
           </ButtonsContainer>
           <CourseInfo></CourseInfo>
-          <ChapterAddButton onClick={handleAddClick} disabled={showModal}>
+          <ChapterAddButton
+            onClick={handleAddClick}
+            disabled={!isCourseInitialized}
+            type="button"
+          >
             단원 추가
           </ChapterAddButton>
           {showModal && (
             <ChapterModal
+              courseid={courseid}
               setShowModal={setShowModal}
+              setIsEntered={setIsEntered}
               disabled={showModal}
             ></ChapterModal>
           )}
+          {String(isEntered)}
           <ShowCourseContainer>
             <ShowChapter></ShowChapter>
             <ShowChapter></ShowChapter>

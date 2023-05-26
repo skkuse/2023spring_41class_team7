@@ -24,10 +24,20 @@ function ChapterModal(props) {
 
   const handleCancelClick = () => {
     props.setShowModal(false);
+    props.setIsEntered(true);
   };
 
   const handleSaveClick = () => {
     props.setShowModal(false);
+    props.setIsEntered(true);
+    /* POST 요청시 course/?*/
+    try {
+      const body = {
+        course: props.courseid,
+        title: title,
+        content: content,
+      };
+    } catch (e) {}
   };
 
   return (
@@ -59,7 +69,6 @@ function ChapterModal(props) {
               content="저장"
               onClick={handleSaveClick}
               backgroundColor="#DAE5FF"
-              type="button"
             ></Button>
           </ButtonContainer>
         </ChapterForm>

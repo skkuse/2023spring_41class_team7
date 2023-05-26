@@ -16,7 +16,7 @@ import {
 import logo from "../../assets/images/logo.png";
 import Input from "../../components/Input";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [mode, setMode] = useState("student");
@@ -28,6 +28,8 @@ function Login(props) {
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
@@ -38,6 +40,10 @@ function Login(props) {
           password: password,
           educator: !isStudent,
         };
+        props.setLoggedin(true);
+        /* RESPONSE로 받은 user를 저장*/
+        //props.setUser();
+        navigate("/main");
       } catch (e) {}
     }
   };
@@ -78,6 +84,7 @@ function Login(props) {
         </TitleContainer>
         <LoginForm onSubmit={handleLoginSubmit}>
           <FormContainer>
+            {props.user}
             <ModeContainer>
               <StudentMode
                 style={{ background: isStudent ? "#F0F5FF" : "white" }}
