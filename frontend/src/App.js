@@ -5,9 +5,12 @@ import Register from "./pages/Register";
 import AddCourse from "./pages/AddCourse";
 import UserInstructor from "./pages/UserInstructor";
 import ModifyCourse from "./pages/ModifyCourse";
+import QuizPage from './pages/Quiz';
+
+
 
 function App() {
-  return (
+  return(
     <BrowserRouter>
       <div className="App">
         <Routes>
@@ -17,6 +20,7 @@ function App() {
           <Route path="/user/instructor" element={<UserInstructor />}></Route>
           <Route path="/add" element={<AddCourse />}></Route>
           <Route path="/modify" element={<ModifyCourse />}></Route>
+          <Route path="/quiz" element={<QuizPage/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
