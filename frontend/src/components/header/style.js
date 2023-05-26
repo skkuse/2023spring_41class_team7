@@ -14,6 +14,7 @@ export const StyledHeader = styled.div`
     align-self: stretch;
     flex-grow: 0;
     background-color: white; /* For test */
+    border-bottom: 3px solid #EEEEEE;
 `;
 
 export const LogoContainer = styled.div`
@@ -167,14 +168,28 @@ export const UserHeaderUserName = styled.div`
 `;
 
 export const UserHeaderLogout = styled.button`
-    width: auto;
-    height: 20px;
-    font-size: auto;
-    /* Inside auto layout */
-    border: solid 2px;
-    background-color: yellow;
-    flex: none;
 
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+
+    width: 100px;
+    height: 25px;
+    font-size : 13px;
+    background: #DAE5FF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
     order: 2;
     flex-grow: 0;
 `;

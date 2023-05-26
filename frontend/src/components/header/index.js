@@ -12,9 +12,10 @@ import {
 } from "./style";
 
 
-import logoicon from "../../assets/pngs/logo.png"
+import logoicon from "../../assets/images/logo.png"
+import Button from "../Button";
 
-function Header(){
+function Header(props){
     return (
        <StyledHeader>
             <LogoContainer>
@@ -22,13 +23,9 @@ function Header(){
                 <LogoImage src={logoicon}></LogoImage>
             </LogoContainer>
             <UserHeaderContainer>
-                
-                <UserHeaderUserName>student님 환영!</UserHeaderUserName>
-                <UserHeaderLogout>로그아웃</UserHeaderLogout>
+                <UserHeaderUserName>student님 환영!</UserHeaderUserName>               
+                <UserHeaderLogout onClick={props.onClick}>로그아웃</UserHeaderLogout>
             </UserHeaderContainer>
-            
-            
-
         </StyledHeader>
     );
 }

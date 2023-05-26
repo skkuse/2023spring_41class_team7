@@ -71,9 +71,9 @@ export const LogoImage = styled.img`
 export const SearchBarContainer = styled.div`
     /* Frame 113 */
     /* Auto layout */
+
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
     padding: 10px 35px;
     gap: 10px;
@@ -114,16 +114,19 @@ export const SearchBar = styled.input`
     /* Inside auto layout */
 
     flex: none;
-    order: 1;
+    order: 0;
     flex-grow: 0;
+    font-family: FontAwesome;
 `;
 
+
+
+
 export const SearchButton = styled.button`
-    display: flex;
-    flex-direction: column;
+
     justify-content: center;
     align-items: center;
-    
+
     width: 60px;
     height: 60px;    
     border-radius: 100px;
@@ -188,14 +191,28 @@ export const UserHeaderUserName = styled.div`
 `;
 
 export const UserHeaderLogout = styled.button`
-    width: auto;
-    height: 20px;
-    font-size: auto;
-    /* Inside auto layout */
-    border: solid 2px;
-    background-color: yellow;
-    flex: none;
 
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px;
+    
+
+    width: 100px;
+    height: 25px;
+    font-size : 13px;
+    background: #DAE5FF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
     order: 2;
     flex-grow: 0;
 `;
