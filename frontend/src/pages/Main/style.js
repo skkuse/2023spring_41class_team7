@@ -29,21 +29,12 @@ export const Quiz = styled.span`
 
 export const LectureContainer = styled.div`
   width: 100%;
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  padding: 10px;
-=======
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 25px;
   row-gap: 25px;
   -webkit-box-sizing: border-box;
   padding: 20px;
->>>>>>> 0260e47d8b530b21816a13c4b9d4725dadd12e62
 
   overflow: scroll;
   &::-webkit-scrollbar {
@@ -58,30 +49,16 @@ export const LectureContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-<<<<<<< HEAD
-  width: 90%;
-  text-align: center;
-  border-bottom: 3px solid #e1e7f5;
-  line-height: 0.1em;
-  margin: 15px 0;
-=======
   width: 100%;
   border-bottom: 3px solid #e1e7f5;
   line-height: 0.4em;
   margin: 10px 0 20px;
->>>>>>> 0260e47d8b530b21816a13c4b9d4725dadd12e62
 `;
 
 export const Title = styled.span`
   font-style: normal;
   font-weight: 700;
-<<<<<<< HEAD
-  font-size: 20px;
-  background: #ffffff;
-  padding: 0 20px;
-=======
   font-size: 24px;
   background: #ffffff;
   padding: 10px 20px;
->>>>>>> 0260e47d8b530b21816a13c4b9d4725dadd12e62
 `;

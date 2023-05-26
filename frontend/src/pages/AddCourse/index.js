@@ -11,6 +11,7 @@ import Button from "../../components/Button";
 import CourseInfo from "../../components/CourseInfo";
 import ChapterModal from "../../components/ChapterModal";
 import ShowChapter from "../../components/ShowChapter";
+import Header from "../../components/Header";
 
 function AddCourse(props) {
   const [showModal, setShowModal] = useState(false);
@@ -27,39 +28,42 @@ function AddCourse(props) {
     setShowModal(!showModal);
   };
   return (
-    <OuttestContainer>
-      <Navbar></Navbar>
-      <AddCourseContainer>
-        <ButtonsContainer>
-          <Button
-            content="저장"
-            onClick={handleSaveClick}
-            backgroundColor="#DAE5FF"
-            disabled={showModal}
-          ></Button>
-          <Button
-            content="취소"
-            onClick={handleCancelClick}
-            backgroundColor="white"
-            disabled={showModal}
-          ></Button>
-        </ButtonsContainer>
-        <CourseInfo></CourseInfo>
-        <ChapterAddButton onClick={handleAddClick} disabled={showModal}>
-          단원 추가
-        </ChapterAddButton>
-        {showModal && (
-          <ChapterModal
-            setShowModal={setShowModal}
-            disabled={showModal}
-          ></ChapterModal>
-        )}
-        <ShowCourseContainer>
-          <ShowChapter></ShowChapter>
-          <ShowChapter></ShowChapter>
-        </ShowCourseContainer>
-      </AddCourseContainer>
-    </OuttestContainer>
+    <>
+      <Header></Header>
+      <OuttestContainer>
+        <Navbar></Navbar>
+        <AddCourseContainer>
+          <ButtonsContainer>
+            <Button
+              content="저장"
+              onClick={handleSaveClick}
+              backgroundColor="#DAE5FF"
+              disabled={showModal}
+            ></Button>
+            <Button
+              content="취소"
+              onClick={handleCancelClick}
+              backgroundColor="white"
+              disabled={showModal}
+            ></Button>
+          </ButtonsContainer>
+          <CourseInfo></CourseInfo>
+          <ChapterAddButton onClick={handleAddClick} disabled={showModal}>
+            단원 추가
+          </ChapterAddButton>
+          {showModal && (
+            <ChapterModal
+              setShowModal={setShowModal}
+              disabled={showModal}
+            ></ChapterModal>
+          )}
+          <ShowCourseContainer>
+            <ShowChapter></ShowChapter>
+            <ShowChapter></ShowChapter>
+          </ShowCourseContainer>
+        </AddCourseContainer>
+      </OuttestContainer>
+    </>
   );
 }
 
