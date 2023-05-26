@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const AddCourseContainer = styled.div`
+export const ModifyCourseContainer = styled.div`
   -webkit-box-sizing: border-box;
   width: 100%;
   height: 100%;

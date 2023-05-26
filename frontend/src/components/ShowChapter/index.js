@@ -24,6 +24,7 @@ function ShowChapter(props) {
           content="보기"
           onClick={handleContentClick}
           backgroundColor="white"
+          type="button"
         ></Button>
       </ShowChapterContainer>
       {showContent && <ChapterContent defaultValue=""></ChapterContent>}

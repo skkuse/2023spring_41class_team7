@@ -14,7 +14,7 @@ export const CodeEditorContainer = styled.div`
     padding: 20px 25px;
     gap: 10px;
 
-    width: 100%;
+    width: 50%;
     height: 1500px;
 
     background: #FFFFFF;

@@ -6,6 +6,7 @@ function Button(props) {
       onClick={props.onClick}
       style={{ backgroundColor: props.backgroundColor }}
       disabled={props.disabled}
+      type={props.type}
     >
       {props.content}
     </StyledButton>

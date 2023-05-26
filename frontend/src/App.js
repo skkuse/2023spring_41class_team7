@@ -5,12 +5,13 @@ import Register from "./pages/Register";
 import AddCourse from "./pages/AddCourse";
 import UserInstructor from "./pages/UserInstructor";
 import ModifyCourse from "./pages/ModifyCourse";
-import QuizPage from './pages/Quiz';
-
-
+import QuizPage from "./pages/Quiz";
+import MainPage from "./pages/Main";
+import StudentPage from "./pages/Student";
+import LearningPage from "./pages/Learning";
 
 function App() {
-  return(
+  return (
     <BrowserRouter>
       <div className="App">
         <Routes>
@@ -20,7 +21,10 @@ function App() {
           <Route path="/user/instructor" element={<UserInstructor />}></Route>
           <Route path="/add" element={<AddCourse />}></Route>
           <Route path="/modify" element={<ModifyCourse />}></Route>
-          <Route path="/quiz" element={<QuizPage/>}></Route>
+          <Route path="/quiz" element={<QuizPage />}></Route>
+          <Route path="/main" element={<MainPage />}></Route>
+          <Route path="/user/student" element={<StudentPage />}></Route>
+          <Route path="/learning" element={<LearningPage />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,7 +1,12 @@
 body {
   margin: 0;
+<<<<<<< HEAD
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto';
   -webkit-font-smoothing: antialiased;
+=======
+  font-family: -apple-system, BlinkMacSystemFont, "Arial";
+  webkit-font-smoothing: antialiased;
+>>>>>>> 09292a398a8aa4e75c7e78c00cebd9efee9fbe90
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
 }
