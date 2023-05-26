@@ -76,7 +76,7 @@ function AddCourse(props) {
               disabled={showModal}
             ></ChapterModal>
           )}
-          {String(isEntered)}
+          {/* {String(isEntered)} */}
           <ShowCourseContainer>
             <ShowChapter></ShowChapter>
             <ShowChapter></ShowChapter>
