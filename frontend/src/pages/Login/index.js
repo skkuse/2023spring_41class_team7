@@ -4,8 +4,6 @@ import {
   InstructorMode,
   LoginForm,
   LoginInnerContainer,
-  LoginInnerLeftContainer,
-  LoginInnerRightContainer,
   LoginOuterContainer,
   LogoImage,
   ModeContainer,
@@ -27,8 +25,21 @@ function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+
   const handleLoginSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+
+    if (isUsernameValid && isPasswordValid) {
+      try {
+        const body = {
+          username: username,
+          password: password,
+          educator: !isStudent,
+        };
+      } catch (e) {}
+    }
   };
 
   const handleModeChange = (e) => {
@@ -42,10 +53,20 @@ function Login(props) {
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+    if (e.target.value === "") {
+      setIsUsernameValid(false);
+    } else {
+      setIsUsernameValid(true);
+    }
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    if (e.target.value === "") {
+      setIsPasswordValid(false);
+    } else {
+      setIsPasswordValid(true);
+    }
   };
 
   return (

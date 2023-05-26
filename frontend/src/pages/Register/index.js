@@ -39,12 +39,24 @@ function Register(props) {
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
-
-    const form = e.currentTarget;
-    const formElements = form.formElements;
-
-    try {
-    } catch (e) {}
+    if (
+      isUsernameValid &&
+      isNicknameValid &&
+      isEmailValid &&
+      isPasswordValid &&
+      isPasswordConfirmValid
+    ) {
+      try {
+        const body = {
+          username: username,
+          nickname: nickname,
+          email: email,
+          password: password,
+          password2: passwordConfirm,
+          educator: !isStudent,
+        };
+      } catch (e) {}
+    }
   };
 
   const handleModeChange = (e) => {
