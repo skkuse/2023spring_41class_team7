@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import {
-  AddCourseContainer,
+  AddCourseForm,
   ButtonsContainer,
   ChapterAddButton,
   ShowCourseContainer,
@@ -13,16 +13,21 @@ import ChapterModal from "../../components/ChapterModal";
 import ShowChapter from "../../components/ShowChapter";
 import Header from "../../components/Header";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
+import { useNavigate } from "react-router-dom";
 
 function AddCourse(props) {
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleAddCourseSubmit = (e) => {};
 
   const handleSaveClick = () => {
     alert("저장하기");
   };
 
   const handleCancelClick = () => {
-    alert("취소하기");
+    navigate("/user/instructor");
   };
 
   const handleAddClick = () => {
@@ -33,7 +38,7 @@ function AddCourse(props) {
       <Header></Header>
       <OuttestContainer>
         <Navbar></Navbar>
-        <AddCourseContainer>
+        <AddCourseForm onSubmit={handleAddCourseSubmit}>
           <ButtonsContainer>
             <Button
               content="저장"
@@ -46,6 +51,7 @@ function AddCourse(props) {
               onClick={handleCancelClick}
               backgroundColor="white"
               disabled={showModal}
+              type="button"
             ></Button>
           </ButtonsContainer>
           <CourseInfo></CourseInfo>
@@ -62,7 +68,7 @@ function AddCourse(props) {
             <ShowChapter></ShowChapter>
             <ShowChapter></ShowChapter>
           </ShowCourseContainer>
-        </AddCourseContainer>
+        </AddCourseForm>
       </OuttestContainer>
     </MostOuterDiv>
   );

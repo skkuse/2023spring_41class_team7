@@ -23,13 +23,10 @@ function ChapterModal(props) {
   };
 
   const handleCancelClick = () => {
-    // 단원 추가 모달창 닫기
-    alert("단원 추가 모달창 닫기");
     props.setShowModal(false);
   };
 
   const handleSaveClick = () => {
-    alert("저장하기");
     props.setShowModal(false);
   };
 
@@ -56,11 +53,13 @@ function ChapterModal(props) {
               content="취소"
               onClick={handleCancelClick}
               backgroundColor="white"
+              type="button"
             ></Button>
             <Button
               content="저장"
               onClick={handleSaveClick}
               backgroundColor="#DAE5FF"
+              type="button"
             ></Button>
           </ButtonContainer>
         </ChapterForm>
