@@ -2,7 +2,7 @@ from .models import Course, Tag, Chapter
 from feedback.serializers import AnalysisSerializer
 from rest_framework import serializers
 from config.settings import MEDIA_ROOT
-from .task import test
+from .task import create_intro
 import os
 
 class TagSerializer(serializers.ModelSerializer):
@@ -53,12 +53,10 @@ class ChapterPostSerializer(serializers.ModelSerializer):
         chapter.index = index_path
         chapter.save()
 
-        # test.delay()
-
         # 컨텐츠 파일 경로의 html을 보고 인덱스 파일 경로에 해당하는 인덱스 파일을 저장
-        # function(content_path, chapter.index_path) 
+        # function(chapter)
         # 컨텐츠 파일 경로의 html을 보고 인스턴스의 intro를 생성해서 save()
-        # function(content_path, chapter)
+        create_intro.delay(chapter.id)
 
         return chapter
     
@@ -70,8 +68,10 @@ class ChapterPostSerializer(serializers.ModelSerializer):
         content = validated_data.pop('content')
         convert_str_to_html(content, instance.content)
 
-        # function(instance.content_path, instance.index_path)
-        # function(instance.content_path, instance) 
+        # 컨텐츠 파일 경로의 html을 보고 인덱스 파일 경로에 해당하는 인덱스 파일을 저장
+        # function(instance)
+        # 컨텐츠 파일 경로의 html을 보고 인스턴스의 intro를 생성해서 save()
+        # function(instance) 
 
         return instance
 
