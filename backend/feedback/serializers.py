@@ -4,14 +4,14 @@ from rest_framework import serializers
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
-        fields = ['id', 'course', 'content', 'created_at']
+        fields = '__all__'
 
 class QuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
-        fields = ['id', 'course', 'question', 'content', 'created_at']
+        fields = '__all__'
 
-class Analysis(serializers.ModelSerializer):
+class AnalysisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Analysis
-        fields = ['id', 'course', 'content', 'created_at']
+        fields = ['id', 'content', 'created_at']

@@ -8,11 +8,13 @@ class Feedback(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+
 class Quiz(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     question = models.TextField()
     answer = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
 
 class Analysis(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
