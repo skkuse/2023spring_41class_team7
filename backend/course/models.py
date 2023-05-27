@@ -21,8 +21,10 @@ class Tag(models.Model):
     def __str__(self):
         return self.category + ' - ' + self.title
 
+
 class Course(models.Model):
     title = models.CharField(max_length=100)
+    intro = models.CharField(max_length=100)
     mascot = models.ImageField(upload_to='mascot', default='mascot/default_image.jpeg', storage=OverwriteStorage)
     thumbnail = models.ImageField(upload_to='thumbnail', default='thumbnail/default_thumbnail.jpeg', storage=OverwriteStorage)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -34,8 +36,9 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
-def chapter_path(instance, filename):
-    return f"content/course_{instance.course.id}/{filename}"
+
+def content_path():
+    return os.path.join(settings.MEDIA_ROOT, 'content')
 
 def index_path():
     return os.path.join(settings.MEDIA_ROOT, 'index')
@@ -43,8 +46,8 @@ def index_path():
 class Chapter(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    intro = models.TextField()
-    content = models.FileField(upload_to=chapter_path, storage=OverwriteStorage)
+    intro = models.TextField(blank=True, default='')
+    content = models.FilePathField(path=content_path)
     index = models.FilePathField(path=index_path)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True) 
