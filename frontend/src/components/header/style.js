@@ -1,17 +1,17 @@
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.div`
+  -webkit-box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-left: 20px;
   padding-right: 40px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  gap: 10px;
-  width: fill-available;
-  height: 50px;
+
+  gap: 10px
+  width: 100%;
+  height: 7%;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -29,19 +29,16 @@ export const LogoContainer = styled.div`
   padding: 10px;
   gap: 10px;
   color: black;
-  width: 237px;
-
+  width: 10%;
+  height : 50%;
   /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
-
   background-color: #eeeeee; /* For test */
 `;
 
 export const LogoContents = styled.div`
-  height: 47px;
-
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -50,49 +47,22 @@ export const LogoContents = styled.div`
   color: #000000;
 
   /* Inside auto layout */
-
+  height: 100%;
+  width:  70%;
   flex: none;
   order: 0;
   flex-grow: 0;
 `;
 
 export const LogoImage = styled.img`
-  width: 64px;
-  height: 64px;
+  height: 125%;
+  width:  25%;
   background: url(free-icon-exclusive-4926953.png);
   /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
 `;
-
-export const SearchBar = styled.input`
-  /* Frame 113 */
-  box-sizing: border-box;
-
-  /* Auto layout */
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 10px 35px;
-  gap: 10px;
-
-  width: 1350px;
-  height: 76px;
-
-  background: #faf7f2;
-  border: 3px solid #000000;
-  border-radius: 20px;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-`;
-
 export const SearchButton = styled.img`
   display: flex;
   flex-direction: column;
@@ -122,8 +92,8 @@ export const UserHeaderContainer = styled.div`
   padding: 10px;
   gap: 10px;
 
-  width: 207px;
-  height: 84px;
+  width: 15%;
+  height: 50%;
 
   /* Inside auto layout */
 
@@ -132,29 +102,17 @@ export const UserHeaderContainer = styled.div`
   flex-grow: 0;
 `;
 
-export const UserHeaderImage = styled.img`
-  width: 64px;
-  height: 64px;
-
-  background: url(emoji_good 1.png);
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
 
 export const UserHeaderUserName = styled.div`
-  width: 150px;
-  height: 23px;
+  width: 60%;
+  height: 100%;
 
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 23px;
-
+  padding-top: 3%;
+  text-align: right;
   color: #000000;
 
   /* Inside auto layout */
@@ -173,14 +131,15 @@ export const UserHeaderLogout = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
-  gap: 10px;
+  padding: 5px 5px;
 
-  width: 100px;
-  height: 25px;
+  width: 20%;
+  
+  height: 60%;
   font-size: 13px;
   background: #dae5ff;
   border: 1px solid #000000;
+  
   border-radius: 10px;
 
   /* Inside auto layout */

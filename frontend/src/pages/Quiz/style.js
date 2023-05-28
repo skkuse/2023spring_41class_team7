@@ -1,58 +1,54 @@
 import styled from "@emotion/styled";
 
-export const QuizOuterContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 
-
-    width: auto;
-    height: fill-available;
-    
-
-    /* Inside auto layout */
-    background-color: #EEEEEE;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+export const QuizPageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
 `;
+
+export const QuizChatContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
+`;
+
+
 
 export const QuizTitleContainer = styled.div`
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
     width: 100%;
-    height: 124px;
-
+    height: 7%;
     /* Inside auto layout */
-
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;
+    background-color: #E1E7F5;
+    margin-bottom:2%;
+    border-radius: 10px;
 `;
 
-export const QuizInnerContainer = styled.div`
+export const QuizInfoContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 35px;
-    gap: 35px;
-
     width: 100%;
-    height: 100%;
-    border-radius: 20px;
-
+    height: 14%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
     /* Inside auto layout */
-
     flex: none;
-    order: 1;
-    flex-grow: 1;
+    order: 0;
+    flex-grow: 0;
+    margin-bottom:2%;
 `;
 
 
@@ -61,33 +57,12 @@ export const QuizEditorContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 35px;
-    gap: 35px;
 
-    width: 40%;
+    width: 50%;
     height: 100%;
     border-radius: 20px;
-
+    border: 3px solid red;
     /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 1;
-`;
-export const QuizUtilContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 35px 35px;
-    gap: 35px;
-
-    width: 40%;
-    height: 100%;
-    border-radius: 20px;
-
-    /* Inside auto layout */
-
     flex: none;
     order: 1;
     flex-grow: 1;

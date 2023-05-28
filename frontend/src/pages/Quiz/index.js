@@ -1,38 +1,32 @@
 import Header from "../../components/Header";
-import {
-  CodeEditorContainer,
-  CodeEditorHeader,
-} from "../../components/CodeEditor/style";
-import { CodeEditorCpp } from "../../components/CodeEditor";
-import {
-  QuizOuterContainer,
-  QuizTitleContainer,
-  QuizInnerContainer,
-  QuizUtilContainer,
-  QuizEditorContainer,
-} from "./style";
-import SearchHeader from "../../components/SearchHeader";
-import ChattingInterface from "../../components/Chatting";
+import { useState } from "react";
+import { CodeEditor } from "../../components/CodeEditor";
 
+import ChattingInterface from "../../components/Chatting";
+import { OuttestContainer } from "../../components/OuttestContainer/style";
+import { ChatContainer, ContentContainer, IdxContainer, LecContainer, PageContainer, SideBar } from "../Learning/style";
+import { MostOuterDiv } from "../../components/MostOuterDiv/style";
+import { QuizPageContainer, QuizChatContainer, QuizInfoContainer, QuizOuterContainer, QuizTitleContainer, QuizEditorContainer } from "./style";
+import React from "react";
+import setShow from "../../components/CodeEditor/index.js";
 
 
 function QuizPage(props) { 
-    const handleClick=()=>{
-        alert("@!#!@#!@#!@");
-    }
+ 
   return (
-    <QuizOuterContainer>
+    <MostOuterDiv >
       <Header></Header>
-      <QuizInnerContainer>
-        <QuizUtilContainer>
-          <QuizTitleContainer></QuizTitleContainer>
-          <ChattingInterface></ChattingInterface>
-        </QuizUtilContainer>
-        <QuizEditorContainer>
-          <CodeEditorCpp onClick={handleClick}></CodeEditorCpp>
-        </QuizEditorContainer>
-      </QuizInnerContainer>
-    </QuizOuterContainer>
+      <OuttestContainer>      
+        <QuizPageContainer>
+          <QuizChatContainer>
+            <QuizTitleContainer>제목</QuizTitleContainer>
+            <QuizInfoContainer>내용</QuizInfoContainer>
+            <ChattingInterface></ChattingInterface>
+          </QuizChatContainer>
+            <CodeEditor> </CodeEditor>
+        </QuizPageContainer>
+      </OuttestContainer>
+    </MostOuterDiv>
   );
 }
 
