@@ -31,6 +31,7 @@ export const Title = styled.span`
 `;
 
 export const CourseContainer = styled.div`
+  -webkit-box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: column;

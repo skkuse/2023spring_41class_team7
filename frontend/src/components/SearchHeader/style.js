@@ -1,218 +1,198 @@
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 70px;
-    gap: 10px;
-    width: fill-available;
-    height: 5%;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    background-color: white; /* For test */
+  -webkit-box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 40px;
+
+  gap: 10px;
+  width: fill-available;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  background-color: #eeeeee; /* For test */
 `;
 
 export const LogoContainer = styled.div`
-    /* Frame 53 */
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    gap: 10px;
-    color: black;
-    width: 237px;
-    height: 84px;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    
-    background-color: white; /* For test */
+  /* Frame 53 */
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  color: black;
+  width: 237px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  background-color: #eeeeee; /* For test */
 `;
- 
+
 export const LogoContents = styled.div`
-    width: 143px;
-    height: 47px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 38px;
+  height: 47px;
 
-    color: #000000;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
 
+  color: #000000;
 
-    /* Inside auto layout */
+  /* Inside auto layout */
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 `;
 
 export const LogoImage = styled.img`
-    width: 64px;
-    height: 64px;
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+  width: 64px;
+  height: 64px;
+  background: url(free-icon-exclusive-4926953.png);
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 `;
 
-
-
-
 export const SearchBarContainer = styled.div`
-    /* Frame 113 */
-    /* Auto layout */
+  /* Frame 113 */
+  /* Auto layout */
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 35px;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 35px;
+  gap: 10px;
+  height: 76px;
 
-    width: 40%;
-    height: 76px;
+  background: #eeeeee;
 
-    background: white;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+  /* Inside auto layout */
+  -webkit-box-sizing: border-box;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 `;
 
 export const SearchBar = styled.input`
-/* Frame 113 */
-    box-sizing: border-box;
+  /* Frame 113 */
+  box-sizing: border-box;
 
-    /* Auto layout */
+  /* Auto layout */
+  width: 50%;
+  padding: 10px 35px;
+  gap: 10px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 35px;
-    gap: 10px;
+  background: #faf7f2;
+  border: none;
+  border-radius: 20px;
 
-    width: 90%;
-    height: 76px;
-    font-size: 35px;
-    background: #FAF7F2;
-    border: 3px solid #000000;
-    border-radius: 20px;
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    font-family: FontAwesome;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  font-family: FontAwesome;
 `;
 
-
-
-
 export const SearchButton = styled.button`
+  justify-content: center;
+  align-items: center;
 
-    justify-content: center;
-    align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
 
-    width: 60px;
-    height: 60px;    
-    border-radius: 100px;
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 `;
 
 export const UserHeaderContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
 
-    width: 207px;
-    height: 84px;
+  width: 207px;
+  height: 84px;
 
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 2;
-    flex-grow: 0;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 `;
 
 export const UserHeaderImage = styled.img`
-    width: 64px;
-    height: 64px;
+  width: 64px;
+  height: 64px;
 
-    background: url(emoji_good 1.png);
+  background: url(emoji_good 1.png);
 
-    /* Inside auto layout */
+  /* Inside auto layout */
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 `;
 
 export const UserHeaderUserName = styled.div`
-    width: 150px;
-    height: 23px;
+  width: 150px;
+  height: 23px;
 
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
 
-    color: #000000;
+  color: #000000;
 
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 `;
 
 export const UserHeaderLogout = styled.button`
+  box-sizing: border-box;
 
-    box-sizing: border-box;
+  /* Auto layout */
 
-    /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 5px;
-    
+  width: 100px;
+  height: 25px;
+  font-size: 13px;
+  background: #dae5ff;
+  border: 1px solid #000000;
+  border-radius: 10px;
 
-    width: 100px;
-    height: 25px;
-    font-size : 13px;
-    background: #DAE5FF;
-    border: 1px solid #000000;
-    border-radius: 10px;
+  /* Inside auto layout */
 
-    /* Inside auto layout */
-
-    flex: none;
-    order: 2;
-    flex-grow: 0;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 `;

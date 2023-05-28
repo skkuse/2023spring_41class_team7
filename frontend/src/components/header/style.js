@@ -17,7 +17,6 @@ export const StyledHeader = styled.div`
   align-self: stretch;
   flex-grow: 0;
   background-color: #eeeeee; /* For test */
-  border-bottom: 3px solid #eeeeee;
 `;
 
 export const LogoContainer = styled.div`
