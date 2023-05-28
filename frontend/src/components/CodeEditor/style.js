@@ -53,7 +53,7 @@ export const CodeEditorButton_Exe = styled.button`
 
     width: 10%;
     height: 39px;
-
+    
     background: #DAE5FF;
     border: 1px solid #000000;
     border-radius: 10px;
@@ -63,6 +63,7 @@ export const CodeEditorButton_Exe = styled.button`
     flex: none;
     order: 1;
     flex-grow: 0;
+    font-weight: 700;
 `;
 
 export const CodeEditorButton_Submit = styled.button`
@@ -87,6 +88,7 @@ export const CodeEditorButton_Submit = styled.button`
     flex: none;
     order: 2;
     flex-grow: 0;
+    font-weight: 700;
 `;
 
 export const CodeEditorDescription = styled.div`

@@ -1,41 +1,6 @@
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.div`
-<<<<<<< HEAD
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 70px;
-    gap: 10px;
-    width: 100%;
-    height: 5%;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    background-color: white; /* For test */
-    border-bottom: 3px solid #EEEEEE;
-`;
-
-export const LogoContainer = styled.div`
-    /* Frame 53 */
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    gap: 10px;
-    color: black;
-    width: 10%;
-    height: 100%;
-
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-=======
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -66,7 +31,6 @@ export const LogoContainer = styled.div`
   gap: 10px;
   color: black;
   width: 237px;
->>>>>>> 09292a398a8aa4e75c7e78c00cebd9efee9fbe90
 
   /* Inside auto layout */
   flex: none;
@@ -77,18 +41,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoContents = styled.div`
-<<<<<<< HEAD
-    width: 60%;
-    height: 100%;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 38px;
-=======
   height: 47px;
->>>>>>> 09292a398a8aa4e75c7e78c00cebd9efee9fbe90
 
   font-family: "Roboto";
   font-style: normal;
@@ -105,15 +58,6 @@ export const LogoContents = styled.div`
 `;
 
 export const LogoImage = styled.img`
-<<<<<<< HEAD
-    width: 30%;
-    height: 100%;
-    background: url(free-icon-exclusive-4926953.png);
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-=======
   width: 64px;
   height: 64px;
   background: url(free-icon-exclusive-4926953.png);
@@ -121,7 +65,6 @@ export const LogoImage = styled.img`
   flex: none;
   order: 1;
   flex-grow: 0;
->>>>>>> 09292a398a8aa4e75c7e78c00cebd9efee9fbe90
 `;
 
 export const SearchBar = styled.input`

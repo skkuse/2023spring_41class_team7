@@ -12,6 +12,7 @@ import {
   QuizEditorContainer,
 } from "./style";
 import SearchHeader from "../../components/SearchHeader";
+import ChattingInterface from "../../components/Chatting";
 
 
 
@@ -25,6 +26,7 @@ function QuizPage(props) {
       <QuizInnerContainer>
         <QuizUtilContainer>
           <QuizTitleContainer></QuizTitleContainer>
+          <ChattingInterface></ChattingInterface>
         </QuizUtilContainer>
         <QuizEditorContainer>
           <CodeEditorCpp onClick={handleClick}></CodeEditorCpp>
