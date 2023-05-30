@@ -6,7 +6,7 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email', 'educator')
+        fields = ('username', 'nickname', 'email', 'educator')
 
 
 class LoginSerializer(serializers.Serializer):
@@ -27,7 +27,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'password2', 'educator')
+        fields = ('username', 'nickname', 'email', 'password', 'password2', 'educator')
     
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:

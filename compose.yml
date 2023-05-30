@@ -4,10 +4,11 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
+    image: backend
     container_name: api
     volumes:
-      - .:/app
+      - ./backend:/app/backend
     ports:
       - 8000:8000
     entrypoint: ["/bin/bash", "-c"]
@@ -26,10 +27,11 @@ services:
   worker:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
+    image: backend
     container_name: worker
-    command: celery -A config worker -l info
+    entrypoint: celery -A config worker -l info
     depends_on:
       - broker
     volumes:
-      - .:/app
+      - ./backend:/app/backend

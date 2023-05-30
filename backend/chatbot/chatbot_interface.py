@@ -3,7 +3,6 @@
 # langchain 0.0.179
 
 import os
-from dotenv import load_dotenv
 from llama_index import LLMPredictor, GPTVectorStoreIndex, PromptHelper, ServiceContext, SimpleDirectoryReader
 from llama_index import QuestionAnswerPrompt, SummaryPrompt
 from langchain.chat_models import ChatOpenAI
@@ -203,29 +202,32 @@ def evaluate_code(code):
 
     return evaluation#.encode("cp949").decode()
 
+from decouple import config
+openai_api_key = config('OPENAI_API_KEY')
+openai.api_key = openai_api_key
 
-if __name__ == "__main__":
-    load_dotenv()
-    openai_api_key = os.environ.get('OPENAI_API_KEY')
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+# if __name__ == "__main__":
+#     load_dotenv()
+#     openai_api_key = os.environ.get('OPENAI_API_KEY')
+#     openai.api_key = os.getenv("OPENAI_API_KEY")
     
-    #content_to_index('./lecture_contents', './storage/chapter3')
-    #make_chapter_intros('./storage/chapter3', './lecture_contents/intros')
+#     #content_to_index('./lecture_contents', './storage/chapter3')
+#     #make_chapter_intros('./storage/chapter3', './lecture_contents/intros')
 
-    sample_function2 = """
+#     sample_function2 = """
 
-    def bubble_sort(arr):
-        for i in range(len(arr) - 1, 0, -1):
-            for j in range(i):
-                if arr[j] > arr[j + 1]:
-                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
+#     def bubble_sort(arr):
+#         for i in range(len(arr) - 1, 0, -1):
+#             for j in range(i):
+#                 if arr[j] > arr[j + 1]:
+#                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
                     
-    """
+#     """
 
-    #print(evaluate_code(sample_function2))
+#     #print(evaluate_code(sample_function2))
 
-    #print(generate_quiz('사용자는 while문에서 break와 continue를 잘못 사용함.', './storage/chapter3'))
+#     #print(generate_quiz('사용자는 while문에서 break와 continue를 잘못 사용함.', './storage/chapter3'))
 
-    chat_history = "Human: while문에서 break와 continue의 차이를 모르겠어. 설명해줘\nAI: break는 반복문을 종료하고 continue는 반복문의 다음으로 넘어가는 것입니다."
+#     chat_history = "Human: while문에서 break와 continue의 차이를 모르겠어. 설명해줘\nAI: break는 반복문을 종료하고 continue는 반복문의 다음으로 넘어가는 것입니다."
 
-    #print(generate_feedback(chat_history))
+#     #print(generate_feedback(chat_history))

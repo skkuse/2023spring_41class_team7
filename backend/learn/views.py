@@ -7,6 +7,8 @@ from .models import CourseRoom, ChapterRoom, ChapterChatData, QuizRoom, QuizChat
 
 from .serializers import ChapterChatSerializer, QuizChatSerialiezer
 from course.serializers import CourseSerializer, ChapterSerializer
+
+from chatbot.chatbot_interface import answer_user_question
 # Create your views here.
 class CourseTake(APIView):
     serializer_class = ChapterChatSerializer
@@ -72,6 +74,9 @@ class CourseTake(APIView):
         TODO: OPENAI 사용해서 응답 받아오기
         history = chapter_room.chat.all()
         '''
+        
+
+
         response = 'response'
         serializer = ChapterChatSerializer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
