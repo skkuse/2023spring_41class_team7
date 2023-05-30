@@ -51,14 +51,14 @@ def content_to_index(content_filepath, index_filepath):
     index.storage_context.persist(persist_dir=index_filepath)
 
 
-def make_chapter_intros(chapter_index_path, chapter_content_path):
+def make_chapter_intros(chapter_index_path):
     ''' 
-    Makes chapter intro describing chapter learning summary;
-    Saves made intro within the same directory where chapter content is located;
+    Returns chatbot-generated chapter intro describing chapter learning summary;
 
     args:
         -chapter_index_path (str): file path to the index of the chapter (directory of the stored indices)
-        -chapter_content_path (str): file path to the chapter contents (directory to store summary)
+    returns:
+        -summary (str): chatbot-generated chapter summary
     '''
     service_context = get_service_ctx()
 
@@ -78,11 +78,12 @@ def make_chapter_intros(chapter_index_path, chapter_content_path):
 
     summary = query_engine.query("이 챕터에서 배우는 프로그래밍 언어 문법 및 기능들에 대하여 내용을 요약하시오.") #<summarization_str>
 
-    txt_file = open(os.path.join(chapter_content_path, "intro.txt"), "w", encoding='utf8')
-    #print(summary)
-    #print(txt_file.write(summary.response))
-    txt_file.write(summary.response)
-    txt_file.close()
+    # txt_file = open(os.path.join(chapter_content_path, "intro.txt"), "w", encoding='utf8')
+    # #print(summary)
+    # #print(txt_file.write(summary.response))
+    # txt_file.write(summary.response)
+    # txt_file.close()
+    return summary.response
 
 
 def answer_user_question(index_filepath, query_str):
@@ -138,7 +139,7 @@ def generate_feedback(chat_history):
             conversation.memory.chat_memory.add_ai_message(chat[4:])
     feedback = conversation.predict(input="지금까지의 대화내용을 바탕으로 사용자가 이번 장을 학습하는데 어려워하는 부분에 대한 피드백을 작성하시오.")
 
-    return feedback
+    return feedback.response
 
 
 def generate_quiz(feedback, index_filepath):
