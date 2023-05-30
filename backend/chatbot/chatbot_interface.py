@@ -12,6 +12,7 @@ from pathlib import Path
 import openai
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory
+from dotenv import load_dotenv
 
 
 def get_service_ctx():
@@ -25,7 +26,7 @@ def get_service_ctx():
     return service_context
 
 
-def content_to_index(content_filepath, index_filepath):
+def content_to_index(content_filepath, index_dirpath):
     ''' 
     Makes indexes for given content file and saves them to storage;
     
@@ -36,21 +37,18 @@ def content_to_index(content_filepath, index_filepath):
 
     UnstructuredReader = download_loader("UnstructuredReader")
     loader = UnstructuredReader()
-    documents = []
-    for filename in os.listdir(content_filepath):
-        documents.extend(loader.load_data(file=Path(os.path.join(content_filepath, filename))))
+    documents = loader.load_data(file=Path(content_filepath))
 
     service_context = get_service_ctx()
 
-    #index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
     index = GPTVectorStoreIndex([], service_context=service_context)
-    for doc in documents:
-        index.insert(doc)
+    for document in documents:
+        index.insert(document)
 
-    index.storage_context.persist(persist_dir=index_filepath)
+    index.storage_context.persist(persist_dir=index_dirpath)
 
 
-def make_chapter_intros(chapter_index_path):
+def make_chapter_intro(chapter_index_path):
     ''' 
     Returns chatbot-generated chapter intro describing chapter learning summary;
 
@@ -202,9 +200,10 @@ def evaluate_code(code):
 
     return evaluation#.encode("cp949").decode()
 
-from decouple import config
-openai_api_key = config('OPENAI_API_KEY')
-openai.api_key = openai_api_key
+load_dotenv()
+openai_api_key = os.environ.get('OPENAI_API_KEY')
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 # if __name__ == "__main__":
 #     load_dotenv()

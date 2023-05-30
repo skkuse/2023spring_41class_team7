@@ -2,7 +2,7 @@ from .models import Course, Tag, Chapter
 from feedback.serializers import AnalysisSerializer
 from rest_framework import serializers
 from config.settings import MEDIA_ROOT
-from .task import create_intro
+from .task import content_to_index_intro
 import os
 
 class TagSerializer(serializers.ModelSerializer):
@@ -48,15 +48,14 @@ class ChapterPostSerializer(serializers.ModelSerializer):
         chapter.content = content_path
 
         index_path = os.path.join(MEDIA_ROOT, 
-                                  f"index/course_{chapter.course.id}/index_{chapter.id}.json" )
-        os.makedirs(os.path.dirname(index_path), exist_ok=True)
+                                  f"index/course_{chapter.course.id}/index_{chapter.id}/" )
+        os.makedirs(index_path)
         chapter.index = index_path
         chapter.save()
 
-        # 컨텐츠 파일 경로의 html을 보고 인덱스 파일 경로에 해당하는 인덱스 파일을 저장
-        # function(chapter)
-        # 컨텐츠 파일 경로의 html을 보고 인스턴스의 intro를 생성해서 save()
-        create_intro.delay(chapter.id)
+        # 컨텐츠 파일 경로의 html을 보고 인덱스 파일 경로에 해당하는 인덱스 파일을 저장장
+        # 이후 해당 인덱스 파일을 이용해서 intro 생성 후 저장
+        content_to_index_intro.delay(content_path, index_path, chapter.id)
 
         return chapter
     

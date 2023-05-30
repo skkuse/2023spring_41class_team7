@@ -11,7 +11,7 @@ class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['tag']
-    search_fields = ['title', 'author.username'] 
+    search_fields = ['title', 'author__username'] 
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
