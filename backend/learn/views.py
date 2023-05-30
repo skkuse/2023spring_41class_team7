@@ -8,10 +8,14 @@ from .models import CourseRoom, ChapterRoom, ChapterChatData, QuizRoom, QuizChat
 from .serializers import ChapterChatSerializer, QuizChatSerialiezer
 from course.serializers import CourseSerializer, ChapterSerializer
 
+from .task import create_feedback
+
 from chatbot.chatbot_interface import answer_user_question
+
 # Create your views here.
 class CourseTake(APIView):
     serializer_class = ChapterChatSerializer
+    CONTEXT_LENGTH = 10
 
     def get(self, request, course_id):
         '''
@@ -30,7 +34,10 @@ class CourseTake(APIView):
             '해당 챕터 정보만 반환'
             if not chapter_id.isnumeric():
                 return Response('wrong chapter id', status=status.HTTP_400_BAD_REQUEST)
-            chapter_room, created = ChapterRoom.objects.get_or_create(course_room=course_room, chapter_id=int(chapter_id))
+            chapter_room, created = ChapterRoom.objects.get_or_create(
+                course_room=course_room, 
+                chapter_id=int(chapter_id),
+                learner=request.user)
             chapter_room.save()
 
             if created:
@@ -43,7 +50,10 @@ class CourseTake(APIView):
             '강의 전체 정보랑 마지막 챕터 정보 반환'
             if created:
                 chapter = course_room.course.chapter_set.first()
-                chapter_room = ChapterRoom.objects.create(course_room=course_room, chapter=chapter)
+                chapter_room = ChapterRoom.objects.create(
+                    course_room=course_room, 
+                    chapter=chapter,
+                    learner=request.user)
                 ChapterChatData.objects.create(room=chapter_room, data=chapter.intro, bot=True)
                 last_chapter = chapter_room
             else:
@@ -70,19 +80,19 @@ class CourseTake(APIView):
         course_room = get_object_or_404(CourseRoom, course_id=course_id, learner=request.user)
         chapter_room = get_object_or_404(ChapterRoom, course_room=course_room, chapter_id=int(chapter_id))
         serializer.save(room=chapter_room)
-        '''
-        TODO: OPENAI 사용해서 응답 받아오기
-        history = chapter_room.chat.all()
-        '''
         
+        query = make_query_string(chapter_room.chat.all())
+        response = answer_user_question(chapter_room.chapter.index, query)
 
-
-        response = 'response'
         serializer = ChapterChatSerializer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
         serializer.save(room=chapter_room)
-        return Response(serializer.data)
 
+        if len(chapter_room.chat) % CourseTake.CONTEXT_LENGTH == 0:
+            history = make_query_string(chapter_room.chat[-CourseTake.CONTEXT_LENGTH:])
+            create_feedback(history, course_room.course.id, chapter_id)
+
+        return Response(serializer.data)
 
 
 class QuizTake(APIView):
@@ -110,12 +120,20 @@ class QuizTake(APIView):
         serializer.is_valid(raise_exception=True)
         quiz_room = get_object_or_404(QuizRoom, quiz_id=quiz_id, learner=request.user)
         serializer.save(room=quiz_room)
-        '''
-        TODO: OPENAI 사용해서 응답 받아오기
-        history = chapter_room.chat.all()
-        '''
-        response = 'response'
+        
+        query = make_query_string(quiz_room.chat.all())
+        response = answer_user_question(quiz_room.chapter.index, query)
+
         serializer = QuizChatSerialiezer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
         serializer.save(room=quiz_room)
         return Response(serializer.data)
+
+
+def make_query_string(history):
+    query_str = ''
+    for chat in history:
+        query_str += 'AI: ' if chat.bot else 'Human: '
+        query_str += chat.data
+        query_str += '\n\n'
+    return query_str

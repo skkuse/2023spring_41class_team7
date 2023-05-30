@@ -8,7 +8,7 @@ services:
     image: backend
     container_name: api
     volumes:
-      - ./backend:/app/backend
+      - ./:/app # for dev
     ports:
       - 8000:8000
     entrypoint: ["/bin/bash", "-c"]

@@ -2,6 +2,9 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 
 from .models import User
+from learn.models import CourseRoom
+
+from course.serializers import CourseSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,3 +47,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class TakenCourseSerializer(serializers.ModelSerializer):
+    course = CourseSerializer(read_only=True)
+
+    class Meta:
+        model = CourseRoom
+        fields = ('course', 'last_attempt')
