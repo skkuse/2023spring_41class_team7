@@ -1,11 +1,11 @@
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import login, logout
 
-from .models import User
-from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer
+from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer, TakenCourseSerializer
 # Create your views here.
 
 class UserRegistration(APIView):
@@ -35,10 +35,8 @@ class UserLogin(APIView):
         return Response(None, status=status.HTTP_202_ACCEPTED)
 
 
-class Example(APIView):
-    serializer_class = UserSerializer
+class TakenCourse(ListAPIView):
+    serializer_class = TakenCourseSerializer
 
-    def get(self, request):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+    def get_queryset(self):
+        return self.request.user.taken_courses.order_by('-last_attempt')
