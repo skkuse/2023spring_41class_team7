@@ -41,9 +41,7 @@ function Login(props) {
           password: password,
         };
         await serverAxios
-          .post("user/auth", body, {
-            withCredentials: true,
-          })
+          .post("user/auth/", body)
           .then((response) => {
             alert("로그인 성공");
             localStorage.setItem("loggedin", true);
