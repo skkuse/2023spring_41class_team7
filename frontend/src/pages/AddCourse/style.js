@@ -23,6 +23,16 @@ export const ButtonsContainer = styled.div`
   gap: 20px;
 `;
 
+export const CourseInfoSaveButton = styled.button`
+  width: 135px;
+  height: 60px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  align-self: flex-end;
+  -webkit-box-sizing: border-box;
+`;
+
 export const ChapterAddButton = styled.button`
   width: 100px;
   height: 60px;

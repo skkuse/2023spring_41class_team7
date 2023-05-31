@@ -23,7 +23,7 @@ function UserInstructor(props) {
 
   return (
     <MostOuterDiv>
-      <Header setLoggedin={props.setLoggedin}></Header>
+      <Header></Header>
       <OuttestContainer>
         <Navbar></Navbar>
         <UserInstructorContainer>

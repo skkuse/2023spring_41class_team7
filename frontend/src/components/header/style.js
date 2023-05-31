@@ -6,7 +6,7 @@ export const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-left: 20px;
-  padding-right: 40px;
+  padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
   gap: 10px;
@@ -42,7 +42,7 @@ export const LogoContainer = styled.div`
 export const LogoContents = styled.div`
   height: 47px;
 
-  font-family: "Roboto";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -122,9 +122,6 @@ export const UserHeaderContainer = styled.div`
   padding: 10px;
   gap: 10px;
 
-  width: 207px;
-  height: 84px;
-
   /* Inside auto layout */
 
   flex: none;
@@ -146,22 +143,14 @@ export const UserHeaderImage = styled.img`
 `;
 
 export const UserHeaderUserName = styled.div`
-  width: 150px;
-  height: 23px;
-
-  font-family: "Roboto";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 23px;
 
   color: #000000;
 
   /* Inside auto layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
 `;
 
 export const UserHeaderLogout = styled.button`
@@ -188,4 +177,14 @@ export const UserHeaderLogout = styled.button`
   flex: none;
   order: 2;
   flex-grow: 0;
+`;
+
+export const LogoutButton = styled.button`
+  width: 100px;
+  height: 60px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #dae5ff;
+  -webkit-box-sizing: border-box;
 `;

@@ -17,6 +17,7 @@ import logo from "../../assets/images/logo.png";
 import Input from "../../components/Input";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { serverAxios } from "../../utils/commonAxios";
 
 function Login(props) {
   const [mode, setMode] = useState("student");
@@ -30,7 +31,7 @@ function Login(props) {
 
   const navigate = useNavigate();
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     if (isUsernameValid && isPasswordValid) {
@@ -40,10 +41,28 @@ function Login(props) {
           password: password,
           educator: !isStudent,
         };
-        props.setLoggedin(true);
-        /* RESPONSE로 받은 user를 저장*/
-        //props.setUser();
-        navigate("/main");
+        // await serverAxios
+        //   .post("user/auth", body, {
+        //     withCredentials: true,
+        //   })
+        //   .then((response) => {
+        //     alert("로그인 성공");
+        //     localStorage.setItem("loggedin", true);
+        //     localStorage.setItem("username", response.data.username);
+        //     localStorage.setItem("nickname", response.data.nickname);
+        //     localStorage.setItem("email", response.data.email);
+        //     localStorage.setItem("educator", response.data.educator);
+        //     navigate("/main");
+        //   })
+        // .catch((e) => {
+        //   console.log(e);
+        //   로그인 실패
+        //   alert("로그인 실패");
+        // });
+        localStorage.setItem("loggedin", true);
+        localStorage.setItem("user", JSON.stringify(body));
+        alert("로그인 성공");
+        navigate("/add");
       } catch (e) {}
     }
   };
@@ -84,7 +103,6 @@ function Login(props) {
         </TitleContainer>
         <LoginForm onSubmit={handleLoginSubmit}>
           <FormContainer>
-            {props.user}
             <ModeContainer>
               <StudentMode
                 style={{ background: isStudent ? "#F0F5FF" : "white" }}
