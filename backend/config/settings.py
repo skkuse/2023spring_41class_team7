@@ -173,4 +173,4 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul'
-CELERY_IMPORTS = ('course.task')
+CELERY_IMPORTS = ('user.task', 'course.task', 'learn.task', 'feedback.task')
