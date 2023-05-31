@@ -14,4 +14,4 @@ class QuizSerializer(serializers.ModelSerializer):
 class AnalysisSerializer(serializers.ModelSerializer):
     class Meta:
         model = Analysis
-        fields = ['id', 'content', 'created_at']
+        fields = ['content', 'created_at']

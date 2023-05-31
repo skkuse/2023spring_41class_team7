@@ -3,11 +3,11 @@
 # langchain 0.0.179
 
 import os
-from llama_index import LLMPredictor, GPTVectorStoreIndex, PromptHelper, ServiceContext, SimpleDirectoryReader
-from llama_index import QuestionAnswerPrompt, SummaryPrompt
+from llama_index import LLMPredictor, GPTVectorStoreIndex, PromptHelper, ServiceContext
+from llama_index import QuestionAnswerPrompt
 from langchain.chat_models import ChatOpenAI
 from llama_index import StorageContext, load_index_from_storage
-from llama_index import download_loader
+from llama_index import SimpleDirectoryReader
 from pathlib import Path
 import openai
 from langchain.chains import ConversationChain
@@ -34,10 +34,8 @@ def content_to_index(content_filepath, index_dirpath):
         -content_filepath (str): file path to content file to make index of (per chapter; directory with all chapter content files)
         -index_filepath (str): file path (directory) to store the chapter index
     '''
-
-    UnstructuredReader = download_loader("UnstructuredReader")
-    loader = UnstructuredReader()
-    documents = loader.load_data(file=Path(content_filepath))
+    
+    documents = SimpleDirectoryReader(input_files=[content_filepath]).load_data()
 
     service_context = get_service_ctx()
 

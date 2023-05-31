@@ -151,6 +151,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://0.0.0.0:3000'
+]
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -170,4 +173,4 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul'
-CELERY_IMPORTS = ('course.task')
+CELERY_IMPORTS = ('user.task', 'course.task', 'learn.task', 'feedback.task')
