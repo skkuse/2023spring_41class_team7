@@ -44,7 +44,10 @@ services:
     container_name: web
     ports:
       - 3000:3000
-    entrypoint: ["sh", "-c"]
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
+    entrypoint: ['/bin/bash', '-c']
     command: 
-      - npm run start
-    
+      - |
+        npm start

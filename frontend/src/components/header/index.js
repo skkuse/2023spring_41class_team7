@@ -41,7 +41,7 @@ function Header(props) {
       <LogoContainer>
         <LogoContents>
           <a href="./" style={{ textDecoration: `none`, color: `black` }}>
-            Code With
+            Code With 
           </a>
         </LogoContents>
         <LogoImage src={logoicon}></LogoImage>
