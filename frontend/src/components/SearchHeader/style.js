@@ -29,7 +29,7 @@ export const LogoContainer = styled.div`
   padding: 10px;
   gap: 10px;
   color: black;
-  width: 10%;
+  
   height : 50%;
   /* Inside auto layout */
   flex: none;
@@ -39,7 +39,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoContents = styled.div`
-  font-family: "Roboto";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -48,7 +48,7 @@ export const LogoContents = styled.div`
 
   /* Inside auto layout */
   height: 100%;
-  width:  70%;
+  
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -56,7 +56,7 @@ export const LogoContents = styled.div`
 
 export const LogoImage = styled.img`
   height: 125%;
-  width:  25%;
+  
   background: url(free-icon-exclusive-4926953.png);
   /* Inside auto layout */
   flex: none;
@@ -126,7 +126,7 @@ export const UserHeaderContainer = styled.div`
   padding: 10px;
   gap: 10px;
 
-  width: 15%;
+  
   height: 50%;
 
   /* Inside auto layout */
@@ -138,7 +138,7 @@ export const UserHeaderContainer = styled.div`
 
 
 export const UserHeaderUserName = styled.div`
-  width: 60%;
+  
   height: 100%;
 
   font-family: "Roboto";
@@ -167,7 +167,7 @@ export const UserHeaderLogout = styled.button`
   align-items: center;
   padding: 5px 5px;
 
-  width: 20%;
+  
   
   height: 60%;
   font-size: 13px;
