@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: backend
+    container_name: api
+    volumes:
+      - ./backend:/app/backend # for dev
+    ports:
+      - 8000:8000
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        python ./manage.py makemigrations
+        python ./manage.py migrate
+        python ./manage.py runserver 0.0.0.0:8000
+  
+  broker:
+    image: redis:5.0-alpine
+    container_name: broker
+    ports: 
+      - 6379:6379
+  
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: backend
+    container_name: worker
+    entrypoint: celery -A config worker -l info
+    depends_on:
+      - broker
+    volumes:
+      - ./backend:/app/backend

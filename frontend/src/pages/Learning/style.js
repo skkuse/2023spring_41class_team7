@@ -71,6 +71,9 @@ export const IdxItem = styled.div`
   width: 90%;
   font-size: 18px;
   padding: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const QaContainer = styled.div`
