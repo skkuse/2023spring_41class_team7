@@ -50,7 +50,7 @@ export const LogoContents = styled.div`
 
   /* Inside auto layout */
   height: 100%;
-  width: 70%;
+
   flex: none;
   order: 0;
   flex-grow: 0;
