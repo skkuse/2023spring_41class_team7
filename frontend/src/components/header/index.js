@@ -48,7 +48,7 @@ function Header(props) {
       </LogoContainer>
       <UserHeaderContainer>
         <UserHeaderUserName>
-          {JSON.parse(localStorage.getItem("user")).username}님 환영!
+          {localStorage.getItem("username")}님 환영!
         </UserHeaderUserName>
         <LogoutButton onClick={handleLogoutClick} type="button">
           로그아웃

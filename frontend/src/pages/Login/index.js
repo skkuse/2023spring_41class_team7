@@ -41,28 +41,25 @@ function Login(props) {
           password: password,
           educator: !isStudent,
         };
-        // await serverAxios
-        //   .post("user/auth", body, {
-        //     withCredentials: true,
-        //   })
-        //   .then((response) => {
-        //     alert("로그인 성공");
-        //     localStorage.setItem("loggedin", true);
-        //     localStorage.setItem("username", response.data.username);
-        //     localStorage.setItem("nickname", response.data.nickname);
-        //     localStorage.setItem("email", response.data.email);
-        //     localStorage.setItem("educator", response.data.educator);
-        //     navigate("/main");
-        //   })
-        // .catch((e) => {
-        //   console.log(e);
-        //   로그인 실패
-        //   alert("로그인 실패");
-        // });
-        localStorage.setItem("loggedin", true);
-        localStorage.setItem("user", JSON.stringify(body));
-        alert("로그인 성공");
-        navigate("/add");
+        await serverAxios
+          .post("/user/auth/", body, {})
+          .then((response) => {
+            alert("로그인 성공");
+            localStorage.setItem("loggedin", true);
+            localStorage.setItem("username", response.data.username);
+            localStorage.setItem("nickname", response.data.nickname);
+            localStorage.setItem("email", response.data.email);
+            localStorage.setItem("educator", response.data.educator);
+            navigate("/main");
+          })
+          .catch((e) => {
+            console.log(e);
+            alert("로그인 실패");
+          });
+        // localStorage.setItem("loggedin", true);
+        // localStorage.setItem("user", JSON.stringify(body));
+        // alert("로그인 성공");
+        // navigate("/add");
       } catch (e) {}
     }
   };
@@ -105,7 +102,7 @@ function Login(props) {
           <FormContainer>
             <ModeContainer>
               <StudentMode
-                style={{ background: isStudent ? "#F0F5FF" : "white" }}
+                style={{ background: isStudent ? "#cddbfc" : "white" }}
               >
                 <input
                   type="radio"
@@ -118,7 +115,7 @@ function Login(props) {
                 학생
               </StudentMode>
               <InstructorMode
-                style={{ background: isStudent ? "white" : "#F0F5FF" }}
+                style={{ background: isStudent ? "white" : "#cddbfc" }}
               >
                 <input
                   type="radio"

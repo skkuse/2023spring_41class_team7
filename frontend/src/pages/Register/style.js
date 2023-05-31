@@ -79,7 +79,7 @@ export const SubmitInput = styled.input`
   border-radius: 10px;
   font-weight: 700;
   font-size: 16px;
-  background-color: #f0f5ff;
+  background-color: #cddbfc;
   border: none;
 `;
 
