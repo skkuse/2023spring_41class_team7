@@ -35,3 +35,16 @@ services:
       - broker
     volumes:
       - ./backend:/app/backend
+  
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: frontend
+    container_name: web
+    ports:
+      - 3000:3000
+    entrypoint: ["sh", "-c"]
+    command: 
+      - npm run start
+    
