@@ -24,15 +24,9 @@ import {
 import React from "react";
 import setShow from "../../components/CodeEditor/index.js";
 
-<<<<<<< HEAD
 function QuizPage(props) {
   const testJSONArray = [];
 
-=======
-
-function QuizPage(props) { 
- 
->>>>>>> 0803242ba063e5288a8d45ba18080777bd657e26
   return (
     <MostOuterDiv>
       <Header></Header>
