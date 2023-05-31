@@ -11,7 +11,7 @@ export const PageContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 35px;
+  gap: 10px;
   -webkit-box-sizing: border-box;
 `;
 
@@ -20,7 +20,6 @@ export const ProgressContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 20px;
 `;
 
 export const QuizContainer = styled.div`
@@ -47,23 +46,24 @@ export const Title = styled.span`
 `;
 
 export const ListContainer = styled.div`
-  -webkit-box-sizing: border-box;
   width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: flex-start;
   gap: 25px;
-  padding: 10px;
-  overflow: scroll;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: scroll;
 `;
 
 export const QuizListContainer = styled.div`
-  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 15px;
-  padding: 10px 20px;
+  padding: 15px;
   flex-grow: 1;
   overflow: scroll;
   &::-webkit-scrollbar {

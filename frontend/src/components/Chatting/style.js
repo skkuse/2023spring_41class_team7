@@ -17,7 +17,7 @@ export const TextingContainer = styled.div`
   -webkit-box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 85%;
+  height: 90%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;

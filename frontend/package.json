@@ -25,6 +25,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@uiw/codemirror-themes": "^4.20.2",
     "@uiw/react-codemirror": "^4.20.2",
+    "axios": "^1.4.0",
     "install": "^0.13.0",
     "lezer": "^0.13.5",
     "npm": "^9.6.6",
