@@ -15,7 +15,7 @@ from chatbot.chatbot_interface import answer_user_question
 # Create your views here.
 class CourseTake(APIView):
     serializer_class = ChapterChatSerializer
-    CONTEXT_LENGTH = 10
+    CONTEXT_LENGTH = 5
 
     def get(self, request, course_id):
         '''
@@ -81,16 +81,16 @@ class CourseTake(APIView):
         chapter_room = get_object_or_404(ChapterRoom, course_room=course_room, chapter_id=int(chapter_id))
         serializer.save(room=chapter_room)
         
-        query = make_query_string(chapter_room.chat.all())
+        query = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH])
         response = answer_user_question(chapter_room.chapter.index, query)
 
         serializer = ChapterChatSerializer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
         serializer.save(room=chapter_room)
 
-        if len(chapter_room.chat) % CourseTake.CONTEXT_LENGTH == 0:
-            history = make_query_string(chapter_room.chat[-CourseTake.CONTEXT_LENGTH:])
-            create_feedback(history, course_room.course.id, chapter_id)
+        if chapter_room.chat.count() % CourseTake.CONTEXT_LENGTH < 2:
+            history = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH])
+            create_feedback.delay(history, course_room.course.id, chapter_id)
 
         return Response(serializer.data)
 

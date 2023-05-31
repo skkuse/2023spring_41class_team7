@@ -55,3 +55,4 @@ class TakenCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseRoom
         fields = ('course', 'last_attempt')
+
