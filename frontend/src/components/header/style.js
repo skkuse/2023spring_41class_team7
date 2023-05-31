@@ -29,7 +29,7 @@ export const LogoContainer = styled.div`
   padding: 10px;
   gap: 10px;
   color: black;
-  width: 10%;
+  //width: 10%;
   height: 50%;
   /* Inside auto layout */
   flex: none;
@@ -50,7 +50,7 @@ export const LogoContents = styled.div`
 
   /* Inside auto layout */
   height: 100%;
-  width: 70%;
+  
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -58,7 +58,7 @@ export const LogoContents = styled.div`
 
 export const LogoImage = styled.img`
   height: 125%;
-  width: 25%;
+  //width: 25%;
   background: url(free-icon-exclusive-4926953.png);
   /* Inside auto layout */
   flex: none;
@@ -94,7 +94,7 @@ export const UserHeaderContainer = styled.div`
   padding: 10px;
   gap: 10px;
 
-  width: 15%;
+  
   height: 50%;
 
   /* Inside auto layout */
@@ -105,7 +105,7 @@ export const UserHeaderContainer = styled.div`
 `;
 
 export const UserHeaderUserName = styled.div`
-  width: 60%;
+  
   height: 100%;
 
   font-family: "Arial";
@@ -130,7 +130,7 @@ export const UserHeaderLogout = styled.button`
   align-items: center;
   padding: 5px 5px;
 
-  width: 20%;
+  
 
   height: 60%;
   font-size: 13px;
@@ -147,7 +147,7 @@ export const UserHeaderLogout = styled.button`
 `;
 
 export const LogoutButton = styled.button`
-  width: 100px;
+  
   height: 60px;
   border-radius: 10px;
   font-weight: 600;

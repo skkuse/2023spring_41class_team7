@@ -12,7 +12,10 @@ import setShow from "../../components/CodeEditor/index.js";
 
 
 function QuizPage(props) { 
- 
+  const testJSONArray = [
+    
+  ]
+  
   return (
     <MostOuterDiv >
       <Header></Header>
