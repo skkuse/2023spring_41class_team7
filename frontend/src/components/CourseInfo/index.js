@@ -8,20 +8,16 @@ import {
 } from "./style";
 
 function CourseInfo(props) {
-  const [title, setTitle] = useState("");
-  const [language, setLanguage] = useState("");
-  const [introduction, setIntroduction] = useState("");
-
   const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+    props.setCourseTitle(e.target.value);
   };
 
   const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
+    props.setcourseLanguageTag(parseInt(e.target.value));
   };
 
   const handleIntroductionChange = (e) => {
-    setIntroduction(e.target.value);
+    props.setCourseIntroduction(e.target.value);
   };
 
   return (
@@ -33,17 +29,18 @@ function CourseInfo(props) {
           type="text"
           placeholder="강의명을 작성해주세요!"
           onChange={handleTitleChange}
-          value={props.title}
+          value={props.courseTitle}
+          disabled={props.isCourseInitialized}
         ></CourseTitleInput>
         <CourseLanguageInput
           id="language"
           name="language"
           onChange={handleLanguageChange}
-          defaultValue={props.language}
+          defaultValue={props.courseLanguageTag}
         >
-          <option value="python">Python</option>
-          <option value="java">Java</option>
-          <option value="c">C</option>
+          <option value="1">Python</option>
+          <option value="2">Java</option>
+          <option value="3">C</option>
         </CourseLanguageInput>
       </CourseTitleLanguageContainer>
       <CourseIntroductionTextarea
@@ -51,7 +48,8 @@ function CourseInfo(props) {
         name="introduction"
         placeholder="강의에 대한 간단한 소개를 작성해주세요!"
         onChange={handleIntroductionChange}
-        value={props.introduction}
+        value={props.courseIntroduction}
+        disabled={props.isCourseInitialized}
       ></CourseIntroductionTextarea>
     </CourseInfoContainer>
   );

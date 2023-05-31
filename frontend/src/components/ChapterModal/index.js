@@ -9,28 +9,53 @@ import {
   TitleContainer,
 } from "./style";
 import Button from "../Button";
+import { serverAxios } from "../../utils/commonAxios";
 
 function ChapterModal(props) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [chapterTitle, setChapterTitle] = useState("");
+  const [chapterContent, setChapterContent] = useState("");
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+    setChapterTitle(e.target.value);
   };
 
   const handleContextChange = (e) => {
-    setContent(e.target.value);
+    setChapterContent(e.target.value);
   };
 
   const handleCancelClick = () => {
-    // 단원 추가 모달창 닫기
-    alert("단원 추가 모달창 닫기");
     props.setShowModal(false);
+    props.setIsEntered(true);
   };
 
-  const handleSaveClick = () => {
-    alert("저장하기");
-    props.setShowModal(false);
+  const handleSaveClick = async (e) => {
+    e.preventDefault();
+    if (chapterTitle && chapterContent) {
+      /* POST 요청시 course/?*/
+      // try {
+      //   const body = {
+      //     course: props.courseid,
+      //     title: chapterTitle,
+      //     content: chapterContent,
+      //   };
+
+      //   await serverAxios
+      //     .post("/chapter", body, {
+      //       withCredentials: true,
+      //     })
+      //     .then((response) => {
+      //       props.setShowModal(false);
+      //       props.setIsEntered(true);
+      //       alert("단원 추가 성공");
+      //     })
+      //     .catch((e) => {
+      //       console.log(e);
+      //     });
+      // } catch (e) {}
+      props.setShowModal(false);
+      props.setIsEntered(true);
+      alert("단원 추가 성공");
+    }
   };
 
   return (
@@ -51,11 +76,15 @@ function ChapterModal(props) {
             placeholder="단원 컨텐츠를 작성해주세요!"
             onChange={handleContextChange}
           ></ChapterTextArea>
+          {/* {chapterTitle}
+          <br />
+          {chapterContent} */}
           <ButtonContainer>
             <Button
               content="취소"
               onClick={handleCancelClick}
               backgroundColor="white"
+              type="button"
             ></Button>
             <Button
               content="저장"
