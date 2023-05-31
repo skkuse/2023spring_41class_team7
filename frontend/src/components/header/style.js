@@ -8,7 +8,7 @@ export const StyledHeader = styled.div`
   align-items: center;
   padding-left: 20px;
   padding-right: 40px;
-
+  
   gap: 10px
   width: 100%;
   height: 7%;
@@ -39,7 +39,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoContents = styled.div`
-  font-family: "Roboto";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;

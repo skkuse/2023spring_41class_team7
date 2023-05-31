@@ -39,7 +39,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoContents = styled.div`
-  font-family: "Roboto";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
