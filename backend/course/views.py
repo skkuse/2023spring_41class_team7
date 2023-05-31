@@ -6,8 +6,13 @@ from rest_framework.response import Response
 from rest_framework import status, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 
-# Create your views here.
 class CourseList(generics.ListCreateAPIView):
+    """
+    Controller for courses
+
+    Provides GET, POST requests for courses.
+    Also supports filetring by tag and searching for title or author for course.
+    """
     queryset = Course.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['tag']
@@ -22,6 +27,12 @@ class CourseList(generics.ListCreateAPIView):
         return serializer.save(author=self.request.user)
 
 class CourseDetail(APIView):
+    """
+    Controller for course with id (primary key)
+
+    Provides GET, PUT, DELETE requests for course
+    Also supports validating the user requested
+    """
     serializer_class = CoursePostSerializer
     
     def get(self, request, pk, format=None):
@@ -51,13 +62,21 @@ class CourseDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 class TagList(APIView):
-
+    """
+    Controller for tags
+    """
     def get(self, request, format=None):
         tags = Tag.objects.all()
         serializer = TagSerializer(tags, many=True)
         return Response(serializer.data)
     
 class ChapterList(generics.ListCreateAPIView):
+    """
+    Contorller for chapters
+
+    Provides GET, POST requests for chapters
+    Also supports filetring by course
+    """
     queryset = Chapter.objects.all()
     filter_backends = [DjangoFilterBackend]
     fitlerset_fields = ['course']
@@ -68,6 +87,12 @@ class ChapterList(generics.ListCreateAPIView):
         return ChapterPostSerializer
     
 class ChapterDetail(APIView):
+    """
+    Controller for Chapter with id (primary key)
+
+    Provides GET, PUT, DELETE requests for chapter
+    Also supports validating the user requested 
+    """
     serializer_class = ChapterPostSerializer
 
     def get(self, request, pk, format=None):

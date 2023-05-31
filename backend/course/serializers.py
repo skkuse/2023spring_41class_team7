@@ -10,17 +10,33 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
         fields = '__all__'
 
-# 컨텐츠로 들어온 텍스트를 html 파일로 저장
-def convert_str_to_html(content: str, content_path):
+
+def convert_str_to_html(content, content_path):
+    """
+    save content as html file into filepath
+
+    Args:
+        content (str): the content of lecture
+        content_path (str): the filepath where content file should be saved
+    """
     Func = open(content_path, "w+")
     Func.write(content)
     Func.close()
 
 def convert_html_to_str(content_path):
+    """
+    Returns content which is saved into content file (.html)
+
+    Args:
+        content_path (str): file path where content file is saved
+    """
     Func = open(content_path, "r", encoding="UTF-8")
     return Func.read()
 
 class ChapterSerializer(serializers.ModelSerializer):
+    """
+    Serializer for monitoring and managing chapter by educators
+    """
     content = serializers.SerializerMethodField()
 
     class Meta:
@@ -31,6 +47,9 @@ class ChapterSerializer(serializers.ModelSerializer):
         return convert_html_to_str(obj.content)
 
 class ChapterPostSerializer(serializers.ModelSerializer):
+    """
+    Serializer for registering chapter for educators
+    """
     content = serializers.CharField()
 
     class Meta:
@@ -38,6 +57,12 @@ class ChapterPostSerializer(serializers.ModelSerializer):
         fields = ['id', 'course', 'title', 'intro', 'content', 'created_at', 'modified_at']
 
     def create(self, validated_data: dict):
+        """
+        Create chapter object with index files
+
+        It creates chapter object, generates index files then
+        generates intro using index files
+        """
         content = validated_data.pop('content')
         chapter = Chapter.objects.create(**validated_data)
 
@@ -53,29 +78,29 @@ class ChapterPostSerializer(serializers.ModelSerializer):
         chapter.index = index_path
         chapter.save()
 
-        # 컨텐츠 파일 경로의 html을 보고 인덱스 파일 경로에 해당하는 인덱스 파일을 저장장
-        # 이후 해당 인덱스 파일을 이용해서 intro 생성 후 저장
         content_to_index_intro.delay(content_path, index_path, chapter.id)
 
         return chapter
     
     def update(self, instance: Chapter, validated_data: dict):
+        """
+        Updates chapter object with index files (PUT method)
+        """
         instance.title = validated_data['title']
-        instance.intro = validated_data['intro']
         instance.save()
 
         content = validated_data.pop('content')
         convert_str_to_html(content, instance.content)
 
-        # 컨텐츠 파일 경로의 html을 보고 인덱스 파일 경로에 해당하는 인덱스 파일을 저장
-        # function(instance)
-        # 컨텐츠 파일 경로의 html을 보고 인스턴스의 intro를 생성해서 save()
-        # function(instance) 
+        content_to_index_intro.delay(instance.content, instance.index, instance.id)
 
         return instance
 
-# 강의들을 보이기 위한 용도의 Serializer
+
 class CourseSerializer(serializers.ModelSerializer):
+    """
+    Serializer for showing course info
+    """
     mascot = serializers.ImageField(use_url=True, required=False)
     thumbnail = serializers.ImageField(use_url=True, required=False)
     author = serializers.CharField(source='author.username', read_only=True)
@@ -85,14 +110,20 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = ['id', 'title', 'intro', 'mascot', 'thumbnail', 'author', 'tag', 'learner_count', 'created_at', 'modified_at']
 
-# 강의 등록, 수정, 및 삭제를 위한 Serializer
+
 class CoursePostSerializer(serializers.ModelSerializer):
+    """
+    Serializer for registering, modifying, and deleting course for educators
+    """
     class Meta:
         model = Course
         fields = ['id', 'title', 'intro', 'mascot', 'thumbnail', 'tag']
     
-# 자신의 강의를 관리하기 위한 용도의 Serializer
+
 class CourseMySerializer(serializers.ModelSerializer):
+    """
+    Serializer for monitoring and managing courses for educators
+    """
     chapters = ChapterSerializer(source='chapter_set', many=True)
 
     class Meta:
