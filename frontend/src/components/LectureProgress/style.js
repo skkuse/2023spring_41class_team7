@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   width: 320px;
   height: 300px;
-  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 4px 23px 1px rgba(159, 155, 155, 0.25);
