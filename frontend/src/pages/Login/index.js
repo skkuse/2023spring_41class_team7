@@ -39,10 +39,9 @@ function Login(props) {
         const body = {
           username: username,
           password: password,
-          educator: !isStudent,
         };
         await serverAxios
-          .post("/user/auth/", body, {})
+          .post("user/auth/", body)
           .then((response) => {
             alert("로그인 성공");
             localStorage.setItem("loggedin", true);
@@ -54,6 +53,7 @@ function Login(props) {
           })
           .catch((e) => {
             console.log(e);
+
             alert("로그인 실패");
           });
         // localStorage.setItem("loggedin", true);
