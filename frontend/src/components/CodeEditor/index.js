@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useState } from "react";
 import CodeMirror from '@uiw/react-codemirror';
-import { createTheme } from '@uiw/codemirror-themes';
+
 import { cpp } from '@codemirror/lang-cpp';
 import { java } from '@codemirror/lang-java';
 import { python } from '@codemirror/lang-python';
@@ -9,35 +10,83 @@ import { CodeEditorContainer,
          CodeEditorButton_Exe,
          CodeEditorButton_Submit,
          CodeEditorDescription,
-         CodeEditorButton_ExeDiv } from './style';
+         CodeEditorLangSelect,
+         CodeEditorLang,
+         CodeEditorListContainer,
+         CodeEditorSelectedLang,
+         CodeEditorListContainerShow,
+         CodeEditorLangSelectButton} from './style';
 
-import {EditorView} from "@codemirror/view"
-
-import Button from '../Button';
-
+import toggleLogo from "../../assets/images/Vector.png";
+export function CodeEditor(props) {
     
+    const [show, setShow] = useState(false);
+    const [lang, setLang] = useState("Python");
 
-export function CodeEditorCpp(props) {
     const onChange = React.useCallback((value, viewUpdate) => {
-      console.log('value:', value);
+      
     }, []);
+
+    const onClickSelect = React.useCallback((viewUpdate) =>{
+      setShow(true);
+      
+    }, []);
+    const onClickLang = (params, e) => {
+      console.log(params);
+      setLang(params);
+      setShow(false);
+    }
     return (
-    <CodeEditorContainer>
-        <CodeEditorHeader>
+    <CodeEditorContainer >
+        <CodeEditorHeader >
             <CodeEditorDescription>코드 입력</CodeEditorDescription>
+              <CodeEditorLang style={{position:'relative'}}>
+                <CodeEditorLangSelect style={{fontSize:'20px'}}>
+
+                  <CodeEditorSelectedLang>
+                    {
+                      lang == "Python" && "Python" ||
+                      lang == "C++" && "C++" ||
+                      lang == "JAVA" && "JAVA" ||
+                      "Select Language"
+                    }
+                  </CodeEditorSelectedLang>
+                    <CodeEditorLangSelectButton onClick={onClickSelect}
+                  style={{ backgroundImage:`url(${toggleLogo})`}}></CodeEditorLangSelectButton>
+      
+                </CodeEditorLangSelect>
+                <div>
+                  {show ? 
+                  <CodeEditorListContainerShow>
+                    <ul style={{backgroundColor:'#FFFFFF', textAlign:'left',padding:'0px', marginBlock:'20%'}}>
+                    <li style={{listStyle:'none', border:'1px solid black', fontSize:'20px', padding:'2px 5px'}}
+                        onClick={(e)=>{onClickLang("Python", e)}}>Python</li>
+                    <li style={{listStyle:'none', border:'1px solid black', fontSize:'20px', padding:'2px 5px'}}
+                        onClick={(e)=>{onClickLang("C++", e)}}>C++</li>
+                    <li style={{listStyle:'none', border:'1px solid black', fontSize:'20px', padding:'2px 5px'}}
+                        onClick={(e)=>{onClickLang("JAVA", e)}}>JAVA</li>
+                    </ul>
+                    </CodeEditorListContainerShow>: 
+                  <CodeEditorListContainer>
+  
+                  </CodeEditorListContainer>}
+                </div>
+              </CodeEditorLang>
               
               <CodeEditorButton_Exe  onClick={props.onClick}
             style={{backgroundColor: props.backgroundColor}}>실행</CodeEditorButton_Exe>
               <CodeEditorButton_Submit>제출</CodeEditorButton_Submit>
-            
         </CodeEditorHeader>
         <CodeMirror
             value="Write your Code"
-            style={{width:"100%"}}
-            height='1400px'
+            style={{width:"100%", height:"100%"}}
+            height='100%'
             theme="dark"
             onChange={onChange}
-            extensions={[cpp()]} 
+            
+            extensions={lang == "Python" && python() ||
+                        lang == "C++" && cpp() ||
+                        lang == "JAVA" && java()} 
         />
     </CodeEditorContainer>
       
@@ -45,35 +94,4 @@ export function CodeEditorCpp(props) {
   }
 
 
-export function CodeEditorPython() {
-    const onChange = React.useCallback((value, viewUpdate) => {
-      console.log('value:', value);
-    }, []);
-    return (
-      <CodeMirror
-        value="Write your Code"
-        height="800px"
-        theme="dark"
-        onChange={onChange}
-        extensions={[python()]} 
-      />
-    );
-  }
-
-
-
-export function CodeEditorJava() {
-  const onChange = React.useCallback((value, viewUpdate) => {
-    console.log('value:', value);
-  }, []);
-  return (
-    <CodeMirror
-      value="Write your Code"
-      height="800px"
-      theme="dark"
-      onChange={onChange}
-      extensions={[java()]} 
-    />
-  );
-}
 
