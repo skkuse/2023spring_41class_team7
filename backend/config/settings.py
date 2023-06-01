@@ -27,8 +27,6 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 # default application
@@ -151,9 +149,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    'http://0.0.0.0:3000'
-]
+ALLOWED_HOSTS = ['api']
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -173,4 +169,4 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul'
-CELERY_IMPORTS = ('user.task', 'course.task', 'learn.task', 'feedback.task')
+CELERY_IMPORTS = ('course.task', 'learn.task', 'feedback.task')
