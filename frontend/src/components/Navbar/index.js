@@ -3,7 +3,6 @@ import {
   LetfContainer,
   ProfileContainer,
   NavContainer,
-  TmpProfile,
   PageBtn,
   NavTitle,
   NavElement,
@@ -11,7 +10,10 @@ import {
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import Profile from "../../assets/images/student.png";
+import StudentProfile from "../../assets/images/student.png";
+import EducatorProfile from "../../assets/images/teacher.png";
+import { serverAxios } from "../../utils/commonAxios";
+import { useEffect, useState } from "react";
 
 const NameStyle = styled.span`
   font-weight: 700;
@@ -19,20 +21,47 @@ const NameStyle = styled.span`
 `;
 
 function Navbar() {
+  const [itemList, setItemList] = useState(null);
+
+  useEffect(() => {
+    getItem();
+  }, []);
+
+  const getItem = async () => {
+    await serverAxios
+      .get("/course/tag/", { withCredentials: true })
+      .then((res) => {
+        setItemList(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <LetfContainer>
       {/* profile */}
       <ProfileContainer>
-        {/* img  - student, teacher에 따라서 구분해주기 */}
-        <img src={Profile} style={{ width: 190, height: 190 }} />
+        {/* img  - student, teacher에 따라서 구분 */}
+        <img
+          src={
+            localStorage.getItem("educator") == true
+              ? EducatorProfile
+              : StudentProfile
+          }
+          style={{ width: 190, height: 190 }}
+        />
         {/* name */}
-        <NameStyle>user 님!</NameStyle>
+        <NameStyle>{localStorage.getItem("nickname")} 님!</NameStyle>
 
-        {/* my page btn */}
-        <Link to="/user/student">
-          <PageBtn>마이페이지</PageBtn>
-        </Link>
-        {/* if teacher, lecture management btn */}
+        {/* my page btn - student, teacher에 따라서 구분*/}
+        {localStorage.getItem("educator") == true ? (
+          <Link to="/user/instructor">
+            <PageBtn>마이페이지</PageBtn>
+          </Link>
+        ) : (
+          <Link to="/user/student">
+            <PageBtn>마이페이지</PageBtn>
+          </Link>
+        )}
       </ProfileContainer>
 
       {/* nav list */}
@@ -43,25 +72,25 @@ function Navbar() {
         </NavTitle>
 
         {/* links */}
+        {/* {console.log(itemList)} */}
 
-        <NavElement>
-          <FontAwesomeIcon icon={faCode} />
-          <Link to={"/"} style={{ textDecoration: "none", color: "#48413D" }}>
-            파이썬
-          </Link>
-        </NavElement>
-        <NavElement>
-          <FontAwesomeIcon icon={faCode} />
-          <Link to={"/"} style={{ textDecoration: "none", color: "#48413D" }}>
-            자바
-          </Link>
-        </NavElement>
-        <NavElement>
-          <FontAwesomeIcon icon={faCode} />
-          <Link to={"/"} style={{ textDecoration: "none", color: "#48413D" }}>
-            C언어
-          </Link>
-        </NavElement>
+        {itemList != null ? (
+          itemList.map((item) => {
+            return (
+              <NavElement key={item.id}>
+                <FontAwesomeIcon icon={faCode} />
+                <Link
+                  to={"/"}
+                  style={{ textDecoration: "none", color: "#48413D" }}
+                >
+                  {item.title}
+                </Link>
+              </NavElement>
+            );
+          })
+        ) : (
+          <div></div>
+        )}
       </NavContainer>
     </LetfContainer>
   );
