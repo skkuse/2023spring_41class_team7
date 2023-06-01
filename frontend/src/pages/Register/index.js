@@ -13,7 +13,8 @@ import {
   ToLogin,
   ToLoginParagraph,
 } from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { serverAxios } from "../../utils/commonAxios";
 
 function Register(props) {
   const [mode, setMode] = useState("student");
@@ -37,7 +38,9 @@ function Register(props) {
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
-  const handleRegisterSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (
       isUsernameValid &&
@@ -55,7 +58,14 @@ function Register(props) {
           password2: passwordConfirm,
           educator: !isStudent,
         };
-      } catch (e) {}
+        await serverAxios.post("/user/create/", body).then((response) => {
+          alert("회원가입 성공");
+          navigate("/login");
+        });
+      } catch (e) {
+        console.log(e);
+        alert("회원가입 실패");
+      }
     }
   };
 

@@ -24,7 +24,8 @@ class UserRegistration(APIView):
 
 
 class UserLogin(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
     serializer_class = LoginSerializer
 
     def post(self, request):
