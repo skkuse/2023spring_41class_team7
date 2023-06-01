@@ -54,23 +54,18 @@ function AddCourse(props) {
           intro: courseIntroduction,
         };
         /* Course title, introduction POST */
-        // await serverAxios
-        //   .post("/course", body, {
-        //     withCredentials: true,
-        //   })
-        //   .then((response) => {
-        //     setIsCourseInitialized(true);
-        //     setCourseid(response.data.id);
-        //     alert("Course Info 저장 성공");
-        //   })
-        //   .catch((e) => {
-        //     console.log(e);
-        //   });
-
-        /* POST 성공 시 */
-        setCourseid(2);
-        setIsCourseInitialized(true);
-        /* setCourseid(REPONSE로 날라온 id 값) */
+        await serverAxios
+          .post("/course/course/", body, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            setIsCourseInitialized(true);
+            setCourseid(response.data.id);
+            alert("Course Info 저장 성공");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       } catch (e) {}
     }
   };
