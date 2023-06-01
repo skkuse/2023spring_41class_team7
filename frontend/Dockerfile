@@ -1,6 +1,5 @@
 FROM node:18.12.0
 
-ENV CHOKIDAR_USEPOLLING=true
 WORKDIR /app/frontend
 
 COPY frontend/package.json package.json
