@@ -15,20 +15,30 @@ function ShowChapter(props) {
     setShowContent(!showContent);
   };
 
+  const handleCancelClick = () => {
+    alert("삭제 완료");
+  };
+
   return (
     <ShowOuterContainer>
       <ShowChapterContainer>
         <ChapterNumberContainer>{props.chapterNo}주차</ChapterNumberContainer>
-        <ChapterTitle defaultValue={props.chapterTitle}></ChapterTitle>
+        <ChapterTitle value={props.chapterTitle}></ChapterTitle>
         <Button
           content="보기"
           onClick={handleContentClick}
           backgroundColor="white"
           type="button"
         ></Button>
+        <Button
+          content="삭제"
+          onClick={handleCancelClick}
+          backgroundColor="white"
+          type="button"
+        ></Button>
       </ShowChapterContainer>
       {showContent && (
-        <ChapterContent defaultValue={props.chapterContent}></ChapterContent>
+        <ChapterContent value={props.chapterContent}></ChapterContent>
       )}
     </ShowOuterContainer>
   );

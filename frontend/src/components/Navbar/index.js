@@ -43,7 +43,7 @@ function Navbar() {
         {/* img  - student, teacher에 따라서 구분 */}
         <img
           src={
-            localStorage.getItem("educator") == true
+            localStorage.getItem("educator") == "true"
               ? EducatorProfile
               : StudentProfile
           }
@@ -53,7 +53,7 @@ function Navbar() {
         <NameStyle>{localStorage.getItem("nickname")} 님!</NameStyle>
 
         {/* my page btn - student, teacher에 따라서 구분*/}
-        {localStorage.getItem("educator") == true ? (
+        {localStorage.getItem("educator") == "true" ? (
           <Link to="/user/instructor">
             <PageBtn>마이페이지</PageBtn>
           </Link>

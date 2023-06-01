@@ -21,32 +21,37 @@ function UserInstructor(props) {
     navigate("/add");
   };
 
-  return (
-    <MostOuterDiv>
-      <Header></Header>
-      <OuttestContainer>
-        <Navbar></Navbar>
-        <UserInstructorContainer>
-          <CourseAddButton onClick={handleAddClick}>강의 추가</CourseAddButton>
-          <TitleContainer>
-            <Title>
-              <FontAwesomeIcon
-                icon={faThumbtack}
-                style={{ marginRight: "10px" }}
-              />{" "}
-              강의 목록
-            </Title>
-          </TitleContainer>
-          <CourseContainer>
-            <InstructorCourseCard></InstructorCourseCard>
-            <InstructorCourseCard></InstructorCourseCard>
-            <InstructorCourseCard></InstructorCourseCard>
-            <InstructorCourseCard></InstructorCourseCard>
-          </CourseContainer>
-        </UserInstructorContainer>
-      </OuttestContainer>
-    </MostOuterDiv>
-  );
+  if (
+    localStorage.getItem("loggedin") &&
+    localStorage.getItem("educator") == "true"
+  ) {
+    return (
+      <MostOuterDiv>
+        <Header></Header>
+        <OuttestContainer>
+          <Navbar></Navbar>
+          <UserInstructorContainer>
+            <CourseAddButton onClick={handleAddClick}>
+              강의 추가
+            </CourseAddButton>
+            <TitleContainer>
+              <Title>
+                <FontAwesomeIcon
+                  icon={faThumbtack}
+                  style={{ marginRight: "10px" }}
+                />{" "}
+                강의 목록
+              </Title>
+            </TitleContainer>
+            <CourseContainer>
+              <InstructorCourseCard></InstructorCourseCard>
+              <InstructorCourseCard></InstructorCourseCard>
+            </CourseContainer>
+          </UserInstructorContainer>
+        </OuttestContainer>
+      </MostOuterDiv>
+    );
+  }
 }
 
 export default UserInstructor;

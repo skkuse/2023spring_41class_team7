@@ -103,6 +103,10 @@ export const UserHeaderContainer = styled.div`
   flex-grow: 0;
 `;
 
+export const NicknameSpan = styled.span`
+  font-weight: 600;
+`;
+
 export const UserHeaderUserName = styled.div`
   height: 100%;
 

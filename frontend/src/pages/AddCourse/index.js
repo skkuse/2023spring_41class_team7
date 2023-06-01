@@ -25,21 +25,25 @@ function AddCourse(props) {
   const [showModal, setShowModal] = useState(false);
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
-  let chapters = [];
+  const [chapters, setChapters] = useState([]);
 
   const navigate = useNavigate();
 
-  // useEffect(async () => {
-  //   if (courseid) {
-  //     let params = URLSearchParams();
-  //     params.append("/chapter", courseid);
-  //     await serverAxios
-  //       .get("/course", { withCredentials: true }, params)
-  //       .then((response) => {
-  //         chapters = JSON.parse(response.data);
-  //       });
-  //   }
-  // }, [showModal]);
+  const getChaptersFunction = async () => {
+    if (courseid) {
+      let targeturl = "/course/chapter/?course=" + courseid;
+      await serverAxios
+        .get(targeturl, { withCredentials: true })
+        .then((response) => {
+          setChapters(JSON.parse(JSON.stringify(response.data)));
+          console.log(chapters);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getChaptersFunction();
+  }, [showModal]);
   const handleAddCourseSubmit = (e) => {};
 
   const handleSaveClick = () => {};
@@ -61,7 +65,7 @@ function AddCourse(props) {
           .then((response) => {
             setIsCourseInitialized(true);
             setCourseid(response.data.id);
-            alert("Course Info 저장 성공");
+            alert("강의 정보 저장 성공");
           })
           .catch((e) => {
             console.log(e);
@@ -110,7 +114,7 @@ function AddCourse(props) {
   ];
 
   const myArray = JSON.parse(JSON.stringify(testJSONArray));
-  chapters = myArray;
+  //chapters = myArray;
 
   if (localStorage.getItem("loggedin")) {
     return (
