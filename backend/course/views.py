@@ -6,6 +6,17 @@ from rest_framework.response import Response
 from rest_framework import status, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+
+class TagList(APIView):
+    """
+    Controller for tags
+    """
+    def get(self, request, format=None):
+        tags = Tag.objects.all()
+        serializer = TagSerializer(tags, many=True)
+        return Response(serializer.data)
+    
+
 class CourseList(generics.ListCreateAPIView):
     """
     Controller for courses
@@ -16,7 +27,7 @@ class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['tag']
-    search_fields = ['title', 'author__username'] 
+    search_fields = ['title', 'author__nickname'] 
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -60,15 +71,7 @@ class CourseDetail(APIView):
         
         course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
-class TagList(APIView):
-    """
-    Controller for tags
-    """
-    def get(self, request, format=None):
-        tags = Tag.objects.all()
-        serializer = TagSerializer(tags, many=True)
-        return Response(serializer.data)
+
     
 class ChapterList(generics.ListCreateAPIView):
     """
@@ -79,7 +82,7 @@ class ChapterList(generics.ListCreateAPIView):
     """
     queryset = Chapter.objects.all()
     filter_backends = [DjangoFilterBackend]
-    fitlerset_fields = ['course']
+    filterset_fields = ['course']
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
