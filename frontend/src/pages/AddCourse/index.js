@@ -20,7 +20,7 @@ import { serverAxios } from "../../utils/commonAxios";
 function AddCourse(props) {
   const [courseid, setCourseid] = useState(null);
   const [courseTitle, setCourseTitle] = useState("");
-  const [courseLanguageTag, setcourseLanguageTag] = useState(1);
+  const [courseLanguageTag, setCourseLanguageTag] = useState(0);
   const [courseIntroduction, setCourseIntroduction] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
@@ -34,7 +34,7 @@ function AddCourse(props) {
     if (courseid && showModal == false) {
       // let targeturl = "/course/chapter/?course=" + courseid;
       let targeturl = "course/course/" + courseid + "/";
-      console.log(targeturl);
+      //console.log(targeturl);
       await serverAxios
         .get(targeturl, { withCredentials: true })
         .then((response) => {
@@ -55,8 +55,8 @@ function AddCourse(props) {
   const handleSaveClick = () => {};
 
   const handleCourseAddSaveClick = async (e) => {
-    if (courseTitle && courseIntroduction) {
-      e.preventDefault();
+    e.preventDefault();
+    if (courseTitle && courseIntroduction && courseLanguageTag !== 0) {
       try {
         const body = {
           title: courseTitle,
@@ -120,7 +120,7 @@ function AddCourse(props) {
               courseLanguageTag={courseLanguageTag}
               courseIntroduction={courseIntroduction}
               setCourseTitle={setCourseTitle}
-              setcourseLanguageTag={setcourseLanguageTag}
+              setCourseLanguageTag={setCourseLanguageTag}
               setCourseIntroduction={setCourseIntroduction}
               isCourseInitialized={isCourseInitialized}
             ></CourseInfo>

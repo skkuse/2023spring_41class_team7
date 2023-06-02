@@ -13,7 +13,7 @@ function CourseInfo(props) {
   };
 
   const handleLanguageChange = (e) => {
-    props.setcourseLanguageTag(parseInt(e.target.value));
+    props.setCourseLanguageTag(parseInt(e.target.value));
   };
 
   const handleIntroductionChange = (e) => {
@@ -29,15 +29,16 @@ function CourseInfo(props) {
           type="text"
           placeholder="강의명을 작성해주세요!"
           onChange={handleTitleChange}
-          value={props.courseTitle}
+          defaultValue={props.courseTitle}
           disabled={props.isCourseInitialized}
         ></CourseTitleInput>
         <CourseLanguageInput
           id="language"
           name="language"
           onChange={handleLanguageChange}
-          defaultValue={props.courseLanguageTag}
+          defaultValue={String(props.courseLanguageTag)}
         >
+          <option value="0">언어 선택</option>
           <option value="1">Python</option>
           <option value="2">Java</option>
           <option value="3">C</option>
@@ -49,7 +50,7 @@ function CourseInfo(props) {
         name="introduction"
         placeholder="강의에 대한 간단한 소개를 작성해주세요!"
         onChange={handleIntroductionChange}
-        value={props.courseIntroduction}
+        defaultValue={props.courseIntroduction}
         disabled={props.isCourseInitialized}
       ></CourseIntroductionTextarea>
     </CourseInfoContainer>

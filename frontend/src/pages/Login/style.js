@@ -16,7 +16,7 @@ export const LoginInnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  gap: 100px;
+  gap: 75px;
 `;
 
 export const TitleContainer = styled.div`
@@ -25,7 +25,7 @@ export const TitleContainer = styled.div`
   gap: 35px;
   font-style: normal;
   font-weight: 700;
-  font-size: 80px;
+  font-size: 75px;
   text-align: center;
   align-items: center;
 `;
@@ -47,41 +47,9 @@ export const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 15px 20px;
   border-radius: 20px;
   border: 3px solid #94b4ff;
-`;
-
-export const ModeContainer = styled.div`
-  display: table;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  width: 521px;
-  height: 86px;
-  border-radius: 20px;
-`;
-
-export const StudentMode = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  height: 100%;
-  text-align: center;
-  border-radius: 20px 0 0 0;
-  border-bottom: 3px solid #94b4ff;
-  font-weight: 700;
-  font-size: 16px;
-`;
-
-export const InstructorMode = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  height: 100%;
-  text-align: center;
-  border-radius: 0 20px 0 0;
-  border-bottom: 3px solid #94b4ff;
-  font-weight: 700;
-  font-size: 16px;
 `;
 
 export const InputContainer = styled.div`
@@ -109,6 +77,7 @@ export const ToRegisterParagraph = styled.p`
   font-weight: 600;
   font-size: 16px;
   color: #6f7680;
+  margin: 0;
 `;
 
 export const ToRegister = styled.span`

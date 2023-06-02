@@ -21,11 +21,14 @@ function ModifyCourse(props) {
   let courseid = Number(useParams().courseid);
 
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState("");
-  const [language, setLanguage] = useState("");
-  const [introduction, setIntroduction] = useState("");
-  const [courseInfo, setCourseInfo] = useState();
+  const [courseTitle, setCourseTitle] = useState("");
+  const [courseLanguageTag, setCourseLanguageTag] = useState(0);
+  const [courseIntroduction, setCourseIntroduction] = useState("");
+  const [courseChapters, setCourseChapters] = useState([]);
   const [isReady, setIsReady] = useState(false);
+  const [isEntered, setIsEntered] = useState(true);
+  const [clickFlag, setClickFlag] = useState(false);
+
   const navigate = useNavigate();
 
   const getCourseInfoFunction = async () => {
@@ -33,8 +36,11 @@ function ModifyCourse(props) {
     await serverAxios
       .get(targeturl, { withCredentials: true })
       .then((response) => {
-        setCourseInfo(JSON.parse(JSON.stringify(response.data)));
-
+        // setCourseInfo(JSON.parse(JSON.stringify(response.data)));
+        setCourseTitle(JSON.parse(JSON.stringify(response.data)).title);
+        setCourseLanguageTag(JSON.parse(JSON.stringify(response.data)).tag);
+        setCourseIntroduction(JSON.parse(JSON.stringify(response.data)).intro);
+        setCourseChapters(JSON.parse(JSON.stringify(response.data)).chapters);
         setIsReady(true);
       })
       .catch((e) => {
@@ -43,7 +49,7 @@ function ModifyCourse(props) {
   };
   useEffect(() => {
     getCourseInfoFunction();
-  }, []);
+  }, [isEntered, clickFlag]);
 
   const handleModifyCourseSubmit = (e) => {
     e.preventDefault();
@@ -57,14 +63,17 @@ function ModifyCourse(props) {
     navigate("/user/instructor");
   };
 
-  const handleCourseInfoModifyClick = () => {
-    alert("강의 수정하기");
+  const handleCourseInfoModifyClick = (e) => {
+    e.preventDefault();
+    if (courseTitle && courseIntroduction && courseLanguageTag !== 0)
+      alert("강의 수정하기");
   };
 
   const handleAddClick = () => {
     setShowModal(!showModal);
+    setIsEntered(false);
   };
-  if (localStorage.getItem("loggedin")) {
+  if (localStorage.getItem("loggedin") && isReady) {
     return (
       <MostOuterDiv>
         <Header></Header>
@@ -88,12 +97,15 @@ function ModifyCourse(props) {
               ></Button>
             </ButtonsContainer>
             <CourseInfo
-              courseTitle={isReady ? courseInfo.title : title}
-              language={language}
-              courseIntroduction={isReady ? courseInfo.intro : introduction}
+              courseTitle={courseTitle}
+              courseLanguageTag={courseLanguageTag}
+              courseIntroduction={courseIntroduction}
+              setCourseTitle={setCourseTitle}
+              setCourseLanguageTag={setCourseLanguageTag}
+              setCourseIntroduction={setCourseIntroduction}
             ></CourseInfo>
             <ButtonsContainer>
-              {String(isReady)}
+              {/* {String(isReady)} */}
               <CourseInfoModifyButton onClick={handleCourseInfoModifyClick}>
                 강의 정보 수정
               </CourseInfoModifyButton>
@@ -102,11 +114,25 @@ function ModifyCourse(props) {
               </ChapterAddButton>
             </ButtonsContainer>
             {showModal && (
-              <ChapterModal setShowModal={setShowModal}></ChapterModal>
+              <ChapterModal
+                courseid={courseid}
+                setShowModal={setShowModal}
+                setIsEntered={setIsEntered}
+                disabled={showModal}
+              ></ChapterModal>
             )}
             <ShowCourseContainer>
-              <ShowChapter></ShowChapter>
-              <ShowChapter></ShowChapter>
+              {courseChapters.map((value, key) => (
+                <ShowChapter
+                  courseid={courseid}
+                  chapterid={value.id}
+                  chapterNo={key + 1}
+                  chapterTitle={value.title}
+                  chapterContent={value.content}
+                  clickFlag={clickFlag}
+                  setClickFlag={setClickFlag}
+                ></ShowChapter>
+              ))}
             </ShowCourseContainer>
           </ModifyCourseForm>
         </OuttestContainer>

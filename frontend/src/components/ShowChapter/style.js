@@ -27,7 +27,7 @@ export const ChapterTitle = styled.input`
 
 export const ChapterContent = styled.textarea`
   padding: 20px;
-  height: 320px;
+  height: 240px;
   border-radius: 10px;
   font-weight: 500;
   font-size: 16px;

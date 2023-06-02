@@ -101,6 +101,7 @@ function ShowChapter(props) {
       </ShowChapterContainer>
       {showContent && (
         <ChapterContent
+          overflow="visible"
           defaultValue={props.chapterContent}
           onChange={handleChapterContentChange}
         ></ChapterContent>
