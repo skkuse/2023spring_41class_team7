@@ -149,7 +149,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ['api']
+ALLOWED_HOSTS = ['api', '127.0.0.1']
 
 AUTH_USER_MODEL = 'user.User'
 
