@@ -46,7 +46,7 @@ export const CourseContainer = styled.div`
     background: #ffffff;
   }
   &::-webkit-scrollbar-thumb {
-    background: #eeeeee;
+    background: #cddbfc;
     border-radius: 6px;
   }
 `;

@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { serverAxios } from "../../utils/commonAxios";
 
 function AddCourse(props) {
-  const [courseid, setCourseid] = useState();
+  const [courseid, setCourseid] = useState(null);
   const [courseTitle, setCourseTitle] = useState("");
   const [courseLanguageTag, setcourseLanguageTag] = useState(1);
   const [courseIntroduction, setCourseIntroduction] = useState("");
@@ -26,24 +26,30 @@ function AddCourse(props) {
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
   const [chapters, setChapters] = useState([]);
+  const [clickFlag, setClickFlag] = useState(false);
 
   const navigate = useNavigate();
 
   const getChaptersFunction = async () => {
-    if (courseid) {
-      let targeturl = "/course/chapter/?course=" + courseid;
+    if (courseid && showModal == false) {
+      // let targeturl = "/course/chapter/?course=" + courseid;
+      let targeturl = "course/course/" + courseid + "/";
+      console.log(targeturl);
       await serverAxios
         .get(targeturl, { withCredentials: true })
         .then((response) => {
-          setChapters(JSON.parse(JSON.stringify(response.data)));
+          setChapters(JSON.parse(JSON.stringify(response.data.chapters)));
           console.log(chapters);
+        })
+        .catch((e) => {
+          console.log(e);
         });
     }
   };
 
   useEffect(() => {
     getChaptersFunction();
-  }, [showModal]);
+  }, [isEntered, clickFlag]);
   const handleAddCourseSubmit = (e) => {};
 
   const handleSaveClick = () => {};
@@ -83,40 +89,10 @@ function AddCourse(props) {
     setIsEntered(false);
   };
 
-  const testJSONArray = [
-    {
-      id: 1,
-      course: 1,
-      title: "정식이가 가르쳐주는 파이썬",
-      intro: "잘 찾아오셨습니다!",
-      content: "정식이는 도커러입니다.",
-      created_at: "2023-05-28T07:11:49.985428Z",
-      modified_at: "2023-05-28T07:11:50.154150Z",
-    },
-    {
-      id: 2,
-      course: 1,
-      title: "기초 파이썬 문법",
-      intro: "잘 찾아오셨습니다!",
-      content: "이제부터 한 번 가봅시다.",
-      created_at: "2023-05-29T07:46:30.030849Z",
-      modified_at: "2023-05-29T07:46:30.239792Z",
-    },
-    {
-      id: 3,
-      course: 1,
-      title: "파이썬의 효능",
-      intro: "잘 찾아오셨습니다!",
-      content: "제대로 한 번 가봅시다.",
-      created_at: "2023-05-29T07:47:25.114241Z",
-      modified_at: "2023-05-29T07:47:25.213260Z",
-    },
-  ];
-
-  const myArray = JSON.parse(JSON.stringify(testJSONArray));
-  //chapters = myArray;
-
-  if (localStorage.getItem("loggedin")) {
+  if (
+    localStorage.getItem("loggedin") &&
+    localStorage.getItem("educator") === "true"
+  ) {
     return (
       <MostOuterDiv>
         <Header></Header>
@@ -181,9 +157,13 @@ function AddCourse(props) {
               <ShowCourseContainer>
                 {chapters.map((value, key) => (
                   <ShowChapter
+                    courseid={courseid}
+                    chapterid={value.id}
                     chapterNo={key + 1}
                     chapterTitle={value.title}
                     chapterContent={value.content}
+                    clickFlag={clickFlag}
+                    setClickFlag={setClickFlag}
                   ></ShowChapter>
                 ))}
               </ShowCourseContainer>

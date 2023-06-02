@@ -13,9 +13,35 @@ import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../../components/Header";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
+import { useEffect, useState } from "react";
+import { serverAxios } from "../../utils/commonAxios";
 
 function UserInstructor(props) {
+  const [courses, setCourses] = useState();
+  const [isReady, setIsReady] = useState(false);
+  const [clickFlag, setClickFlag] = useState(false);
+
   const navigate = useNavigate();
+
+  let tempCourses = [];
+
+  const getCoursesFunction = async () => {
+    await serverAxios
+      .get("/course/course/", { withCredentials: true })
+      .then((response) => {
+        tempCourses = JSON.parse(JSON.stringify(response.data));
+        setCourses(tempCourses);
+        setIsReady(true);
+        console.log(courses);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    getCoursesFunction();
+  }, [clickFlag]);
 
   const handleAddClick = () => {
     navigate("/add");
@@ -23,7 +49,7 @@ function UserInstructor(props) {
 
   if (
     localStorage.getItem("loggedin") &&
-    localStorage.getItem("educator") == "true"
+    localStorage.getItem("educator") === "true"
   ) {
     return (
       <MostOuterDiv>
@@ -44,8 +70,16 @@ function UserInstructor(props) {
               </Title>
             </TitleContainer>
             <CourseContainer>
-              <InstructorCourseCard></InstructorCourseCard>
-              <InstructorCourseCard></InstructorCourseCard>
+              {isReady &&
+                courses.map((value, key) => {
+                  return (
+                    <InstructorCourseCard
+                      course={value}
+                      clickFlag={clickFlag}
+                      setClickFlag={setClickFlag}
+                    ></InstructorCourseCard>
+                  );
+                })}
             </CourseContainer>
           </UserInstructorContainer>
         </OuttestContainer>

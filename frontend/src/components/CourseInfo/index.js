@@ -41,6 +41,7 @@ function CourseInfo(props) {
           <option value="1">Python</option>
           <option value="2">Java</option>
           <option value="3">C</option>
+          <option value="4">C++</option>
         </CourseLanguageInput>
       </CourseTitleLanguageContainer>
       <CourseIntroductionTextarea
