@@ -5,12 +5,6 @@ from config.settings import MEDIA_ROOT
 from .task import content_to_index_intro
 import os
 
-class TagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tag
-        fields = '__all__'
-
-
 def convert_str_to_html(content, content_path):
     """
     save content as html file into filepath
