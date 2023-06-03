@@ -8,7 +8,9 @@ from user.models import User
 # Create your models here.
 
 class OverwriteStorage(FileSystemStorage):
-    
+    """
+    Class for overwriting files with same file name
+    """
     def get_available_name(self, name, max_length=None):
         if self.exists(name):
             os.remove(os.path.join(settings.MEDIA_ROOT, name))
@@ -36,11 +38,21 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
-
 def content_path():
+    """
+    Function for content file path
+
+    Purspose - limit to file path field for content
+    """
     return os.path.join(settings.MEDIA_ROOT, 'content')
 
+
 def index_path():
+    """
+    Function for index file path
+
+    Purpose - limit to file path field for index
+    """
     return os.path.join(settings.MEDIA_ROOT, 'index')
 
 class Chapter(models.Model):
