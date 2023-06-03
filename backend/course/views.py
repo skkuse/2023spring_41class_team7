@@ -1,11 +1,29 @@
 from django.shortcuts import get_object_or_404
 from course.models import Course, Tag, Chapter
 from course.serializers import CourseSerializer, CoursePostSerializer, CourseMySerializer, ChapterSerializer, ChapterPostSerializer
+from django.db.models import QuerySet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+def serialize_tags(tags: QuerySet[Tag]):
+        
+    response_dict = dict()
+    for tag in tags:
+        if tag.category in response_dict:
+            response_dict[tag.category].append(
+                {'title': tag.title, 'id': tag.pk})
+        else:
+            response_dict[tag.category] = [
+                {'title': tag.title, 'id': tag.pk}]
+    
+    response = []
+    for category in response_dict:
+        response.append(
+            {'category': category, 'titles': response_dict[category]})
+
+    return response
 
 class TagList(APIView):
     """
@@ -13,16 +31,7 @@ class TagList(APIView):
     """
     def get(self, request, format=None):
         tags = Tag.objects.all()
-
-        response = dict()
-
-        for tag in tags:
-            if tag.category in response:
-                response[tag.category].append(tag.title)
-            else:
-                response[tag.category] = [tag.title]
-
-        return Response(response)
+        return Response(serialize_tags(tags))
     
 
 class CourseList(generics.ListCreateAPIView):
