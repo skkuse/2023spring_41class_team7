@@ -6,7 +6,7 @@ export const LetfContainer = styled.div`
   height: 100%;
   background: #ffffff;
   box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.09);
-  border-radius: 20px;
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;

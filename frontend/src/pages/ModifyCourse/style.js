@@ -7,7 +7,7 @@ export const ModifyCourseForm = styled.form`
   padding: 35px;
   background: #ffffff;
   box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.09);
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -54,7 +54,7 @@ export const ShowCourseContainer = styled.div`
   &::-webkit-scrollbar {
     width: 6px;
     height: 8px;
-    background: #ffffff;
+    background: #gggggg;
   }
   &::-webkit-scrollbar-thumb {
     background: #cddbfc;

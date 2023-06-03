@@ -52,7 +52,13 @@ function AddCourse(props) {
   }, [isEntered, clickFlag]);
   const handleAddCourseSubmit = (e) => {};
 
-  const handleSaveClick = () => {};
+  const handleDoneClick = () => {
+    navigate("/user/instructor");
+  };
+
+  const handleCancelClick = () => {
+    navigate("/user/instructor");
+  };
 
   const handleCourseAddSaveClick = async (e) => {
     e.preventDefault();
@@ -80,10 +86,6 @@ function AddCourse(props) {
     }
   };
 
-  const handleCancelClick = () => {
-    navigate("/user/instructor");
-  };
-
   const handleAddClick = () => {
     setShowModal(!showModal);
     setIsEntered(false);
@@ -101,10 +103,9 @@ function AddCourse(props) {
           <AddCourseForm onSubmit={handleAddCourseSubmit}>
             <ButtonsContainer>
               {/* <Button
-                content="저장"
-                onClick={handleSaveClick}
+                content="완료"
+                onClick={handleDoneClick}
                 backgroundColor="#DAE5FF"
-                disabled={isCourseInitialized}
               ></Button> */}
               <Button
                 content="취소"
@@ -161,6 +162,7 @@ function AddCourse(props) {
                     chapterid={value.id}
                     chapterNo={key + 1}
                     chapterTitle={value.title}
+                    chapterIntro={value.intro}
                     chapterContent={value.content}
                     clickFlag={clickFlag}
                     setClickFlag={setClickFlag}

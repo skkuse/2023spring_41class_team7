@@ -28,6 +28,7 @@ function ModifyCourse(props) {
   const [isReady, setIsReady] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
   const [clickFlag, setClickFlag] = useState(false);
+  const [modifyClickFlag, setModifyClickFlag] = useState(false);
 
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ function ModifyCourse(props) {
   };
   useEffect(() => {
     getCourseInfoFunction();
-  }, [isEntered, clickFlag]);
+  }, [isEntered, clickFlag, modifyClickFlag]);
 
   const handleModifyCourseSubmit = (e) => {
     e.preventDefault();
@@ -63,10 +64,28 @@ function ModifyCourse(props) {
     navigate("/user/instructor");
   };
 
-  const handleCourseInfoModifyClick = (e) => {
+  const handleCourseInfoModifyClick = async (e) => {
     e.preventDefault();
-    if (courseTitle && courseIntroduction && courseLanguageTag !== 0)
-      alert("강의 수정하기");
+    if (courseTitle && courseIntroduction) {
+      let targeturl = "/course/course/" + courseid + "/";
+      const body = {
+        id: courseid,
+        title: courseTitle,
+        intro: courseIntroduction,
+        tag: courseLanguageTag,
+      };
+      await serverAxios
+        .put(targeturl, body, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          alert("단원 정보 수정 완료");
+          setModifyClickFlag(!modifyClickFlag);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   const handleAddClick = () => {
@@ -128,6 +147,7 @@ function ModifyCourse(props) {
                   chapterid={value.id}
                   chapterNo={key + 1}
                   chapterTitle={value.title}
+                  chapterIntro={value.intro}
                   chapterContent={value.content}
                   clickFlag={clickFlag}
                   setClickFlag={setClickFlag}

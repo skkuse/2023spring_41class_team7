@@ -15,7 +15,7 @@ export const ChapterModalContainer = styled.div`
   gap: 35px;
   width: 960px;
   background-color: #eeeeee;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
   border: 2px solid black;
 `;

@@ -66,7 +66,7 @@ export function CodeEditor(props) {
                     style={{
                       listStyle: "none",
                       border: "1px solid black",
-                      fontSize: "20px",
+                      fontSize: "15px",
                       padding: "2px 5px",
                     }}
                     onClick={(e) => {
@@ -79,7 +79,7 @@ export function CodeEditor(props) {
                     style={{
                       listStyle: "none",
                       border: "1px solid black",
-                      fontSize: "20px",
+                      fontSize: "15px",
                       padding: "2px 5px",
                     }}
                     onClick={(e) => {
@@ -92,7 +92,7 @@ export function CodeEditor(props) {
                     style={{
                       listStyle: "none",
                       border: "1px solid black",
-                      fontSize: "20px",
+                      fontSize: "15px",
                       padding: "2px 5px",
                     }}
                     onClick={(e) => {

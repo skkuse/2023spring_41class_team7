@@ -11,6 +11,7 @@ import { serverAxios } from "../../utils/commonAxios";
 
 function ShowChapter(props) {
   const [chapterTitle, setChapterTitle] = useState(props.chapterTitle);
+  const [chapterIntro, setChapterIntro] = useState(props.chapterIntro);
   const [chapterContent, setChapterContent] = useState(props.chapterContent);
   const [showContent, setShowContent] = useState(false);
   const [courseid, setCourseid] = useState();
@@ -34,28 +35,30 @@ function ShowChapter(props) {
   };
 
   const handleModifyClick = async () => {
-    // let targeturl = "/course/chapter/" + chapterid + "/";
-    // const body = {
-    //   id: chapterid,
-    //   course: courseid,
-    //   title: chapterTitle,
-    //   content: chapterContent,
-    // };
-    // await serverAxios
-    //   .put(targeturl, body, {
-    //     withCredentials: true,
-    //   })
-    //   .then((response) => {
-    //     alert("단원 수정 완료");
-    //     props.setClickFlag(!props.clickFlag);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+    let targeturl = "/course/chapter/" + chapterid + "/";
+    const body = {
+      id: chapterid,
+      course: courseid,
+      title: chapterTitle,
+      intro: chapterIntro,
+      content: chapterContent,
+    };
+    await serverAxios
+      .put(targeturl, body, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        alert("단원 수정 완료");
+        props.setClickFlag(!props.clickFlag);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const handleCancelClick = async () => {
     let targeturl = "/course/chapter/" + chapterid + "/";
+
     const body = {
       id: chapterid,
     };

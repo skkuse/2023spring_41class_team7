@@ -38,7 +38,9 @@ function CourseInfo(props) {
           onChange={handleLanguageChange}
           defaultValue={String(props.courseLanguageTag)}
         >
-          <option value="0">언어 선택</option>
+          <option value="0" disabled>
+            언어 선택
+          </option>
           <option value="1">Python</option>
           <option value="2">Java</option>
           <option value="3">C</option>

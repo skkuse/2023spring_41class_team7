@@ -26,8 +26,9 @@ function UserInstructor(props) {
   let tempCourses = [];
 
   const getCoursesFunction = async () => {
+    let targeturl = "/course/course/?my=" + localStorage.getItem("username");
     await serverAxios
-      .get("/course/course/", { withCredentials: true })
+      .get(targeturl, { withCredentials: true })
       .then((response) => {
         tempCourses = JSON.parse(JSON.stringify(response.data));
         setCourses(tempCourses);

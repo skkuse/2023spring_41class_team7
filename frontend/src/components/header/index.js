@@ -50,7 +50,7 @@ function Header(props) {
       <UserHeaderContainer>
         <UserHeaderUserName>
           <NicknameSpan>{localStorage.getItem("nickname")}</NicknameSpan>님
-          환영!
+          Welcome!
         </UserHeaderUserName>
         <LogoutButton onClick={handleLogoutClick} type="button">
           로그아웃
