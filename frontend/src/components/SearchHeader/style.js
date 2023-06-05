@@ -9,9 +9,9 @@ export const StyledHeader = styled.div`
   padding-left: 20px;
   padding-right: 40px;
 
-  gap: 10px;
-  width: fill-available;
-
+  gap: 10px
+  width: 100%;
+  height: 7%;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -29,20 +29,17 @@ export const LogoContainer = styled.div`
   padding: 10px;
   gap: 10px;
   color: black;
-  width: 237px;
-
+  
+  height : 50%;
   /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
-
   background-color: #eeeeee; /* For test */
 `;
 
 export const LogoContents = styled.div`
-  height: 47px;
-
-  font-family: "Roboto";
+  font-family: "Arial";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -50,15 +47,16 @@ export const LogoContents = styled.div`
   color: #000000;
 
   /* Inside auto layout */
-
+  height: 100%;
+  
   flex: none;
   order: 0;
   flex-grow: 0;
 `;
 
 export const LogoImage = styled.img`
-  width: 64px;
-  height: 64px;
+  height: 125%;
+  
   background: url(free-icon-exclusive-4926953.png);
   /* Inside auto layout */
   flex: none;
@@ -67,18 +65,14 @@ export const LogoImage = styled.img`
 `;
 
 export const SearchBarContainer = styled.div`
-  /* Frame 113 */
-  /* Auto layout */
-
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 10px 35px;
   gap: 10px;
-  height: 76px;
-
+  height: 50%;
+  width: 70%;
   background: #eeeeee;
-
   /* Inside auto layout */
   -webkit-box-sizing: border-box;
   flex: none;
@@ -92,13 +86,15 @@ export const SearchBar = styled.input`
 
   /* Auto layout */
   width: 50%;
+  height: 40px;
+  font-size: 22px;
   padding: 10px 35px;
   gap: 10px;
-
   background: #faf7f2;
-  border: none;
-  border-radius: 20px;
 
+  border: 2px solid black;
+  border-radius: 20px;
+  
   /* Inside auto layout */
 
   flex: none;
@@ -111,8 +107,8 @@ export const SearchButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 100px;
 
   /* Inside auto layout */
@@ -130,8 +126,8 @@ export const UserHeaderContainer = styled.div`
   padding: 10px;
   gap: 10px;
 
-  width: 207px;
-  height: 84px;
+  
+  height: 50%;
 
   /* Inside auto layout */
 
@@ -140,29 +136,17 @@ export const UserHeaderContainer = styled.div`
   flex-grow: 0;
 `;
 
-export const UserHeaderImage = styled.img`
-  width: 64px;
-  height: 64px;
-
-  background: url(emoji_good 1.png);
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
 
 export const UserHeaderUserName = styled.div`
-  width: 150px;
-  height: 23px;
+  
+  height: 100%;
 
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  line-height: 23px;
-
+  padding-top: 3%;
+  text-align: right;
   color: #000000;
 
   /* Inside auto layout */
@@ -183,11 +167,13 @@ export const UserHeaderLogout = styled.button`
   align-items: center;
   padding: 5px 5px;
 
-  width: 100px;
-  height: 25px;
+  
+  
+  height: 60%;
   font-size: 13px;
   background: #dae5ff;
   border: 1px solid #000000;
+  
   border-radius: 10px;
 
   /* Inside auto layout */

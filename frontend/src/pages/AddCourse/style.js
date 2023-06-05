@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const AddCourseContainer = styled.form`
+export const AddCourseForm = styled.form`
   -webkit-box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -21,6 +21,16 @@ export const ButtonsContainer = styled.div`
   flex-direction: row;
   align-self: flex-end;
   gap: 20px;
+`;
+
+export const CourseInfoSaveButton = styled.button`
+  width: 135px;
+  height: 60px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  align-self: flex-end;
+  -webkit-box-sizing: border-box;
 `;
 
 export const ChapterAddButton = styled.button`

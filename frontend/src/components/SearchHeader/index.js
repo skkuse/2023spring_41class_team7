@@ -36,6 +36,7 @@ function SearchHeader(props){
                 backgroundRepeat: 'no-repeat', backgroundSize: `cover`}} >
                 </SearchButton>
             </SearchBarContainer>
+            
             <UserHeaderContainer>
                 <UserHeaderUserName>student님 환영!</UserHeaderUserName>
                 <UserHeaderLogout onClick={props.onClick}>로그아웃</UserHeaderLogout>

@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 import SearchHeader from "../../components/SearchHeader";
+import Header from "../../components/Header";
+
 
 function MainPage() {
   return (

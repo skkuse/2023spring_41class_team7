@@ -13,26 +13,61 @@ import {
   ToLogin,
   ToLoginParagraph,
 } from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { serverAxios } from "../../utils/commonAxios";
 
 function Register(props) {
   const [mode, setMode] = useState("student");
   const [isStudent, setIsStudent] = useState(true);
 
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
+  const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const [isUserIdValid, setIsUserIdValid] = useState(false);
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isNicknameValid, setIsNicknameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [isPasswordConfirmValid, setIsPasswordConfirmValid] = useState(false);
 
-  const [userIdError, setUserIdError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [nicknameError, setNicknameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      isUsernameValid &&
+      isNicknameValid &&
+      isEmailValid &&
+      isPasswordValid &&
+      isPasswordConfirmValid
+    ) {
+      try {
+        const body = {
+          username: username,
+          nickname: nickname,
+          email: email,
+          password: password,
+          password2: passwordConfirm,
+          educator: !isStudent,
+        };
+        await serverAxios.post("/user/create/", body).then((response) => {
+          alert("회원가입 성공");
+          navigate("/login");
+        });
+      } catch (e) {
+        console.log(e);
+        alert("회원가입 실패");
+      }
+    }
+  };
 
   const handleModeChange = (e) => {
     setMode(e.target.value);
@@ -43,21 +78,40 @@ function Register(props) {
     }
   };
 
-  const handleUserIdChange = (e) => {
-    setUserId(e.target.value);
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
 
     let pattern = /^[a-z]+[a-z0-9]{5,19}$/g;
 
     if (e.target.value === "") {
-      setIsUserIdValid(false);
-      setUserIdError("");
+      setIsUsernameValid(false);
+      setUsernameError("");
     } else if (pattern.test(e.target.value)) {
-      setIsUserIdValid(true);
-      setUserIdError("");
+      setIsUsernameValid(true);
+      setUsernameError("");
     } else {
-      setIsUserIdValid(false);
-      setUserIdError(
+      setIsUsernameValid(false);
+      setUsernameError(
         "아이디는 6~20자로 영문자로 시작하며 영문자 또는 숫자만 사용할 수 있습니다."
+      );
+    }
+  };
+
+  const handleNicknameChange = (e) => {
+    setNickname(e.target.value);
+
+    let pattern = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+
+    if (e.target.value === "") {
+      setIsNicknameValid(false);
+      setNicknameError("");
+    } else if (pattern.test(e.target.value)) {
+      setIsNicknameValid(true);
+      setNicknameError("");
+    } else {
+      setIsNicknameValid(false);
+      setNicknameError(
+        "아이디는 2~16자로 영어 또는 숫자 또는 한글을 사용할 수 있습니다."
       );
     }
   };
@@ -119,17 +173,13 @@ function Register(props) {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <RegisterContainer>
       <FormContainer>
-        <RegisterForm onSubmit={handleSubmit}>
+        <RegisterForm onSubmit={handleRegisterSubmit}>
           <ModeContainer>
             <StudentMode
-              style={{ background: isStudent ? "#F0F5FF" : "white" }}
+              style={{ background: isStudent ? "#cddbfc" : "white" }}
             >
               <input
                 type="radio"
@@ -142,7 +192,7 @@ function Register(props) {
               학생
             </StudentMode>
             <InstructorMode
-              style={{ background: isStudent ? "white" : "#F0F5FF" }}
+              style={{ background: isStudent ? "white" : "#cddbfc" }}
             >
               <input
                 type="radio"
@@ -157,14 +207,23 @@ function Register(props) {
           <InputContainer>
             {/* {mode} <br/> */}
             <Input
-              id="userid"
-              name="userid"
+              id="username"
+              name="username"
               type="text"
               placeholder="아이디"
-              onChange={handleUserIdChange}
+              onChange={handleUsernameChange}
             ></Input>
-            <ErrorMessageBox>{userIdError}</ErrorMessageBox>
-            {/* <p>{String(isUserIdValid)}</p> */}
+            <ErrorMessageBox>{usernameError}</ErrorMessageBox>
+            {/* <p>{String(isUsernameValid)}</p> */}
+            <Input
+              id="nickname"
+              name="nickname"
+              type="text"
+              placeholder="닉네임"
+              onChange={handleNicknameChange}
+            ></Input>
+            <ErrorMessageBox>{nicknameError}</ErrorMessageBox>
+            {/* <p>{String(isNicknameValid)}</p> */}
             <Input
               id="email"
               name="email"

@@ -1,17 +1,57 @@
 from django.shortcuts import get_object_or_404
 from course.models import Course, Tag, Chapter
-from course.serializers import CourseSerializer, CoursePostSerializer, CourseMySerializer, TagSerializer, ChapterSerializer, ChapterPostSerializer
+from course.serializers import CourseSerializer, CoursePostSerializer, CourseMySerializer, ChapterSerializer, ChapterPostSerializer
+from django.db.models import QuerySet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 
-# Create your views here.
+def serialize_tags(tags: QuerySet[Tag]):
+        
+    response_dict = dict()
+    for tag in tags:
+        if tag.category in response_dict:
+            response_dict[tag.category].append(
+                {'title': tag.title, 'id': tag.pk})
+        else:
+            response_dict[tag.category] = [
+                {'title': tag.title, 'id': tag.pk}]
+    
+    response = []
+    for category in response_dict:
+        response.append(
+            {'category': category, 'titles': response_dict[category]})
+
+    return response
+
+class TagList(APIView):
+    """
+    Controller for tags
+    """
+    def get(self, request, format=None):
+        tags = Tag.objects.all()
+        return Response(serialize_tags(tags))
+    
+
 class CourseList(generics.ListCreateAPIView):
-    queryset = Course.objects.all()
+    """
+    Controller for courses
+
+    Provides GET, POST requests for courses.
+    Also supports filetring by tag and searching for title or author for course.
+    """
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['tag']
-    search_fields = ['title', 'author.username'] 
+    search_fields = ['title', 'author__nickname'] 
+
+    def get_queryset(self):
+        queryset = Course.objects.all()
+
+        my = self.request.query_params.get('my')
+        if my is not None:
+            queryset = queryset.filter(author=self.request.user)
+        return queryset
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -22,6 +62,12 @@ class CourseList(generics.ListCreateAPIView):
         return serializer.save(author=self.request.user)
 
 class CourseDetail(APIView):
+    """
+    Controller for course with id (primary key)
+
+    Provides GET, PUT, DELETE requests for course
+    Also supports validating the user requested
+    """
     serializer_class = CoursePostSerializer
     
     def get(self, request, pk, format=None):
@@ -49,18 +95,18 @@ class CourseDetail(APIView):
         
         course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
-class TagList(APIView):
 
-    def get(self, request, format=None):
-        tags = Tag.objects.all()
-        serializer = TagSerializer(tags, many=True)
-        return Response(serializer.data)
     
 class ChapterList(generics.ListCreateAPIView):
+    """
+    Contorller for chapters
+
+    Provides GET, POST requests for chapters
+    Also supports filetring by course
+    """
     queryset = Chapter.objects.all()
     filter_backends = [DjangoFilterBackend]
-    fitlerset_fields = ['course']
+    filterset_fields = ['course']
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -68,6 +114,12 @@ class ChapterList(generics.ListCreateAPIView):
         return ChapterPostSerializer
     
 class ChapterDetail(APIView):
+    """
+    Controller for Chapter with id (primary key)
+
+    Provides GET, PUT, DELETE requests for chapter
+    Also supports validating the user requested 
+    """
     serializer_class = ChapterPostSerializer
 
     def get(self, request, pk, format=None):

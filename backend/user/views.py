@@ -1,11 +1,16 @@
 from rest_framework import status
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import login, logout
+from django.utils.timezone import datetime
 
-from .models import User
+from feedback.models import Quiz
+
 from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer
+from feedback.serializers import QuizSerializer
+from course.serializers import CourseSerializer
 # Create your views here.
 
 class UserRegistration(APIView):
@@ -20,7 +25,8 @@ class UserRegistration(APIView):
 
 
 class UserLogin(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = ()
+    permission_classes = (AllowAny,)
     serializer_class = LoginSerializer
 
     def post(self, request):
@@ -35,10 +41,28 @@ class UserLogin(APIView):
         return Response(None, status=status.HTTP_202_ACCEPTED)
 
 
-class Example(APIView):
-    serializer_class = UserSerializer
+class TakenCourse(ListAPIView):
+    serializer_class = CourseSerializer
 
-    def get(self, request):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+    def get_queryset(self):
+        course_rooms = self.request.user.taken_courses.order_by('-last_attempt')
+        return [ room.course for room in course_rooms ]
+
+
+class UserQuiz(ListAPIView):
+    serializer_class = QuizSerializer
+    QUIZ_COUNT = 5
+    
+    def get_queryset(self):
+        today = self.request.GET.get('today')
+        taken_chapters = [ room.chapter for room in self.request.user.taken_chapters.all() ]
+
+        if today is None or today == '0':
+            return Quiz.objects\
+                .filter(chapter__in=taken_chapters)\
+                .order_by('-created_at')[:UserQuiz.QUIZ_COUNT]
+        else:
+            return Quiz.objects\
+                .filter(created_at__date=datetime.today())\
+                .filter(chapter__in=taken_chapters)\
+                .order_by('?')[:1]

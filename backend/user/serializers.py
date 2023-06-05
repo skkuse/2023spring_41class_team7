@@ -2,11 +2,14 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 
 from .models import User
+from learn.models import CourseRoom
+
+from course.serializers import CourseSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email', 'educator')
+        fields = ('username', 'nickname', 'email', 'educator')
 
 
 class LoginSerializer(serializers.Serializer):
@@ -27,7 +30,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'password2', 'educator')
+        fields = ('username', 'nickname', 'email', 'password', 'password2', 'educator')
     
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -38,9 +41,19 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
-            educator=validated_data['educator']
+            educator=validated_data['educator'],
+            nickname=validated_data['nickname']
         )
         user.set_password(validated_data['password'])
         user.save()
 
         return user
+
+
+class TakenCourseSerializer(serializers.ModelSerializer):
+    course = CourseSerializer(read_only=True)
+
+    class Meta:
+        model = CourseRoom
+        fields = ('course',)
+
