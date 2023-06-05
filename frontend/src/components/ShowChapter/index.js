@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   ChapterContent,
   ChapterNumberContainer,
+  ChapterNumberSpan,
   ChapterTitle,
   ShowChapterContainer,
   ShowOuterContainer,
@@ -78,7 +79,9 @@ function ShowChapter(props) {
   return (
     <ShowOuterContainer>
       <ShowChapterContainer>
-        <ChapterNumberContainer>{props.chapterNo}주차</ChapterNumberContainer>
+        <ChapterNumberContainer>
+          <ChapterNumberSpan>{props.chapterNo}</ChapterNumberSpan>단원
+        </ChapterNumberContainer>
         <ChapterTitle
           defaultValue={props.chapterTitle}
           onChange={handleChapterTitleChange}

@@ -34,7 +34,7 @@ export const CourseContainer = styled.div`
   -webkit-box-sizing: border-box;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 
   justify-content: flex-start;
   align-items: flex-start;
@@ -51,6 +51,18 @@ export const CourseContainer = styled.div`
     border-radius: 6px;
   }
 `;
+
+export const TotalCourseNumDiv = styled.div`
+  margin: 0 35px;
+  align-self: flex-end;
+  font-size: 20px;
+`;
+
+export const TotalCourseNum = styled.span`
+  font-weight: 600;
+  align-self: flex-end;
+`;
+
 export const CourseAddButton = styled.button`
   width: 120px;
   padding: 15px 5px;

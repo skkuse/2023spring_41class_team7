@@ -14,8 +14,13 @@ export const ShowChapterContainer = styled.div`
   gap: 35px;
 `;
 
-export const ChapterNumberContainer = styled.div``;
+export const ChapterNumberContainer = styled.div`
+  font-size: 18px;
+`;
 
+export const ChapterNumberSpan = styled.span`
+  font-weight: 700;
+`;
 export const ChapterTitle = styled.input`
   padding: 20px;
   border-radius: 10px;

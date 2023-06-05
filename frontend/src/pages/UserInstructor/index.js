@@ -7,6 +7,8 @@ import {
   CourseContainer,
   Title,
   TitleContainer,
+  TotalCourseNum,
+  TotalCourseNumDiv,
   UserInstructorContainer,
 } from "./style";
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
@@ -70,6 +72,12 @@ function UserInstructor(props) {
                 강의 목록
               </Title>
             </TitleContainer>
+            {isReady && (
+              <TotalCourseNumDiv>
+                총:
+                <TotalCourseNum> {courses.length}</TotalCourseNum>개
+              </TotalCourseNumDiv>
+            )}
             <CourseContainer>
               {isReady &&
                 courses.map((value, key) => {
