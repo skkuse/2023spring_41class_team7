@@ -7,6 +7,7 @@ from .models import CourseRoom, ChapterRoom, ChapterChatData, QuizRoom, QuizChat
 
 from .serializers import ChapterChatSerializer, QuizChatSerialiezer
 from course.serializers import CourseSerializer, ChapterSerializer
+from feedback.serializers import QuizSerializer
 
 from .task import create_feedback
 
@@ -82,7 +83,7 @@ class CourseTake(APIView):
         serializer.save(room=chapter_room)
         
         query = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH])
-        response = answer_user_question(chapter_room.chapter.index, query)
+        response = get_chatbot_answer(chapter_room.chapter.index, query)
 
         serializer = ChapterChatSerializer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
@@ -107,10 +108,10 @@ class QuizTake(APIView):
         quiz_room.save()
 
         if created:
-            QuizChatData.objects.create(room=quiz_room, data=quiz_room.quiz.problem, bot=True)
+            QuizChatData.objects.create(room=quiz_room, data=quiz_room.quiz.question, bot=True)
 
         serializer = QuizChatSerialiezer(quiz_room.chat.all(), many=True)
-        return Response({ 'quiz': 'a', 'chat': serializer.data })
+        return Response({ 'quiz': QuizSerializer(quiz_room.quiz).data, 'chat': serializer.data })
     
     def post(self, request, quiz_id):
         '''
@@ -122,7 +123,7 @@ class QuizTake(APIView):
         serializer.save(room=quiz_room)
         
         query = make_query_string(quiz_room.chat.all())
-        response = answer_user_question(quiz_room.chapter.index, query)
+        response = get_chatbot_answer(quiz_room.quiz.chapter.index, query)
 
         serializer = QuizChatSerialiezer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
@@ -137,3 +138,9 @@ def make_query_string(history):
         query_str += chat.data
         query_str += '\n\n'
     return query_str
+
+def get_chatbot_answer(index, history):
+    response = answer_user_question(index, history)
+    st = response.rfind('AI:')
+    st = st + len('AI:') if st >= 0 else 0
+    return response[st:].strip()

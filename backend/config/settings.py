@@ -151,8 +151,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000'
 ]
-ALLOWED_HOSTS = ['api', 'localhost']
-CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ['api', 'localhost', '127.0.0.1']
+
 AUTH_USER_MODEL = 'user.User'
 
 REST_FRAMEWORK = {

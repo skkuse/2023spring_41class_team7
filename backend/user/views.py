@@ -8,8 +8,9 @@ from django.utils.timezone import datetime
 
 from feedback.models import Quiz
 
-from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer, TakenCourseSerializer
+from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer
 from feedback.serializers import QuizSerializer
+from course.serializers import CourseSerializer
 # Create your views here.
 
 class UserRegistration(APIView):
@@ -41,10 +42,11 @@ class UserLogin(APIView):
 
 
 class TakenCourse(ListAPIView):
-    serializer_class = TakenCourseSerializer
+    serializer_class = CourseSerializer
 
     def get_queryset(self):
-        return self.request.user.taken_courses.order_by('-last_attempt')
+        course_rooms = self.request.user.taken_courses.order_by('-last_attempt')
+        return [ room.course for room in course_rooms ]
 
 
 class UserQuiz(ListAPIView):
@@ -53,11 +55,9 @@ class UserQuiz(ListAPIView):
     
     def get_queryset(self):
         today = self.request.GET.get('today')
-        taken_chapters = []
-        for chapter_room in self.request.user.taken_courses.all():
-            taken_chapters.append(chapter_room.chapter)
+        taken_chapters = [ room.chapter for room in self.request.user.taken_chapters.all() ]
 
-        if today is None or today == 0:
+        if today is None or today == '0':
             return Quiz.objects\
                 .filter(chapter__in=taken_chapters)\
                 .order_by('-created_at')[:UserQuiz.QUIZ_COUNT]
