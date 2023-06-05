@@ -7,7 +7,7 @@ export const ModifyCourseForm = styled.form`
   padding: 35px;
   background: #ffffff;
   box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.09);
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -21,6 +21,16 @@ export const ButtonsContainer = styled.div`
   flex-direction: row;
   align-self: flex-end;
   gap: 20px;
+`;
+
+export const CourseInfoModifyButton = styled.button`
+  width: 135px;
+  height: 60px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  align-self: flex-end;
+  -webkit-box-sizing: border-box;
 `;
 
 export const ChapterAddButton = styled.button`
@@ -44,10 +54,10 @@ export const ShowCourseContainer = styled.div`
   &::-webkit-scrollbar {
     width: 6px;
     height: 8px;
-    background: #ffffff;
+    background: #gggggg;
   }
   &::-webkit-scrollbar-thumb {
-    background: #eeeeee;
+    background: #cddbfc;
     border-radius: 6px;
   }
 `;

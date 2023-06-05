@@ -11,16 +11,44 @@ import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import { faThumbtack, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
-import SearchHeader from "../../components/SearchHeader";
 import Header from "../../components/Header";
-
+import { useEffect, useState } from "react";
+import { serverAxios } from "../../utils/commonAxios";
 
 function MainPage() {
+  const { tag } = useParams();
+
+  const [courseItem, setCourseItem] = useState(null);
+
+  useEffect(() => {
+    if (tag) {
+      console.log(tag);
+      getCourseItems(tag);
+    } else {
+      console.log("here");
+      getALLCourseItems();
+    }
+  }, [tag]);
+
+  const getALLCourseItems = async () => {
+    await serverAxios
+      .get("course/course/", { withCredentials: true })
+      .then((res) => setCourseItem(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const getCourseItems = async (tag) => {
+    await serverAxios
+      .get("course/course/?tag=" + tag, { withCredentials: true })
+      .then((res) => setCourseItem(res.data))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <MostOuterDiv>
-      <SearchHeader></SearchHeader>
+      <Header></Header>
       <OuttestContainer>
         <Navbar />
         <MainContainer>
@@ -46,14 +74,13 @@ function MainPage() {
           </TitleContainer>
           <LectureContainer>
             {/*강의 목록 리스트 ( 강의 아이템 )*/}
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
+            {courseItem ? (
+              courseItem.map((item) => (
+                <LectureItem key={item.id} info={item} />
+              ))
+            ) : (
+              <></>
+            )}
           </LectureContainer>
         </MainContainer>
       </OuttestContainer>

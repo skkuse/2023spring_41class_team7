@@ -179,7 +179,7 @@ function Register(props) {
         <RegisterForm onSubmit={handleRegisterSubmit}>
           <ModeContainer>
             <StudentMode
-              style={{ background: isStudent ? "#cddbfc" : "white" }}
+              style={{ background: isStudent ? "#cddbfc" : "#eeeeee" }}
             >
               <input
                 type="radio"
@@ -192,7 +192,7 @@ function Register(props) {
               학생
             </StudentMode>
             <InstructorMode
-              style={{ background: isStudent ? "white" : "#cddbfc" }}
+              style={{ background: isStudent ? "#eeeeee" : "#cddbfc" }}
             >
               <input
                 type="radio"

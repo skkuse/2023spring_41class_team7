@@ -37,7 +37,7 @@ export const CourseIntroductionTextarea = styled.textarea`
   -webkit-box-sizing: border-box;
   padding: 20px;
   width: 100%;
-  height: 150px;
+  height: 120px;
   border-radius: 10px;
   border: 1.5px solid black;
   border-radius: 10px;

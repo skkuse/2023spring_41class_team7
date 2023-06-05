@@ -32,29 +32,29 @@ function ChapterModal(props) {
     e.preventDefault();
     if (chapterTitle && chapterContent) {
       /* POST 요청시 course/?*/
-      // try {
-      //   const body = {
-      //     course: props.courseid,
-      //     title: chapterTitle,
-      //     content: chapterContent,
-      //   };
+      try {
+        const body = {
+          course: props.courseid,
+          title: chapterTitle,
+          content: chapterContent,
+        };
 
-      //   await serverAxios
-      //     .post("/chapter", body, {
-      //       withCredentials: true,
-      //     })
-      //     .then((response) => {
-      //       props.setShowModal(false);
-      //       props.setIsEntered(true);
-      //       alert("단원 추가 성공");
-      //     })
-      //     .catch((e) => {
-      //       console.log(e);
-      //     });
-      // } catch (e) {}
-      props.setShowModal(false);
-      props.setIsEntered(true);
-      alert("단원 추가 성공");
+        await serverAxios
+          .post("course/chapter/", body, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            props.setShowModal(false);
+            props.setIsEntered(true);
+            alert("단원 추가 성공");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } catch (e) {}
+      // props.setShowModal(false);
+      // props.setIsEntered(true);
+      // alert("단원 추가 성공");
     }
   };
 
