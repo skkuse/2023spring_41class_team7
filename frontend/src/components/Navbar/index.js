@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import React from "react";
 import {
   LetfContainer,
   ProfileContainer,
@@ -9,7 +10,7 @@ import {
 } from "./style";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import StudentProfile from "../../assets/images/student.png";
 import EducatorProfile from "../../assets/images/teacher.png";
 import { serverAxios } from "../../utils/commonAxios";
@@ -19,6 +20,22 @@ const NameStyle = styled.span`
   font-weight: 700;
   font-size: 24px;
 `;
+
+const style = {
+  textDecoration: "none",
+  color: "#5282E0",
+  fontWeight: "700",
+};
+
+function getTitle(props, idx) {
+  return (
+    <NavTitle key={props.idx}>
+      <Link to={"/main"} style={{ textDecoration: "none", color: "#48413D" }}>
+        <p>{props.category}</p>
+      </Link>
+    </NavTitle>
+  );
+}
 
 function Navbar() {
   const [itemList, setItemList] = useState(null);
@@ -66,26 +83,27 @@ function Navbar() {
 
       {/* nav list */}
       <NavContainer>
-        {/* title */}
-        <NavTitle>
-          <p>강의 언어</p>
-        </NavTitle>
-
-        {/* links */}
-        {/* {console.log(itemList)} */}
-
         {itemList != null ? (
-          itemList.map((item) => {
+          itemList.map((item, idx) => {
             return (
-              <NavElement key={item.id}>
-                <FontAwesomeIcon icon={faCode} />
-                <Link
-                  to={"/"}
-                  style={{ textDecoration: "none", color: "#48413D" }}
-                >
-                  {item.title}
-                </Link>
-              </NavElement>
+              <React.Fragment key={idx}>
+                {getTitle(item, idx)}
+                {item.titles.map((i) => (
+                  <NavElement key={i.id}>
+                    <FontAwesomeIcon icon={faCode} />
+                    <NavLink
+                      to={"/main/" + i.id}
+                      style={({ isActive }) =>
+                        isActive
+                          ? style
+                          : { textDecoration: "none", color: "#48413D" }
+                      }
+                    >
+                      {i.title}
+                    </NavLink>
+                  </NavElement>
+                ))}
+              </React.Fragment>
             );
           })
         ) : (

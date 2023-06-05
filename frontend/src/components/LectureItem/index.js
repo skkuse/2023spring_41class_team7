@@ -12,9 +12,7 @@ import {
 function LectureItem(props) {
   return (
     <ItemContainer>
-      <TmpThumnail>
-        <img src={props.info.thumbnail}></img>
-      </TmpThumnail>
+      <TmpThumnail>{/* <img src={props.info.thumbnail}></img> */}</TmpThumnail>
       <ContentsContainer>
         {/* contents */}
         <TitleContainer>
