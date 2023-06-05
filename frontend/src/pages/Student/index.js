@@ -23,13 +23,13 @@ import { useNavigate } from "react-router-dom";
 function QuizItem(props) {
   const navigate = useNavigate();
   const quizClick = (quiz_id, e) => {
-    navigate("/learn/quiz/" + quiz_id);
+    navigate("/quiz/" + quiz_id);
   }
   let quiz_id = props.quizdata.id;
   let course_id = props.quizdata.course;
   let course_title = "";
   for(let idx = 0; idx < props.lecturedata.length; idx++){
-    if(course_id == props.lecturedata[idx].id){
+    if(course_id === props.lecturedata[idx].id){
       course_title = props.lecturedata[idx].title;
     }
   }
@@ -50,14 +50,14 @@ function QuizItem(props) {
 
 function StudentPage() {
 
-  const [userLearningLecturListReady, setUserLearningLecturListReady] = useState(false);
+  const [userLearningLectureListReady, setUserLearningLectureListReady] = useState(false);
   const [showUserLearningLectureList, setShowUserLearningLectureList] = useState("");
   
   const getUserLearningLectureList = async () => {
       await serverAxios
         .get("/user/course/", { withCredentials: true })
         .then((response) => {
-          setUserLearningLecturListReady(true);
+          setUserLearningLectureListReady(true);
           setShowUserLearningLectureList(JSON.parse(JSON.stringify(response.data)));
           
         });
@@ -104,7 +104,7 @@ function StudentPage() {
               </Title>
             </TitleContainer>
               <ListContainer>
-                {userLearningLecturListReady && 
+                {userLearningLectureListReady && 
                       (
                       showUserLearningLectureList.map( (a, i) => {
                           return <LectureProgress data={a} num={i} key={i}></LectureProgress>
