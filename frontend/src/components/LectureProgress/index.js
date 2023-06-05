@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   ImageContainer,
@@ -7,22 +8,27 @@ import {
   EtcContainer,
 } from "./style";
 
-function LectureProgress() {
+function LectureProgress(props) {
+  const navigate = useNavigate();
+  const lectureClick = () => {
+    navigate("/learning");
+  }
+  
+  //console.log(props.data);
   return (
-    <Container>
+    <Container onClick={lectureClick}>
       {/* lecture image */}
+      {/*<ImageContainer style={{backgroundImage: `url(${props.thumbnail})`}}></ImageContainer>*/}
       <ImageContainer></ImageContainer>
-
       {/* lecture info */}
       <InfoContainer>
-        {/* lecture title */}
-        <TitleContainer>강의 제목 올 자리</TitleContainer>
+        <TitleContainer >{props.data.title}</TitleContainer>
         {/* more info */}
         <MoreInfoContainer>
           <EtcContainer>
             {/* teacher & language */}
-            <span>OOO 선생님</span>
-            <span>파이썬</span>
+            <span style={{fontWeight:'bold'}}>강사: {props.data.author}</span>
+            <span>#{props.data.tag}</span>
           </EtcContainer>
         </MoreInfoContainer>
       </InfoContainer>
