@@ -11,22 +11,37 @@ import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import { faThumbtack, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { serverAxios } from "../../utils/commonAxios";
 
 function MainPage() {
+  const { tag } = useParams();
+
   const [courseItem, setCourseItem] = useState(null);
 
   useEffect(() => {
-    getCourseItems();
-  }, []);
+    if (tag) {
+      console.log(tag);
+      getCourseItems(tag);
+    } else {
+      console.log("here");
+      getALLCourseItems();
+    }
+  }, [tag]);
 
-  const getCourseItems = async () => {
+  const getALLCourseItems = async () => {
     await serverAxios
       .get("course/course/", { withCredentials: true })
+      .then((res) => setCourseItem(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const getCourseItems = async (tag) => {
+    await serverAxios
+      .get("course/course/?tag=" + tag, { withCredentials: true })
       .then((res) => setCourseItem(res.data))
       .catch((err) => console.log(err));
   };
