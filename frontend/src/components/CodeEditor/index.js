@@ -20,7 +20,7 @@ import {
 } from "./style";
 
 import toggleLogo from "../../assets/images/Vector.png";
-export function CodeEditor(props) {
+export function CodeEditor() {
   const [show, setShow] = useState(false);
   const [lang, setLang] = useState("Python");
 
@@ -109,12 +109,7 @@ export function CodeEditor(props) {
           </div>
         </CodeEditorLang>
 
-        <CodeEditorButton_Exe
-          onClick={props.onClick}
-          style={{ backgroundColor: props.backgroundColor }}
-        >
-          실행
-        </CodeEditorButton_Exe>
+        <CodeEditorButton_Exe>실행</CodeEditorButton_Exe>
         <CodeEditorButton_Submit>제출</CodeEditorButton_Submit>
       </CodeEditorHeader>
       <CodeMirror
