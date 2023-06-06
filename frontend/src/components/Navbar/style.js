@@ -25,14 +25,24 @@ export const ProfileContainer = styled.div`
   gap: 17px;
 `;
 
+export const NameContainer = styled.div`
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+`;
+
+export const EmailContainer = styled.div`
+  font-weight: 500;
+`;
+
 export const PageBtn = styled.button`
   font-size: 20px;
   font-weight: 700;
-  padding: 10px 35px;
+  padding: 15px 35px;
   letter-spacing: 0.06em;
   font-weight: 700;
   background-color: #e1e7f5;
-  border: none;
+
   color: #282726;
   border-radius: 10px;
   cursor: pointer;

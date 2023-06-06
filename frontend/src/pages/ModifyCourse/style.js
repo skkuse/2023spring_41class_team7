@@ -54,10 +54,10 @@ export const ShowCourseContainer = styled.div`
   &::-webkit-scrollbar {
     width: 6px;
     height: 8px;
-    background: #gggggg;
+    background: #ffffff;
   }
   &::-webkit-scrollbar-thumb {
-    background: #cddbfc;
+    background: #eeeeee;
     border-radius: 6px;
   }
 `;

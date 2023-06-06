@@ -27,15 +27,15 @@ function InstructorCourseCard(props) {
   const navigate = useNavigate();
 
   const getFeedbackMessageFunction = async () => {
-    // let targeturl = "/feedback/analysis/" + props.course.id + "/";
-    // await serverAxios
-    //   .get(targeturl, { withCredentials: true })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+    let targeturl = "/feedback/analysis/" + props.course.id + "/";
+    await serverAxios
+      .get(targeturl, { withCredentials: true })
+      .then((response) => {
+        setFeedbackMessage(response.data[0].content);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   useEffect(() => {
