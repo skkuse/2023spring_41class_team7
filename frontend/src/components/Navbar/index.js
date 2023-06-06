@@ -7,6 +7,8 @@ import {
   PageBtn,
   NavTitle,
   NavElement,
+  EmailContainer,
+  NameContainer,
 } from "./style";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -67,7 +69,10 @@ function Navbar() {
           style={{ width: 190, height: 190 }}
         />
         {/* name */}
-        <NameStyle>{localStorage.getItem("nickname")} 님!</NameStyle>
+        <NameContainer>
+          <NameStyle>{localStorage.getItem("nickname")}</NameStyle>
+        </NameContainer>
+        <EmailContainer>{localStorage.getItem("email")}</EmailContainer>
 
         {/* my page btn - student, teacher에 따라서 구분*/}
         {localStorage.getItem("educator") == "true" ? (

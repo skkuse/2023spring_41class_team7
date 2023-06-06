@@ -62,3 +62,14 @@ export const Title = styled.span`
   background: #ffffff;
   padding: 10px 20px;
 `;
+
+export const TotalCourseNumDiv = styled.div`
+  margin: 0 35px;
+  align-self: flex-end;
+  font-size: 20px;
+`;
+
+export const TotalCourseNum = styled.span`
+  font-weight: 600;
+  align-self: flex-end;
+`;

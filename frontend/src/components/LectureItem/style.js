@@ -11,8 +11,8 @@ export const ItemContainer = styled.div`
   gap: 20px;
   padding: 20px;
   background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0px 4px 36px 2px rgba(223, 228, 231, 0.52);
+  border-radius: 10px;
+  box-shadow: 0px 8px 40px rgba(0.8, 0, 0, 0.09);
 `;
 
 // 임시용 썸네일

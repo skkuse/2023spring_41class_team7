@@ -6,6 +6,8 @@ import {
   LectureContainer,
   TitleContainer,
   Title,
+  TotalCourseNum,
+  TotalCourseNumDiv,
 } from "./style";
 import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
@@ -53,7 +55,10 @@ function MainPage() {
         <Navbar />
         <MainContainer>
           <QuizContainer>
-            <Link to="/" style={{ textDecoration: "none", color: "#48413D" }}>
+            <Link
+              to="/quiz"
+              style={{ textDecoration: "none", color: "#48413D" }}
+            >
               <Quiz>
                 오늘의 퀴즈 풀어보기
                 <FontAwesomeIcon
@@ -72,6 +77,12 @@ function MainPage() {
               강의 목록
             </Title>
           </TitleContainer>
+          {courseItem && (
+            <TotalCourseNumDiv>
+              총:
+              <TotalCourseNum> {courseItem.length}</TotalCourseNum>개
+            </TotalCourseNumDiv>
+          )}
           <LectureContainer>
             {/*강의 목록 리스트 ( 강의 아이템 )*/}
             {courseItem ? (
