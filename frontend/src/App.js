@@ -32,7 +32,10 @@ function App() {
             <Route path="/main" element={<MainPage />}></Route>
             <Route path="/main/:tag" element={<MainPage />}></Route>
             <Route path="/user/student" element={<StudentPage />}></Route>
-            <Route path="/learning" element={<LearningPage />}></Route>
+            <Route
+              path="/learning/:courseid"
+              element={<LearningPage />}
+            ></Route>
           </Routes>
         </div>
       </BrowserRouter>

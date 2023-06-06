@@ -38,7 +38,7 @@ export const EmailContainer = styled.div`
 export const PageBtn = styled.button`
   font-size: 20px;
   font-weight: 700;
-  padding: 15px 35px;
+  padding: 15px 25px;
   letter-spacing: 0.06em;
   font-weight: 700;
   background-color: #e1e7f5;

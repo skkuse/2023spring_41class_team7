@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   ItemContainer,
   ContentsContainer,
@@ -10,8 +11,13 @@ import {
 } from "./style";
 
 function LectureItem(props) {
+  const navigate = useNavigate();
+
+  const handleLectureItemClick = () => {
+    navigate("/learning/" + props.info.id);
+  };
   return (
-    <ItemContainer>
+    <ItemContainer onClick={handleLectureItemClick}>
       <TmpThumnail>{/* <img src={props.info.thumbnail}></img> */}</TmpThumnail>
       <ContentsContainer>
         {/* contents */}
