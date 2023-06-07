@@ -81,7 +81,7 @@ class CourseDetail(APIView):
         if request.user != course.author or request.user.educator == False:
             return Response(status=status.HTTP_403_FORBIDDEN)
         
-        serializer = CourseSerializer(course, data=request.data)
+        serializer = CoursePostSerializer(course, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
