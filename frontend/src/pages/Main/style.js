@@ -16,15 +16,37 @@ export const MainContainer = styled.div`
 `;
 
 export const QuizContainer = styled.div`
-  align-self: flex-end;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+  display: table;
+  justify-self: flex-end;
+  margin: 0 auto;
+  text-align: center;
   background: #e1e7f5;
-  padding: 10px 30px;
+  padding: 35px 70px;
   border-radius: 10px;
+
+  font-weight: 600;
+  font-size: 24px;
 `;
+
+// export const QuizContainer = styled.div`
+//   align-self: flex-end;
+//   background: #e1e7f5;
+//   padding: 10px 30px;
+//   border-radius: 10px;
+// `;
 
 export const Quiz = styled.span`
   font-weight: 700;
-  font-size: 20px;
+  font-size: 15px;
+`;
+
+export const QuizImage = styled.img`
+  vertical-align: middle;
+  width: 48px;
+  height: 48px;
+  margin: 0 10px;
 `;
 
 export const LectureContainer = styled.div`

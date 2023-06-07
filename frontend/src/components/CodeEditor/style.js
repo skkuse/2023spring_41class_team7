@@ -18,7 +18,7 @@ export const CodeEditorContainer = styled.div`
 
   background: #ffffff;
 
-  border-radius: 20px;
+  border-radius: 10px;
 
   /* Inside auto layout */
 

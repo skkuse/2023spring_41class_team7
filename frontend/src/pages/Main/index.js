@@ -8,21 +8,29 @@ import {
   Title,
   TotalCourseNum,
   TotalCourseNumDiv,
+  QuizImage,
 } from "./style";
 import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import { faThumbtack, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { serverAxios } from "../../utils/commonAxios";
 
+import quiz from "../../assets/images/quiz.png";
+
 function MainPage() {
   const { tag } = useParams();
+  const navigate = useNavigate();
 
   const [courseItem, setCourseItem] = useState(null);
+
+  const handleQuizClick = () => {
+    navigate("/quiz");
+  };
 
   useEffect(() => {
     if (tag) {
@@ -54,19 +62,26 @@ function MainPage() {
       <OuttestContainer>
         <Navbar />
         <MainContainer>
-          <QuizContainer>
-            <Link
+          <QuizContainer onClick={handleQuizClick}>
+            {/* <Link
               to="/quiz"
               style={{ textDecoration: "none", color: "#48413D" }}
-            >
-              <Quiz>
+            > */}
+            {/* <Quiz>
                 오늘의 퀴즈 풀어보기
                 <FontAwesomeIcon
                   icon={faStar}
                   style={{ color: "#48413D", marginLeft: "5px" }}
                 />
-              </Quiz>
-            </Link>
+              </Quiz> */}
+
+            <span>오늘의</span>
+            <QuizImage src={quiz}></QuizImage>
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: "#48413D", marginLeft: "5px" }}
+            />
+            {/* </Link> */}
           </QuizContainer>
           <TitleContainer>
             <Title>
