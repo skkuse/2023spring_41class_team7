@@ -24,22 +24,22 @@ import quiz from "../../assets/images/quiz.png";
 
 function MainPage() {
   const { tag } = useParams();
+  const [quizid, setQuizid] = useState();
   const navigate = useNavigate();
 
   const [courseItem, setCourseItem] = useState(null);
 
   const handleQuizClick = () => {
-    navigate("/quiz");
+    navigate("/quiz/" + quizid);
   };
 
   useEffect(() => {
     if (tag) {
-      console.log(tag);
       getCourseItems(tag);
     } else {
-      console.log("here");
       getALLCourseItems();
     }
+    getTodayQuiz();
   }, [tag]);
 
   const getALLCourseItems = async () => {
@@ -52,8 +52,19 @@ function MainPage() {
   const getCourseItems = async (tag) => {
     await serverAxios
       .get("course/course/?tag=" + tag, { withCredentials: true })
-      .then((res) => setCourseItem(res.data))
+      .then((res) => setCourseItem(res.data.id))
       .catch((err) => console.log(err));
+  };
+
+  const getTodayQuiz = async () => {
+    await serverAxios
+      .get("/user/quiz/?today=1", { withCredentials: true })
+      .then((response) => {
+        setQuizid(response.data[1]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -62,12 +73,13 @@ function MainPage() {
       <OuttestContainer>
         <Navbar />
         <MainContainer>
-          <QuizContainer onClick={handleQuizClick}>
-            {/* <Link
+          {quizid && (
+            <QuizContainer onClick={handleQuizClick}>
+              {/* <Link
               to="/quiz"
               style={{ textDecoration: "none", color: "#48413D" }}
             > */}
-            {/* <Quiz>
+              {/* <Quiz>
                 오늘의 퀴즈 풀어보기
                 <FontAwesomeIcon
                   icon={faStar}
@@ -75,14 +87,15 @@ function MainPage() {
                 />
               </Quiz> */}
 
-            <span>오늘의</span>
-            <QuizImage src={quiz}></QuizImage>
-            <FontAwesomeIcon
-              icon={faStar}
-              style={{ color: "#48413D", marginLeft: "5px" }}
-            />
-            {/* </Link> */}
-          </QuizContainer>
+              <span>오늘의</span>
+              <QuizImage src={quiz}></QuizImage>
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: "#48413D", marginLeft: "5px" }}
+              />
+              {/* </Link> */}
+            </QuizContainer>
+          )}
           <TitleContainer>
             <Title>
               <FontAwesomeIcon

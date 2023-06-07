@@ -152,7 +152,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000'
 ]
 
-ALLOWED_HOSTS = ['api']
+ALLOWED_HOSTS = ['api', 'localhost', '127.0.0.1']
 
 AUTH_USER_MODEL = 'user.User'
 

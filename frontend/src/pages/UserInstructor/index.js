@@ -35,7 +35,6 @@ function UserInstructor(props) {
         tempCourses = JSON.parse(JSON.stringify(response.data));
         setCourses(tempCourses);
         setIsReady(true);
-        console.log(courses);
       })
       .catch((e) => {
         console.log(e);

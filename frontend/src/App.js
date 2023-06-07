@@ -28,7 +28,7 @@ function App() {
             <Route path="/user/instructor" element={<UserInstructor />}></Route>
             <Route path="/add" element={<AddCourse />}></Route>
             <Route path="/modify/:courseid" element={<ModifyCourse />}></Route>
-            <Route path="/quiz" element={<QuizPage />}></Route>
+            <Route path="/quiz/:quizid" element={<QuizPage />}></Route>
             <Route path="/main" element={<MainPage />}></Route>
             <Route path="/main/:tag" element={<MainPage />}></Route>
             <Route path="/user/student" element={<StudentPage />}></Route>
