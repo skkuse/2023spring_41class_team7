@@ -39,12 +39,12 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoContents = styled.div`
-  height: 47px;
+  height: 48px;
 
   font-family: "Arial";
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 30px;
 
   color: #000000;
 
