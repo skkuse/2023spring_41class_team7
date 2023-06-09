@@ -28,11 +28,12 @@ function LearningPage() {
   const { courseid } = useParams();
   const [learningInfo, setLearning] = useState(null);
   const [chattingData, setChatting] = useState(null);
+  const [clickFlag, setClickFlag] = useState(false);
 
   useEffect(() => {
     //console.log(courseid);
     getLearningInfo(courseid);
-  }, [chattingData]);
+  }, [clickFlag]);
 
   const chapterClick = (course_id, chapter_id, e) => {
     getChapterData(course_id, chapter_id);
@@ -55,6 +56,7 @@ function LearningPage() {
     await serverAxios
       .get(`/learn/course/${courseid}/`, { withCredentials: true })
       .then((res) => {
+        console.log(res.data);
         setLearning(res.data);
         setChatting(res.data.chat);
       })
@@ -84,6 +86,7 @@ function LearningPage() {
                     key={item.id}
                     onClick={(e) => {
                       chapterClick(courseid, item.id, e);
+                      setClickFlag(!clickFlag);
                     }}
                   >
                     {item.title}
@@ -110,6 +113,8 @@ function LearningPage() {
                 <ChattingInterface
                   chattingData={chattingData}
                   setChatting={setChatting}
+                  clickFlag={clickFlag}
+                  setClickFlag={setClickFlag}
                 />
               </ChatContainer>
               {/* code editor */}
