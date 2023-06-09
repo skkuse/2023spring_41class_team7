@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: flex;
@@ -14,10 +14,10 @@ export const Container = styled.div`
 
 // msg part
 export const TextingContainer = styled.div`
-  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 90%;
+  height: 100%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -45,14 +45,14 @@ export const MsgContainer = styled.div`
 `;
 
 export const StuMsgBox = styled.div`
-  width: 350px;
+  width: 70%;
   padding: 10px;
   border-radius: 10px;
   background: #eeeeee;
 `;
 
 export const MsgBox = styled.div`
-  width: 350px;
+  width: 70%;
   padding: 10px;
   border-radius: 10px;
   background: #ffffff;
@@ -62,7 +62,7 @@ export const MsgBox = styled.div`
 //input part
 export const InputsContainer = styled.div`
   width: 100%;
-  flex-grow: 1;
+  height: 100px;
   display: flex;
   align-items: center;
   box-sizing: border-box;

@@ -36,6 +36,10 @@ function App() {
               path="/learning/:courseid"
               element={<LearningPage />}
             ></Route>
+            <Route
+              path="/learning/:courseid/:chapterid"
+              element={<LearningPage />}
+            ></Route>
           </Routes>
         </div>
       </BrowserRouter>
