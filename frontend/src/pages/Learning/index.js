@@ -21,10 +21,18 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { serverAxios } from "../../utils/commonAxios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LearningPage() {
+  const navigate = useNavigate();
+  const chapterClick = (course_id, chapter_id, e) => {
+    navigate("/learning/" + course_id + "/" + chapter_id + "/");
+  }
+
+
   const { courseid } = useParams();
   const [learningInfo, setLearning] = useState(null);
+  const [chattingData, setChatting] = useState(null);
 
   useEffect(() => {
     //console.log(courseid);
@@ -36,6 +44,7 @@ function LearningPage() {
       .get(`/learn/course/${courseid}/`, { withCredentials: true })
       .then((res) => {
         setLearning(res.data);
+        setChatting(res.data.chat);
       })
       .catch((err) => console.log(err));
   };
@@ -58,7 +67,9 @@ function LearningPage() {
             <IdxItemsContainer>
               {/* todo - 목차 링크 달기 */}
               {learningInfo.chapter.map((item) => {
-                return <IdxItem key={item.id}>{item.title}</IdxItem>;
+                return <IdxItem key={item.id} onClick = {(e)=>{chapterClick(courseid, item.id, e)}}>
+                        {item.title}
+                      </IdxItem>;
               })}
             </IdxItemsContainer>
           </IdxContainer>
@@ -77,7 +88,11 @@ function LearningPage() {
             <LecContainer>
               {/* chatting interface */}
               <ChatContainer>
-                <ChattingInterface chattingData={learningInfo.chat} />
+                <ChattingInterface
+                  chattingData={chattingData}
+                  setChatting={setChatting}
+                />
+                
               </ChatContainer>
               {/* code editor */}
               <CodeEditor />
