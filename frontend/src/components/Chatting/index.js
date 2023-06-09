@@ -40,7 +40,6 @@ function MessageBox(props) {
 function ChattingInterface(props) {
   const { chattingData, setChatting } = props;
   const { courseid, chapterid } = useParams(); // course id , chapter id 받기
-  console.log(chattingData);
   const [inputs, setInputs] = useState("");
   const onChange = (e) => {
     setInputs(e.target.value);
@@ -53,7 +52,8 @@ function ChattingInterface(props) {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(`respose : ${res}`);
+        console.log(`respose :`);
+        console.log(res);
         setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
       })
       .catch((err) => {
@@ -62,9 +62,11 @@ function ChattingInterface(props) {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+
     if (inputs === "") {
       return;
     } else {
+      console.log(inputs);
       const body = {
         data: inputs,
         bot: false,
@@ -79,8 +81,6 @@ function ChattingInterface(props) {
       {/* msg part*/}
       <TextingContainer>
         {chattingData.map((item, idx) => {
-          // console.log(item);
-          // console.log(item.data);
           return item.bot == true ? (
             <MessageBox
               key={idx}

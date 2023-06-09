@@ -21,16 +21,35 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { serverAxios } from "../../utils/commonAxios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LearningPage() {
+  const navigate = useNavigate();
   const { courseid } = useParams();
-  const [learningInfo, setLearning] = useState(null); // 강의 전체 정보 저장
-  const [chattingData, setChatting] = useState(null); // 채팅 데이터 저장
+  const [learningInfo, setLearning] = useState(null);
+  const [chattingData, setChatting] = useState(null);
 
   useEffect(() => {
     //console.log(courseid);
     getLearningInfo(courseid);
-  }, []);
+  }, [chattingData]);
+
+  const chapterClick = (course_id, chapter_id, e) => {
+    getChapterData(course_id, chapter_id);
+    navigate("/learning/" + course_id + "/" + chapter_id + "/");
+  };
+
+  const getChapterData = async (course_id, chapter_id) => {
+    await serverAxios
+      .get(`/learn/course/${course_id}/?chapter=${chapter_id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setChatting((prev) => [...prev, res.data]);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const getLearningInfo = async (courseid) => {
     await serverAxios
@@ -60,7 +79,16 @@ function LearningPage() {
             <IdxItemsContainer>
               {/* todo - 목차 링크 달기 */}
               {learningInfo.chapter.map((item) => {
-                return <IdxItem key={item.id}>{item.title}</IdxItem>;
+                return (
+                  <IdxItem
+                    key={item.id}
+                    onClick={(e) => {
+                      chapterClick(courseid, item.id, e);
+                    }}
+                  >
+                    {item.title}
+                  </IdxItem>
+                );
               })}
             </IdxItemsContainer>
           </IdxContainer>
