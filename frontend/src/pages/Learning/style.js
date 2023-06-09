@@ -73,15 +73,17 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   border-radius: 10px;
-  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 `;
 
 export const LecHeader = styled.div`
   -webkit-box-sizing: border-box;
   width: 100%;
+  height: 10%;
   padding: 25px;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   border-radius: 10px;
   background: #e1e7f5;
 `;
@@ -98,13 +100,14 @@ export const LecRate = styled.span`
 
 export const LecContainer = styled.div`
   width: 100%;
-  flex-grow: 1;
+  height: 90%;
   display: flex;
   gap: 20px;
 `;
 
 export const ChatContainer = styled.div`
   width: 50%;
+  height: auto;
   box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
 `;
 

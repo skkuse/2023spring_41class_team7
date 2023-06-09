@@ -95,9 +95,9 @@ class CourseSerializer(serializers.ModelSerializer):
     """
     Serializer for showing course info
     """
-    mascot = serializers.ImageField(use_url=True, required=False)
-    thumbnail = serializers.ImageField(use_url=True, required=False)
-    author = serializers.CharField(source='author.username', read_only=True)
+    mascot = serializers.ImageField(use_url=False, required=False)
+    thumbnail = serializers.ImageField(use_url=False, required=False)
+    author = serializers.CharField(source='author.nickname', read_only=True)
     tag = serializers.CharField(source='tag.title', read_only=True)
 
     class Meta:
