@@ -24,7 +24,8 @@ import { useParams } from "react-router-dom";
 
 function LearningPage() {
   const { courseid } = useParams();
-  const [learningInfo, setLearning] = useState(null);
+  const [learningInfo, setLearning] = useState(null); // 강의 전체 정보 저장
+  const [chattingData, setChatting] = useState(null); // 채팅 데이터 저장
 
   useEffect(() => {
     //console.log(courseid);
@@ -36,6 +37,7 @@ function LearningPage() {
       .get(`/learn/course/${courseid}/`, { withCredentials: true })
       .then((res) => {
         setLearning(res.data);
+        setChatting(res.data.chat);
       })
       .catch((err) => console.log(err));
   };
@@ -77,7 +79,10 @@ function LearningPage() {
             <LecContainer>
               {/* chatting interface */}
               <ChatContainer>
-                <ChattingInterface chattingData={learningInfo.chat} />
+                <ChattingInterface
+                  chattingData={chattingData}
+                  setChatting={setChatting}
+                />
               </ChatContainer>
               {/* code editor */}
               <CodeEditor />
