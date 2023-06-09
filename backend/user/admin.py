@@ -9,7 +9,7 @@ from .models import User
 class UserCreationForm(BaseUserCreationForm):
     class Meta(BaseUserCreationForm.Meta):
         model = User
-        fields = BaseUserCreationForm.Meta.fields + ("educator",)
+        fields = BaseUserCreationForm.Meta.fields + ("educator", "nickname")
 
 
 @admin.register(User)
@@ -17,7 +17,7 @@ class UserAdmin(BaseUserAdmin):
     add_form = UserCreationForm
 
     list_display = ["username", "email", "educator"]
-    fieldsets = BaseUserAdmin.fieldsets + ((None, {"fields": ["educator"]}),)
-    add_fieldsets = BaseUserAdmin.add_fieldsets + ((None, {"fields": ["educator"]}),)
+    fieldsets = BaseUserAdmin.fieldsets + ((None, {"fields": ["educator", "nickname"]}),)
+    add_fieldsets = BaseUserAdmin.add_fieldsets + ((None, {"fields": ["educator", "nickname"]}),)
 
 admin.site.unregister(Group)
