@@ -9,9 +9,10 @@ import {
 } from "./style";
 
 function LectureProgress(props) {
+  let course_id = props.data.id;
   const navigate = useNavigate();
   const lectureClick = () => {
-    navigate("/learning");
+    navigate("/learning/" + course_id);
   }
   
   //console.log(props.data);
