@@ -92,7 +92,6 @@ function LearningPage() {
                   chattingData={chattingData}
                   setChatting={setChatting}
                 />
-                
               </ChatContainer>
               {/* code editor */}
               <CodeEditor />
