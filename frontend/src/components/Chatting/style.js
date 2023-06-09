@@ -23,7 +23,7 @@ export const TextingContainer = styled.div`
   align-items: center;
   padding: 20px;
   gap: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
   overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 6px;
