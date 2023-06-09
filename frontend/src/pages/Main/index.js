@@ -52,7 +52,7 @@ function MainPage() {
   const getCourseItems = async (tag) => {
     await serverAxios
       .get("course/course/?tag=" + tag, { withCredentials: true })
-      .then((res) => setCourseItem(res.data.id))
+      .then((res) => setCourseItem(res.data))
       .catch((err) => console.log(err));
   };
 
