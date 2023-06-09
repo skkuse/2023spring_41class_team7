@@ -34,10 +34,8 @@ function MainPage() {
 
   useEffect(() => {
     if (tag) {
-      console.log(tag);
       getCourseItems(tag);
     } else {
-      console.log("here");
       getALLCourseItems();
     }
   }, [tag]);

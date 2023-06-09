@@ -29,7 +29,7 @@ const style = {
   fontWeight: "700",
 };
 
-function getTitle(props, idx) {
+function getTitle(props) {
   return (
     <NavTitle key={props.idx}>
       <Link to={"/main"} style={{ textDecoration: "none", color: "#48413D" }}>

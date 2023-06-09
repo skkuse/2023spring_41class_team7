@@ -9,25 +9,14 @@ export const PageContainer = styled.div`
   gap: 30px;
 `;
 
-// left side
-export const SideBar = styled.div`
-  -webkit-box-sizing: border-box;
+export const IdxContainer = styled.div`
   width: 300px;
   height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-`;
-
-export const IdxContainer = styled.div`
-  -webkit-box-sizing: border-box;
-  width: 100%;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
   padding: 15px;
   border-radius: 10px;
   background: #ffffff;
@@ -42,8 +31,8 @@ export const IdxTitle = styled.div`
   gap: 20px;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
-  padding: 5px 0 10px 0;
+  font-size: 22px;
+  padding: 10px 0 15px 0;
   border-bottom: 2px solid #e1e7f5;
 `;
 
@@ -74,20 +63,6 @@ export const IdxItem = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-`;
-
-export const QaContainer = styled.div`
-  -webkit-box-sizing: border-box;
-  width: 100%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 15px;
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
 `;
 
 // right side
