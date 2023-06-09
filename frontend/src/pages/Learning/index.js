@@ -59,7 +59,7 @@ function LearningPage() {
         console.log(res.data);
         setLearning(res.data);
         setChatting(res.data.chat);
-        navigate(`/learning/${courseid}/${res.data.last_chapter}`);
+        navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/");
       })
       .catch((err) => console.log(err));
   };
