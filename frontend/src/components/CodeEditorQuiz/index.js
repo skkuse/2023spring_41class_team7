@@ -24,9 +24,9 @@ import { useParams } from "react-router-dom";
 import { serverAxios } from "../../utils/commonAxios";
 
 
-export function CodeEditor(props) {
-  const { courseid } = useParams();
-  const { chapterid } = useParams();
+export function CodeEditorQuiz(props) {
+  const { quizid } = useParams();
+  
   const { chattingData, setChatting } = props;
   const [show, setShow] = useState(false);
   const [lang, setLang] = useState("Python");
@@ -38,6 +38,7 @@ export function CodeEditor(props) {
     setCode(value);
     userCode = value;
     setCode(value);
+    
   }, []);
   const onClickSelect = React.useCallback((viewUpdate) => {
     setShow(true);
@@ -51,13 +52,13 @@ export function CodeEditor(props) {
   const codeExecution = async(body) => {
     const config = {"Content-Type": 'application/json'};
     await serverAxios
-    .post(`/learn/course/${courseid}/?chapter=${chapterid}`,(body), config,  {
+    .post(`/learn/quiz/${quizid}/`,(body), config,  {
       withCredentials: true
     })
     .then((res) => {
       console.log(`respose :` + JSON.stringify(res.data));
       setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
-      //setChatting(res.data);
+      //setChatting1(res.data);
       props.setClickFlag(!props.clickFlag);
       //console.log("Response "+ chattingData[chattingData.length - 1].data);
     })
@@ -68,7 +69,6 @@ export function CodeEditor(props) {
 
   const exeClick = () => {
     if(userCode === "Write your Code"){
-      console.log("###dddddd###");
       return;
     } else{
       const body = {
@@ -81,7 +81,6 @@ export function CodeEditor(props) {
 
   const submitClick = () => {
     if(userCode === "Write your Code"){
-      console.log("###dddddd###");
       return;
     } else{
       const body = {

@@ -30,10 +30,13 @@ function LearningPage() {
   const [learningInfo, setLearning] = useState(null);
   const [chattingData, setChatting] = useState(null);
   const [clickFlag, setClickFlag] = useState(false);
-
+  let move = true;
   useEffect(() => {
     //console.log(courseid);
+
     getLearningInfo(courseid);
+    
+      
   }, [clickFlag]);
 
   const chapterClick = (course_id, chapter_id, e) => {
@@ -60,7 +63,11 @@ function LearningPage() {
         console.log(res.data);
         setLearning(res.data);
         setChatting(res.data.chat);
-        navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/"); 
+        if(chapterid > 0){}
+        else{
+          navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/"); 
+        }
+        
       })
       .catch((err) => console.log(err));
   };

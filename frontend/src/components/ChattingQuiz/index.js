@@ -55,7 +55,7 @@ function ChattingInterfaceQuiz(props) {
         console.log(`respose :` + res.data.data);
         //setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
         setChatting((prev) => [...prev, res.data]);
-       
+        props.setClickFlag(!props.clickFlag);
         console.log(chattingData);
         
       })

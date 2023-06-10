@@ -1,6 +1,6 @@
 import Header from "../../components/Header";
 import { useState, useEffect } from "react";
-import { CodeEditor } from "../../components/CodeEditor";
+import { CodeEditorQuiz } from "../../components/CodeEditorQuiz";
 
 import ChattingInterfaceQuiz from "../../components/ChattingQuiz";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
@@ -30,7 +30,6 @@ function QuizPage(props) {
   let quiz_id = Number(useParams().quizid);
   const [quizInfoReady, setQuizInfoReady] = useState(false);
   const [quizInfo, setQuizInfo] = useState("");
-
   const [chattingData, setChatting] = useState([]);
   const [clickFlag, setClickFlag] = useState(false);
 
@@ -48,7 +47,7 @@ function QuizPage(props) {
 
   useEffect( () => {
     getQuizInfo();
-  }, []);
+  }, [clickFlag]);
 
   const [userLearningLectureListReady, setUserLearningLecturListReady] = useState(false);
   const [showUserLearningLectureList, setShowUserLearningLectureList] = useState("");
@@ -83,13 +82,7 @@ function QuizPage(props) {
                 )
               }
           </QuizTitleContainer>
-            <QuizInfoContainer>
-              {quizInfoReady && 
-                (
-                  <div style={{verticalAlign: 'middle', margin:'1%'}}>Q.{quizInfo.quiz.question}</div>
-                )
-              }
-            </QuizInfoContainer>
+            
             <ChattingInterfaceQuiz
                  chattingData={chattingData}
                  setChatting={setChatting}
@@ -99,7 +92,12 @@ function QuizPage(props) {
            
             
           </QuizChatContainer>
-          <CodeEditor> </CodeEditor>
+          <CodeEditorQuiz
+          chattingData={chattingData}
+          setChatting={setChatting}
+          clickFlag={clickFlag}
+          setClickFlag={setClickFlag}
+          > </CodeEditorQuiz>
         </QuizPageContainer>
       </OuttestContainer>
     </MostOuterDiv>
