@@ -28,7 +28,7 @@ function InstructorCourseCard(props) {
   const navigate = useNavigate();
 
   let thumbnailurl =
-    " http://localhost:3000/api/media/" + props.course.thumbnail;
+    "http://localhost:3000/api/media/" + props.course.thumbnail;
 
   const getFeedbackMessageFunction = async () => {
     let targeturl = "/feedback/analysis/" + props.course.id + "/";

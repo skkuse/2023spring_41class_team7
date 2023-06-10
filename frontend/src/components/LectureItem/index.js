@@ -13,8 +13,7 @@ import {
 import { useEffect, useState } from "react";
 
 function LectureItem(props) {
-  let thumbnailurl =
-    " http://localhost:3000/api/media/" + props.course.thumbnail;
+  let thumbnailurl = " http://localhost:3000/api/media/" + props.info.thumbnail;
 
   const navigate = useNavigate();
 
