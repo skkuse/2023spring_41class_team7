@@ -20,12 +20,27 @@ import {
 } from "./style";
 
 import toggleLogo from "../../assets/images/Vector.png";
-export function CodeEditor() {
+import { useParams } from "react-router-dom";
+import { serverAxios } from "../../utils/commonAxios";
+
+
+export function CodeEditor(props) {
+  const { courseid } = useParams();
+  const { chapterid } = useParams();
+  const chattingData = props.chattingData;
+  const setChatting = props.setChatting;
   const [show, setShow] = useState(false);
   const [lang, setLang] = useState("Python");
 
-  const onChange = React.useCallback((value, viewUpdate) => {}, []);
-
+  const [code, setCode] = useState("");
+  let userCode = "";
+  //let code = "Write your Code";
+  const onChange = React.useCallback((value, viewUpdate) => {
+    setCode(value);
+    userCode = value;
+    setCode(value);
+    console.log("@"+userCode);
+  }, []);
   const onClickSelect = React.useCallback((viewUpdate) => {
     setShow(true);
   }, []);
@@ -34,6 +49,52 @@ export function CodeEditor() {
     setLang(params);
     setShow(false);
   };
+
+  const codeExecution = async(body) => {
+    const config = {"Content-Type": 'application/json'};
+    await serverAxios
+    .post(`/learn/course/${courseid}/?chapter=${chapterid}`,(body), config,  {
+      withCredentials: true
+    })
+    .then((res) => {
+      console.log(`respose :` + JSON.stringify(res.data));
+      setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
+      //setChatting(res.data);
+      props.setClickFlag(!props.clickFlag);
+      //console.log("Response "+ chattingData[chattingData.length - 1].data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  const exeClick = () => {
+    if(userCode === "Write your Code"){
+      console.log("###dddddd###");
+      return;
+    } else{
+      const body = {
+        data: "If this code is grammatically correct, Execute this code\n\n" + code,
+        bot: false,
+      };
+      codeExecution(body);
+    }
+  };
+
+  const submitClick = () => {
+    if(userCode === "Write your Code"){
+      console.log("###dddddd###");
+      return;
+    } else{
+      const body = {
+        data: "Here is the answer\n\n" + code,
+        bot: false,
+      };
+      codeExecution(body);
+    }
+  };
+
+
   return (
     <CodeEditorContainer>
       <CodeEditorHeader>
@@ -108,9 +169,8 @@ export function CodeEditor() {
             )}
           </div>
         </CodeEditorLang>
-
-        <CodeEditorButton_Exe>실행</CodeEditorButton_Exe>
-        <CodeEditorButton_Submit>제출</CodeEditorButton_Submit>
+        <CodeEditorButton_Exe onClick={exeClick}>실행</CodeEditorButton_Exe>
+        <CodeEditorButton_Submit  onClick={submitClick}>제출</CodeEditorButton_Submit>
       </CodeEditorHeader>
       <CodeMirror
         value="Write your Code"

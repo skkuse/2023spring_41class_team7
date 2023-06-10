@@ -29,7 +29,7 @@ function QuizItem(props) {
   let course_id = props.quizdata.course;
   let course_title = "";
   for(let idx = 0; idx < props.lecturedata.length; idx++){
-    if(course_id === props.lecturedata[idx].id){
+    if(course_id == props.lecturedata[idx].id){
       course_title = props.lecturedata[idx].title;
     }
   }

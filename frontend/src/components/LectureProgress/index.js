@@ -12,7 +12,7 @@ import { serverAxios } from "../../utils/commonAxios";
 
 function LectureProgress(props) {
   let course_id = props.data.id;
-  const [lastChapterId, setLastChapterId] = useState("1");
+  const [lastChapterId, setLastChapterId] = useState("");
 
   useEffect(() => {
     //console.log(courseid);
@@ -31,7 +31,7 @@ function LectureProgress(props) {
   
   const navigate = useNavigate();
   const lectureClick = () => {
-    navigate("/learning/" + course_id+ "/" + lastChapterId + "/");
+    navigate("/learning/" + course_id);
   }
 
   

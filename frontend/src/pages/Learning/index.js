@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 function LearningPage() {
   const navigate = useNavigate();
   const { courseid } = useParams();
+  const { chapterid } = useParams();
   const [learningInfo, setLearning] = useState(null);
   const [chattingData, setChatting] = useState(null);
   const [clickFlag, setClickFlag] = useState(false);
@@ -59,7 +60,7 @@ function LearningPage() {
         console.log(res.data);
         setLearning(res.data);
         setChatting(res.data.chat);
-        navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/");
+        navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/"); 
       })
       .catch((err) => console.log(err));
   };
@@ -119,7 +120,12 @@ function LearningPage() {
                 />
               </ChatContainer>
               {/* code editor */}
-              <CodeEditor />
+              <CodeEditor 
+              chattingData={chattingData}
+              setChatting={setChatting}
+              clickFlag={clickFlag}
+              setClickFlag={setClickFlag}
+              />
             </LecContainer>
           </ContentContainer>
         </PageContainer>

@@ -60,7 +60,8 @@ function MainPage() {
     await serverAxios
       .get("/user/quiz/?today=1", { withCredentials: true })
       .then((response) => {
-        setQuizid(response.data[1]);
+        setQuizid(response.data[0].id);
+        console.log(response.data[0]);
       })
       .catch((e) => {
         console.log(e);

@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import { useState, useEffect } from "react";
 import { CodeEditor } from "../../components/CodeEditor";
 
-import ChattingInterface from "../../components/Chatting";
+import ChattingInterfaceQuiz from "../../components/ChattingQuiz";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import {
   ChatContainer,
@@ -31,12 +31,18 @@ function QuizPage(props) {
   const [quizInfoReady, setQuizInfoReady] = useState(false);
   const [quizInfo, setQuizInfo] = useState("");
 
+  const [chattingData, setChatting] = useState([]);
+  const [clickFlag, setClickFlag] = useState(false);
+
+
   const getQuizInfo = async () => {
     await serverAxios
       .get("/learn/quiz/" + quiz_id + "/", { withCredentials: true })
       .then((response) => {
         setQuizInfoReady(true);
         setQuizInfo(JSON.parse(JSON.stringify(response.data)));
+        console.log(response.data);
+        setChatting(response.data.chat);
       });
   }
 
@@ -84,7 +90,14 @@ function QuizPage(props) {
                 )
               }
             </QuizInfoContainer>
-            <ChattingInterface></ChattingInterface>
+            <ChattingInterfaceQuiz
+                 chattingData={chattingData}
+                 setChatting={setChatting}
+                 clickFlag={clickFlag}
+                 setClickFlag={setClickFlag}
+                />
+           
+            
           </QuizChatContainer>
           <CodeEditor> </CodeEditor>
         </QuizPageContainer>
