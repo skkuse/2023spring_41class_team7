@@ -52,7 +52,7 @@ function ChattingInterface(props) {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(`respose :` + res.data + " @@"  + res.bot + " @@ " + res.timestamp);
+        //console.log(`respose :` + res.data + " @@"  + res.bot + " @@ " + res.timestamp);
         setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
         props.setClickFlag(!props.clickFlag);
         
@@ -82,7 +82,6 @@ function ChattingInterface(props) {
       {/* msg part*/}
       <TextingContainer>
         {chattingData.map((item, idx) => {
-          return <div>{item.data}</div>
           return item.bot == true ? (
             <MessageBox
               key={idx}
