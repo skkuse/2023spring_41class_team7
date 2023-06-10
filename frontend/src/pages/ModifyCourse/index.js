@@ -154,6 +154,7 @@ function ModifyCourse(props) {
                   chapterContent={value.content}
                   clickFlag={clickFlag}
                   setClickFlag={setClickFlag}
+                  isModify={true}
                 ></ShowChapter>
               ))}
             </ShowCourseContainer>
