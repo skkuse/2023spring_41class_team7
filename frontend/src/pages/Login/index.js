@@ -100,33 +100,6 @@ function Login(props) {
         </TitleContainer>
         <LoginForm onSubmit={handleLoginSubmit}>
           <FormContainer>
-            <ModeContainer>
-              <StudentMode
-                style={{ background: isStudent ? "#cddbfc" : "white" }}
-              >
-                <input
-                  type="radio"
-                  name="mode"
-                  value="student"
-                  defaultChecked
-                  onChange={handleModeChange}
-                  style={{ marginRight: 20 }}
-                />
-                학생
-              </StudentMode>
-              <InstructorMode
-                style={{ background: isStudent ? "white" : "#cddbfc" }}
-              >
-                <input
-                  type="radio"
-                  name="mode"
-                  value="instructor"
-                  onChange={handleModeChange}
-                  style={{ marginRight: 20 }}
-                />
-                강사
-              </InstructorMode>
-            </ModeContainer>
             <InputContainer>
               {/* {mode} */}
               <Input

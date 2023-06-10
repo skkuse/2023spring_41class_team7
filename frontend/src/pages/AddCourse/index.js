@@ -18,35 +18,51 @@ import { useNavigate } from "react-router-dom";
 import { serverAxios } from "../../utils/commonAxios";
 
 function AddCourse(props) {
-  const [courseid, setCourseid] = useState();
+  const [courseid, setCourseid] = useState(null);
   const [courseTitle, setCourseTitle] = useState("");
-  const [courseLanguageTag, setcourseLanguageTag] = useState(1);
+  const [courseLanguageTag, setCourseLanguageTag] = useState(0);
   const [courseIntroduction, setCourseIntroduction] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
-  let chapters = [];
+  const [chapters, setChapters] = useState([]);
+  const [clickFlag, setClickFlag] = useState(false);
 
   const navigate = useNavigate();
 
-  // useEffect(async () => {
-  //   if (courseid) {
-  //     let params = URLSearchParams();
-  //     params.append("/chapter", courseid);
-  //     await serverAxios
-  //       .get("/course", { withCredentials: true }, params)
-  //       .then((response) => {
-  //         chapters = JSON.parse(response.data);
-  //       });
-  //   }
-  // }, [showModal]);
+  const getChaptersFunction = async () => {
+    if (courseid && showModal == false) {
+      // let targeturl = "/course/chapter/?course=" + courseid;
+      let targeturl = "course/course/" + courseid + "/";
+      //console.log(targeturl);
+      await serverAxios
+        .get(targeturl, { withCredentials: true })
+        .then((response) => {
+          setChapters(JSON.parse(JSON.stringify(response.data.chapters)));
+          console.log(chapters);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getChaptersFunction();
+  }, [isEntered, clickFlag]);
   const handleAddCourseSubmit = (e) => {};
 
-  const handleSaveClick = () => {};
+  const handleDoneClick = () => {
+    navigate("/user/instructor");
+  };
+
+  const handleCancelClick = () => {
+    navigate("/user/instructor");
+  };
 
   const handleCourseAddSaveClick = async (e) => {
-    if (courseTitle && courseIntroduction) {
-      e.preventDefault();
+    e.preventDefault();
+    if (courseTitle && courseIntroduction && courseLanguageTag !== 0) {
       try {
         const body = {
           title: courseTitle,
@@ -61,7 +77,7 @@ function AddCourse(props) {
           .then((response) => {
             setIsCourseInitialized(true);
             setCourseid(response.data.id);
-            alert("Course Info 저장 성공");
+            alert("강의 정보 저장 성공");
           })
           .catch((e) => {
             console.log(e);
@@ -70,49 +86,15 @@ function AddCourse(props) {
     }
   };
 
-  const handleCancelClick = () => {
-    navigate("/user/instructor");
-  };
-
   const handleAddClick = () => {
     setShowModal(!showModal);
     setIsEntered(false);
   };
 
-  const testJSONArray = [
-    {
-      id: 1,
-      course: 1,
-      title: "정식이가 가르쳐주는 파이썬",
-      intro: "잘 찾아오셨습니다!",
-      content: "정식이는 도커러입니다.",
-      created_at: "2023-05-28T07:11:49.985428Z",
-      modified_at: "2023-05-28T07:11:50.154150Z",
-    },
-    {
-      id: 2,
-      course: 1,
-      title: "기초 파이썬 문법",
-      intro: "잘 찾아오셨습니다!",
-      content: "이제부터 한 번 가봅시다.",
-      created_at: "2023-05-29T07:46:30.030849Z",
-      modified_at: "2023-05-29T07:46:30.239792Z",
-    },
-    {
-      id: 3,
-      course: 1,
-      title: "파이썬의 효능",
-      intro: "잘 찾아오셨습니다!",
-      content: "제대로 한 번 가봅시다.",
-      created_at: "2023-05-29T07:47:25.114241Z",
-      modified_at: "2023-05-29T07:47:25.213260Z",
-    },
-  ];
-
-  const myArray = JSON.parse(JSON.stringify(testJSONArray));
-  chapters = myArray;
-
-  if (localStorage.getItem("loggedin")) {
+  if (
+    localStorage.getItem("loggedin") &&
+    localStorage.getItem("educator") === "true"
+  ) {
     return (
       <MostOuterDiv>
         <Header></Header>
@@ -121,10 +103,9 @@ function AddCourse(props) {
           <AddCourseForm onSubmit={handleAddCourseSubmit}>
             <ButtonsContainer>
               {/* <Button
-                content="저장"
-                onClick={handleSaveClick}
+                content="완료"
+                onClick={handleDoneClick}
                 backgroundColor="#DAE5FF"
-                disabled={isCourseInitialized}
               ></Button> */}
               <Button
                 content="취소"
@@ -140,7 +121,7 @@ function AddCourse(props) {
               courseLanguageTag={courseLanguageTag}
               courseIntroduction={courseIntroduction}
               setCourseTitle={setCourseTitle}
-              setcourseLanguageTag={setcourseLanguageTag}
+              setCourseLanguageTag={setCourseLanguageTag}
               setCourseIntroduction={setCourseIntroduction}
               isCourseInitialized={isCourseInitialized}
             ></CourseInfo>
@@ -177,9 +158,14 @@ function AddCourse(props) {
               <ShowCourseContainer>
                 {chapters.map((value, key) => (
                   <ShowChapter
+                    courseid={courseid}
+                    chapterid={value.id}
                     chapterNo={key + 1}
                     chapterTitle={value.title}
+                    chapterIntro={value.intro}
                     chapterContent={value.content}
+                    clickFlag={clickFlag}
+                    setClickFlag={setClickFlag}
                   ></ShowChapter>
                 ))}
               </ShowCourseContainer>

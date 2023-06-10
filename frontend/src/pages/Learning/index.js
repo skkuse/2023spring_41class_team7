@@ -2,7 +2,6 @@ import {
   PageContainer,
   SideBar,
   IdxContainer,
-  QaContainer,
   IdxTitle,
   IdxItemsContainer,
   IdxItem,
@@ -19,44 +18,84 @@ import ChattingInterface from "../../components/Chatting";
 import { CodeEditor } from "../../components/CodeEditor";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
 import Header from "../../components/Header";
+import { useEffect, useState } from "react";
+import { serverAxios } from "../../utils/commonAxios";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LearningPage() {
+  const navigate = useNavigate();
+  const { courseid } = useParams();
+  const [learningInfo, setLearning] = useState(null);
+  const [chattingData, setChatting] = useState(null);
+  const [clickFlag, setClickFlag] = useState(false);
+
+  useEffect(() => {
+    //console.log(courseid);
+    getLearningInfo(courseid);
+  }, [clickFlag]);
+
+  const chapterClick = (course_id, chapter_id, e) => {
+    getChapterData(course_id, chapter_id);
+    navigate("/learning/" + course_id + "/" + chapter_id + "/");
+  };
+
+  const getChapterData = async (course_id, chapter_id) => {
+    await serverAxios
+      .get(`/learn/course/${course_id}/?chapter=${chapter_id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setChatting((prev) => [...prev, res.data]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getLearningInfo = async (courseid) => {
+    await serverAxios
+      .get(`/learn/course/${courseid}/`, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+        setLearning(res.data);
+        setChatting(res.data.chat);
+        navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  if (!learningInfo) {
+    return null;
+  }
+
   return (
     <MostOuterDiv>
       <Header />
       <OuttestContainer>
         <PageContainer>
           {/* index bar */}
-          <SideBar>
-            {/* index container */}
-            <IdxContainer>
-              <IdxTitle>
-                <FontAwesomeIcon icon={faList} />
-                목차
-              </IdxTitle>
-              <IdxItemsContainer>
-                <IdxItem>1주차 제목 자리 길어지면 어떻게 될까요 </IdxItem>
-                <IdxItem>2주차 제목 자리</IdxItem>
-                <IdxItem>3주차 제목 자리</IdxItem>
-              </IdxItemsContainer>
-            </IdxContainer>
-
-            {/* Question container */}
-            <QaContainer>
-              <IdxTitle>
-                <FontAwesomeIcon icon={faCircleQuestion} />
-                나의 질문
-              </IdxTitle>
-              <IdxItemsContainer>
-                <IdxItem>질문 내용 1</IdxItem>
-                <IdxItem>질문 내용 2</IdxItem>
-                <IdxItem>질문 내용 3</IdxItem>
-                <IdxItem>질문 내용 4</IdxItem>
-                <IdxItem>질문 내용 5</IdxItem>
-                <IdxItem>질문 내용 6</IdxItem>
-              </IdxItemsContainer>
-            </QaContainer>
-          </SideBar>
+          <IdxContainer>
+            <IdxTitle>
+              <FontAwesomeIcon icon={faList} />
+              목차
+            </IdxTitle>
+            <IdxItemsContainer>
+              {/* todo - 목차 링크 달기 */}
+              {learningInfo.chapter.map((item) => {
+                return (
+                  <IdxItem
+                    key={item.id}
+                    onClick={(e) => {
+                      chapterClick(courseid, item.id, e);
+                      setClickFlag(!clickFlag);
+                    }}
+                  >
+                    {item.title}
+                  </IdxItem>
+                );
+              })}
+            </IdxItemsContainer>
+          </IdxContainer>
 
           {/* contents container */}
           <ContentContainer>
@@ -64,7 +103,7 @@ function LearningPage() {
             <LecHeader>
               <LecTitle>
                 {/* 강의 제목 */}
-                입문자를 위한 파이썬 기초
+                {learningInfo.course.title}
               </LecTitle>
             </LecHeader>
 
@@ -72,7 +111,12 @@ function LearningPage() {
             <LecContainer>
               {/* chatting interface */}
               <ChatContainer>
-                <ChattingInterface />
+                <ChattingInterface
+                  chattingData={chattingData}
+                  setChatting={setChatting}
+                  clickFlag={clickFlag}
+                  setClickFlag={setClickFlag}
+                />
               </ChatContainer>
               {/* code editor */}
               <CodeEditor />

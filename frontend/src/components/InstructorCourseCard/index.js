@@ -16,27 +16,54 @@ import {
 } from "./style";
 import feedback from "../../assets/images/feedback.png";
 import star from "../../assets/images/star.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { serverAxios } from "../../utils/commonAxios";
 
 function InstructorCourseCard(props) {
+  const [courseid, setCourseid] = useState();
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [toggleFeedback, setToggleFeedback] = useState(false);
   const navigate = useNavigate();
 
-  const [courseTitle, setCourseTitle] = useState("입문자를 위한 파이썬 기초");
-  const [courseIntroduction, setCourseIntroduction] = useState(
-    "파이썬 기초부터 탄탄하게 공부해요 ^*^"
-  );
-
-  const [feedbackMessage, setFeedbackMessage] = useState("");
-
-  const [toggleFeedback, setToggleFeedback] = useState(false);
-
-  const handleModifyClick = () => {
-    navigate("/modify");
+  const getFeedbackMessageFunction = async () => {
+    let targeturl = "/feedback/analysis/" + props.course.id + "/";
+    await serverAxios
+      .get(targeturl, { withCredentials: true })
+      .then((response) => {
+        setFeedbackMessage(response.data[0].content);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
-  const handleCancelClick = () => {
-    alert("삭제하기");
+  useEffect(() => {
+    setCourseid(props.course.id);
+    getFeedbackMessageFunction();
+  }, []);
+
+  const handleModifyClick = () => {
+    let targeturl = "/modify/" + props.course.id;
+    navigate(targeturl);
+  };
+
+  const handleCancelClick = async () => {
+    let targeturl = "/course/course/" + courseid + "/";
+    const body = {
+      id: courseid,
+    };
+    await serverAxios
+      .delete(targeturl, body, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        alert("강의 삭제 완료");
+        props.setClickFlag(!props.clickFlag);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const handleFeedbackClick = () => {
@@ -52,9 +79,9 @@ function InstructorCourseCard(props) {
         <NonButtonContainer>
           <CourseLogo></CourseLogo>
           <CourseInfoContainer>
-            <CourseTitleContainer>{courseTitle}</CourseTitleContainer>
+            <CourseTitleContainer>{props.course.title}</CourseTitleContainer>
             <CourseIntroductionContainer>
-              {courseIntroduction}
+              {props.course.intro}
             </CourseIntroductionContainer>
           </CourseInfoContainer>
         </NonButtonContainer>

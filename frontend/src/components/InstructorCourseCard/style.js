@@ -13,9 +13,10 @@ export const InstructorCourseCardContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 35px;
+  margin: 0 10px;
   gap: 35px;
   border-radius: 10px;
-  box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
 
 export const NonButtonContainer = styled.div`
@@ -89,5 +90,5 @@ export const FeedbackMessageContainer = styled.div`
   background-color: #e1e7f5;
   border-radius: 10px;
   width: 100%;
-  box-shadow: 0px 4px 30px 2px rgba(223, 228, 231, 0.7);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;

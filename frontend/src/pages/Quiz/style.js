@@ -30,7 +30,10 @@ export const QuizTitleContainer = styled.div`
   background-color: #e1e7f5;
   margin-bottom: 2%;
   border-radius: 10px;
+  font-weight : bold; 
+  vertical-align: middle;
 `;
+
 
 export const QuizInfoContainer = styled.div`
   display: flex;

@@ -7,7 +7,7 @@ export const UserInstructorContainer = styled.div`
   padding: 35px;
   background: #ffffff;
   box-shadow: 0px 8px 40px rgba(0.8, 0, 0, 0.09);
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -33,8 +33,9 @@ export const Title = styled.span`
 export const CourseContainer = styled.div`
   -webkit-box-sizing: border-box;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
   justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
@@ -50,9 +51,21 @@ export const CourseContainer = styled.div`
     border-radius: 6px;
   }
 `;
+
+export const TotalCourseNumDiv = styled.div`
+  margin: 0 35px;
+  align-self: flex-end;
+  font-size: 20px;
+`;
+
+export const TotalCourseNum = styled.span`
+  font-weight: 600;
+  align-self: flex-end;
+`;
+
 export const CourseAddButton = styled.button`
-  width: 100px;
-  height: 60px;
+  width: 120px;
+  padding: 15px 5px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 16px;

@@ -10,14 +10,15 @@ export const RegisterContainer = styled.div`
 `;
 
 export const RegisterForm = styled.form`
+  width: 750px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  -webkit-box-sizing: border-box;
 `;
 
 export const FormContainer = styled.div`
-  width: 800px;
   border-radius: 20px;
   border: 3px solid #94b4ff;
   justify-content: center;
@@ -30,7 +31,7 @@ export const ModeContainer = styled.div`
   align-items: center;
   padding: 0px;
   width: 100%;
-  height: 86px;
+  height: 75px;
   border-radius: 20px;
 `;
 
@@ -61,7 +62,7 @@ export const InputContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 75px;
+  padding: 50px 75px;
   gap: 25px;
 `;
 
@@ -88,7 +89,7 @@ export const ToLoginParagraph = styled.p`
   font-weight: 600;
   font-size: 16px;
   color: #6f7680;
-  margin-top: 25px;
+  margin-top: 10px;
 `;
 
 export const ToLogin = styled.span`

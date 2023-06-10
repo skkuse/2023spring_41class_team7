@@ -6,35 +6,96 @@ import {
   LectureContainer,
   TitleContainer,
   Title,
+  TotalCourseNum,
+  TotalCourseNumDiv,
+  QuizImage,
 } from "./style";
 import Navbar from "../../components/Navbar";
 import { OuttestContainer } from "../../components/OuttestContainer/style";
 import { faThumbtack, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { MostOuterDiv } from "../../components/MostOuterDiv/style";
-import SearchHeader from "../../components/SearchHeader";
 import Header from "../../components/Header";
+import { useEffect, useState } from "react";
+import { serverAxios } from "../../utils/commonAxios";
 
+import quiz from "../../assets/images/quiz.png";
 
 function MainPage() {
+  const { tag } = useParams();
+  const [quizid, setQuizid] = useState();
+  const navigate = useNavigate();
+
+  const [courseItem, setCourseItem] = useState(null);
+
+  const handleQuizClick = () => {
+    navigate("/quiz/" + quizid);
+  };
+
+  useEffect(() => {
+    if (tag) {
+      getCourseItems(tag);
+    } else {
+      getALLCourseItems();
+    }
+    getTodayQuiz();
+  }, [tag]);
+
+  const getALLCourseItems = async () => {
+    await serverAxios
+      .get("course/course/", { withCredentials: true })
+      .then((res) => setCourseItem(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const getCourseItems = async (tag) => {
+    await serverAxios
+      .get("course/course/?tag=" + tag, { withCredentials: true })
+      .then((res) => setCourseItem(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const getTodayQuiz = async () => {
+    await serverAxios
+      .get("/user/quiz/?today=1", { withCredentials: true })
+      .then((response) => {
+        setQuizid(response.data[1]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <MostOuterDiv>
-      <SearchHeader></SearchHeader>
+      <Header></Header>
       <OuttestContainer>
         <Navbar />
         <MainContainer>
-          <QuizContainer>
-            <Link to="/" style={{ textDecoration: "none", color: "#48413D" }}>
-              <Quiz>
+          {quizid && (
+            <QuizContainer onClick={handleQuizClick}>
+              {/* <Link
+              to="/quiz"
+              style={{ textDecoration: "none", color: "#48413D" }}
+            > */}
+              {/* <Quiz>
                 오늘의 퀴즈 풀어보기
                 <FontAwesomeIcon
                   icon={faStar}
                   style={{ color: "#48413D", marginLeft: "5px" }}
                 />
-              </Quiz>
-            </Link>
-          </QuizContainer>
+              </Quiz> */}
+
+              <span>오늘의</span>
+              <QuizImage src={quiz}></QuizImage>
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: "#48413D", marginLeft: "5px" }}
+              />
+              {/* </Link> */}
+            </QuizContainer>
+          )}
           <TitleContainer>
             <Title>
               <FontAwesomeIcon
@@ -44,16 +105,21 @@ function MainPage() {
               강의 목록
             </Title>
           </TitleContainer>
+          {courseItem && (
+            <TotalCourseNumDiv>
+              총:
+              <TotalCourseNum> {courseItem.length}</TotalCourseNum>개
+            </TotalCourseNumDiv>
+          )}
           <LectureContainer>
             {/*강의 목록 리스트 ( 강의 아이템 )*/}
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
-            <LectureItem />
+            {courseItem ? (
+              courseItem.map((item) => (
+                <LectureItem key={item.id} info={item} />
+              ))
+            ) : (
+              <></>
+            )}
           </LectureContainer>
         </MainContainer>
       </OuttestContainer>

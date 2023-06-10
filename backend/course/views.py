@@ -41,10 +41,17 @@ class CourseList(generics.ListCreateAPIView):
     Provides GET, POST requests for courses.
     Also supports filetring by tag and searching for title or author for course.
     """
-    queryset = Course.objects.all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['tag']
     search_fields = ['title', 'author__nickname'] 
+
+    def get_queryset(self):
+        queryset = Course.objects.all()
+
+        my = self.request.query_params.get('my')
+        if my is not None:
+            queryset = queryset.filter(author=self.request.user)
+        return queryset
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -74,7 +81,7 @@ class CourseDetail(APIView):
         if request.user != course.author or request.user.educator == False:
             return Response(status=status.HTTP_403_FORBIDDEN)
         
-        serializer = CourseSerializer(course, data=request.data)
+        serializer = CoursePostSerializer(course, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

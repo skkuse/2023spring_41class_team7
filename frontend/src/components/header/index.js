@@ -10,6 +10,7 @@ import {
   UserHeaderUserName,
   UserHeaderLogout,
   LogoutButton,
+  NicknameSpan,
 } from "./style";
 
 import logoicon from "../../assets/images/logo.png";
@@ -19,6 +20,10 @@ import { serverAxios } from "../../utils/commonAxios";
 
 function Header(props) {
   const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate("/main");
+  };
   const handleLogoutClick = async () => {
     await serverAxios
       .get("user/auth", {
@@ -38,17 +43,14 @@ function Header(props) {
   return (
     <StyledHeader>
       {/* {String(localStorage.getItem("loggedin"))} */}
-      <LogoContainer>
-        <LogoContents>
-          <a href="./" style={{ textDecoration: `none`, color: `black` }}>
-            Code With 
-          </a>
-        </LogoContents>
+      <LogoContainer onClick={handleLogoClick}>
+        <LogoContents>Code with</LogoContents>
         <LogoImage src={logoicon}></LogoImage>
       </LogoContainer>
       <UserHeaderContainer>
         <UserHeaderUserName>
-          {localStorage.getItem("username")}님 환영!
+          <NicknameSpan>{localStorage.getItem("nickname")}</NicknameSpan>님
+          Welcome!
         </UserHeaderUserName>
         <LogoutButton onClick={handleLogoutClick} type="button">
           로그아웃
