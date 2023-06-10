@@ -35,7 +35,7 @@ function AddCourse(props) {
     if (courseid && showModal == false) {
       // let targeturl = "/course/chapter/?course=" + courseid;
       let targeturl = "course/course/" + courseid + "/";
-      //console.log(targeturl);
+      // console.log(targeturl);
       await serverAxios
         .get(targeturl, { withCredentials: true })
         .then((response) => {
@@ -65,15 +65,14 @@ function AddCourse(props) {
     e.preventDefault();
     if (courseTitle && courseIntroduction && courseLanguageTag !== 0) {
       try {
-        const body = {
-          title: courseTitle,
-          tag: courseLanguageTag,
-          intro: courseIntroduction,
-          thumbnail: courseThumbnail,
-        };
+        const formData = new FormData();
+        formData.append("title", courseTitle)
+        formData.append("tag", courseLanguageTag)
+        formData.append("intro", courseIntroduction)
+        formData.append("thumbnail", courseThumbnail)
         /* Course title, introduction POST */
         await serverAxios
-          .post("/course/course/", body, {
+          .post("/course/course/", formData, {
             withCredentials: true,
           })
           .then((response) => {
