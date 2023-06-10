@@ -22,6 +22,7 @@ function AddCourse(props) {
   const [courseTitle, setCourseTitle] = useState("");
   const [courseLanguageTag, setCourseLanguageTag] = useState(0);
   const [courseIntroduction, setCourseIntroduction] = useState("");
+  const [courseThumbnail, setCourseThumbnail] = useState();
   const [showModal, setShowModal] = useState(false);
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
@@ -34,7 +35,7 @@ function AddCourse(props) {
     if (courseid && showModal == false) {
       // let targeturl = "/course/chapter/?course=" + courseid;
       let targeturl = "course/course/" + courseid + "/";
-      //console.log(targeturl);
+      // console.log(targeturl);
       await serverAxios
         .get(targeturl, { withCredentials: true })
         .then((response) => {
@@ -64,14 +65,14 @@ function AddCourse(props) {
     e.preventDefault();
     if (courseTitle && courseIntroduction && courseLanguageTag !== 0) {
       try {
-        const body = {
-          title: courseTitle,
-          tag: courseLanguageTag,
-          intro: courseIntroduction,
-        };
+        const formData = new FormData();
+        formData.append("title", courseTitle)
+        formData.append("tag", courseLanguageTag)
+        formData.append("intro", courseIntroduction)
+        formData.append("thumbnail", courseThumbnail)
         /* Course title, introduction POST */
         await serverAxios
-          .post("/course/course/", body, {
+          .post("/course/course/", formData, {
             withCredentials: true,
           })
           .then((response) => {
@@ -91,12 +92,21 @@ function AddCourse(props) {
     setIsEntered(false);
   };
 
+  // function isFileObject(obj) {
+  //   return obj instanceof File;
+  // }
+
+  // const isFile = isFileObject(courseThumbnail);
+
   if (
     localStorage.getItem("loggedin") &&
     localStorage.getItem("educator") === "true"
   ) {
     return (
       <MostOuterDiv>
+        {/* {courseThumbnail && <div>{courseThumbnail.name}</div>}
+        {String(isFile)} */}
+
         <Header></Header>
         <OuttestContainer>
           <Navbar></Navbar>
@@ -123,6 +133,7 @@ function AddCourse(props) {
               setCourseTitle={setCourseTitle}
               setCourseLanguageTag={setCourseLanguageTag}
               setCourseIntroduction={setCourseIntroduction}
+              setCourseThumbnail={setCourseThumbnail}
               isCourseInitialized={isCourseInitialized}
             ></CourseInfo>
             {/* {courseTitle}

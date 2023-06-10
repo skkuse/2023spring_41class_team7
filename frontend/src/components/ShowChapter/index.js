@@ -17,6 +17,9 @@ function ShowChapter(props) {
   const [showContent, setShowContent] = useState(false);
   const [courseid, setCourseid] = useState();
   const [chapterid, setChapterid] = useState();
+  const [innerClickFlag, setInnerClickFlag] = useState(
+    props.clickFlag ? true : false
+  );
 
   useEffect(() => {
     setCourseid(props.courseid);
@@ -50,7 +53,9 @@ function ShowChapter(props) {
       })
       .then((response) => {
         alert("단원 수정 완료");
-        props.setClickFlag(!props.clickFlag);
+        // props.setClickFlag(!props.clickFlag);
+        setInnerClickFlag(!innerClickFlag);
+        props.setClickFlag(innerClickFlag);
       })
       .catch((e) => {
         console.log(e);
@@ -69,7 +74,10 @@ function ShowChapter(props) {
       })
       .then((response) => {
         alert("단원 삭제 완료");
-        props.setClickFlag(!props.clickFlag);
+        // props.setClickFlag(!props.clickFlag);
+        setInnerClickFlag(!innerClickFlag);
+        props.setClickFlag(innerClickFlag);
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);
@@ -92,18 +100,22 @@ function ShowChapter(props) {
           backgroundColor="white"
           type="button"
         ></Button>
-        <Button
-          content="수정"
-          onClick={handleModifyClick}
-          backgroundColor="white"
-          type="button"
-        ></Button>
-        <Button
-          content="삭제"
-          onClick={handleCancelClick}
-          backgroundColor="white"
-          type="button"
-        ></Button>
+        {props.isModify && (
+          <>
+            <Button
+              content="수정"
+              onClick={handleModifyClick}
+              backgroundColor="white"
+              type="button"
+            ></Button>
+            <Button
+              content="삭제"
+              onClick={handleCancelClick}
+              backgroundColor="white"
+              type="button"
+            ></Button>
+          </>
+        )}
       </ShowChapterContainer>
       {showContent && (
         <ChapterContent
