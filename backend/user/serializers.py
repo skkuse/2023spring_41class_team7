@@ -48,12 +48,3 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
-
-class TakenCourseSerializer(serializers.ModelSerializer):
-    course = CourseSerializer(read_only=True)
-
-    class Meta:
-        model = CourseRoom
-        fields = ('course',)
-
