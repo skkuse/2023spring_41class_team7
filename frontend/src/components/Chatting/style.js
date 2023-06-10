@@ -86,7 +86,7 @@ export const InputsArea = styled.textarea`
   height: 50%;
   resize: none;
   font-size: 18px;
-  font-family: "Roboto";
+  font-family: "Arial";
   outline: none;
   border-radius: 10px;
 `;
