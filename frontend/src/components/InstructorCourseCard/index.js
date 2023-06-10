@@ -16,22 +16,19 @@ import {
 } from "./style";
 import feedback from "../../assets/images/feedback.png";
 import star from "../../assets/images/star.png";
-import python_logo from "../../assets/images/python-logo.png";
-import java_logo from "../../assets/images/java-logo.png";
-import c_logo from "../../assets/images/c-logo.png";
-import cpp_logo from "../../assets/images/cpp-logo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { serverAxios } from "../../utils/commonAxios";
 
 function InstructorCourseCard(props) {
-  let thumbnail_url =
-    "../../../../../../backend/media/" + props.course.thumbnail;
   const [courseid, setCourseid] = useState();
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [toggleFeedback, setToggleFeedback] = useState(false);
-  const [thumbnail, setThumbnail] = useState();
+
   const navigate = useNavigate();
+
+  let thumbnailurl =
+    " http://localhost:3000/api/media/" + props.course.thumbnail;
 
   const getFeedbackMessageFunction = async () => {
     let targeturl = "/feedback/analysis/" + props.course.id + "/";
@@ -48,15 +45,6 @@ function InstructorCourseCard(props) {
   useEffect(() => {
     setCourseid(props.course.id);
     getFeedbackMessageFunction();
-    if (props.course.tag === "파이썬") {
-      setThumbnail(python_logo);
-    } else if (props.course.tag === "자바") {
-      setThumbnail(java_logo);
-    } else if (props.course.tag === "C") {
-      setThumbnail(c_logo);
-    } else if (props.course.tag === "C++") {
-      setThumbnail(cpp_logo);
-    }
   }, []);
 
   const handleModifyClick = () => {
@@ -93,7 +81,7 @@ function InstructorCourseCard(props) {
     <InstructorCourseCardOuterContainer>
       <InstructorCourseCardContainer>
         <NonButtonContainer>
-          <CourseLogo src={thumbnail}></CourseLogo>
+          <CourseLogo src={thumbnailurl}></CourseLogo>
           <CourseInfoContainer>
             <CourseTitleContainer>{props.course.title}</CourseTitleContainer>
             <CourseIntroductionContainer>
