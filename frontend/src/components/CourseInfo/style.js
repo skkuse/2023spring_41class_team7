@@ -46,3 +46,15 @@ export const CourseIntroductionTextarea = styled.textarea`
   border: 1.5px solid black;
   font-family: "Arial";
 `;
+
+export const CourseThumbnailContainer = styled.div`
+  display: flex;
+  gap: 35px;
+  padding: 20px;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  font-weight: 500;
+`;
+export const CourseThumbnailInput = styled.input`
+  font-size: 16px;
+`;

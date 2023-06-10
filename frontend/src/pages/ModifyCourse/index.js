@@ -24,6 +24,7 @@ function ModifyCourse(props) {
   const [courseTitle, setCourseTitle] = useState("");
   const [courseLanguageTag, setCourseLanguageTag] = useState(0);
   const [courseIntroduction, setCourseIntroduction] = useState("");
+  const [courseThumbnail, setCourseThumbnail] = useState();
   const [courseChapters, setCourseChapters] = useState([]);
   const [isReady, setIsReady] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
@@ -73,6 +74,7 @@ function ModifyCourse(props) {
         title: courseTitle,
         intro: courseIntroduction,
         tag: courseLanguageTag,
+        thumbnail: courseThumbnail,
       };
       await serverAxios
         .put(targeturl, body, {
@@ -122,6 +124,7 @@ function ModifyCourse(props) {
               setCourseTitle={setCourseTitle}
               setCourseLanguageTag={setCourseLanguageTag}
               setCourseIntroduction={setCourseIntroduction}
+              setCourseThumbnail={setCourseThumbnail}
             ></CourseInfo>
             <ButtonsContainer>
               {/* {String(isReady)} */}

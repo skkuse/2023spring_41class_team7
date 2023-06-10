@@ -3,6 +3,8 @@ import {
   CourseInfoContainer,
   CourseIntroductionTextarea,
   CourseLanguageInput,
+  CourseThumbnailContainer,
+  CourseThumbnailInput,
   CourseTitleInput,
   CourseTitleLanguageContainer,
 } from "./style";
@@ -18,6 +20,10 @@ function CourseInfo(props) {
 
   const handleIntroductionChange = (e) => {
     props.setCourseIntroduction(e.target.value);
+  };
+
+  const handleThumbnailChange = (e) => {
+    props.setCourseThumbnail(e.target.files[0]);
   };
 
   return (
@@ -55,6 +61,16 @@ function CourseInfo(props) {
         defaultValue={props.courseIntroduction}
         disabled={props.isCourseInitialized}
       ></CourseIntroductionTextarea>
+
+      <CourseThumbnailContainer>
+        썸네일:
+        <CourseThumbnailInput
+          id="thumbnail"
+          name="thumbnail"
+          type="file"
+          onChange={handleThumbnailChange}
+        ></CourseThumbnailInput>
+      </CourseThumbnailContainer>
     </CourseInfoContainer>
   );
 }

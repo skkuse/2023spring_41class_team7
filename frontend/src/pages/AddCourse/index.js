@@ -22,6 +22,7 @@ function AddCourse(props) {
   const [courseTitle, setCourseTitle] = useState("");
   const [courseLanguageTag, setCourseLanguageTag] = useState(0);
   const [courseIntroduction, setCourseIntroduction] = useState("");
+  const [courseThumbnail, setCourseThumbnail] = useState();
   const [showModal, setShowModal] = useState(false);
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
@@ -68,6 +69,7 @@ function AddCourse(props) {
           title: courseTitle,
           tag: courseLanguageTag,
           intro: courseIntroduction,
+          thumbnail: courseThumbnail,
         };
         /* Course title, introduction POST */
         await serverAxios
@@ -91,12 +93,21 @@ function AddCourse(props) {
     setIsEntered(false);
   };
 
+  // function isFileObject(obj) {
+  //   return obj instanceof File;
+  // }
+
+  // const isFile = isFileObject(courseThumbnail);
+
   if (
     localStorage.getItem("loggedin") &&
     localStorage.getItem("educator") === "true"
   ) {
     return (
       <MostOuterDiv>
+        {/* {courseThumbnail && <div>{courseThumbnail.name}</div>}
+        {String(isFile)} */}
+
         <Header></Header>
         <OuttestContainer>
           <Navbar></Navbar>
@@ -123,6 +134,7 @@ function AddCourse(props) {
               setCourseTitle={setCourseTitle}
               setCourseLanguageTag={setCourseLanguageTag}
               setCourseIntroduction={setCourseIntroduction}
+              setCourseThumbnail={setCourseThumbnail}
               isCourseInitialized={isCourseInitialized}
             ></CourseInfo>
             {/* {courseTitle}
