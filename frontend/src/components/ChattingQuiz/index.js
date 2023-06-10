@@ -39,11 +39,8 @@ function MessageBox(props) {
 
 function ChattingInterfaceQuiz(props) {
   const { chattingData, setChatting } = props;
-  //const [chattingDataReady, setChattingDataReady] = useState(false);
-  //const [chattingDatad, setChattingData] = useState([]);
   const { quizid } = useParams(); // course id , chapter id 받기
   const [inputs, setInputs] = useState("");
-  let data = ["@@@@", "####", "$%$$$$"];
   const onChange = (e) => {
     setInputs(e.target.value);
   };
@@ -64,7 +61,7 @@ function ChattingInterfaceQuiz(props) {
         
       })
       .catch((err) => {
-        console.log("@@@@"+ err);
+        console.log(err);
       });
   };
   const onSubmit = (e) => {
