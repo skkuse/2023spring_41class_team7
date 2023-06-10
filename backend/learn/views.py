@@ -20,26 +20,25 @@ class CourseTake(APIView):
 
     def get(self, request, course_id):
         '''
-        강의 수강을 위해 강의 배너 등을 클릭했을 때 받는 요청
-        강의 메타 정보와 수강 이력이 있는 챕터 중 가장 마지막 챕터 챗 데이터 반환
-        and
-        특정 챕터 정보를 요청
-        해당 챕터 챗 데이터 반환, 만약 처음이면 이력을 생성하고 반환
+        REST GET API for general course and specific chapter.
+
+        IF query param 'chapter' is given, it only returns chat data belonging to that chapter and learner.
+        
+        ELSE, it returns overall course information required at learner's course taking page including
+        the course, all chapters of the course, last_chapter taken by learner, chat data of the last chapter.
+
+        :param course_id: pk of course interested
         '''
         course_room, created = CourseRoom.objects.get_or_create(course_id=course_id, learner=request.user)
-        course_room.save()
-
         chapter_id = request.query_params.get('chapter')
 
         if chapter_id:
-            '해당 챕터 정보만 반환'
             if not chapter_id.isnumeric():
                 return Response('wrong chapter id', status=status.HTTP_400_BAD_REQUEST)
             chapter_room, created = ChapterRoom.objects.get_or_create(
                 course_room=course_room, 
                 chapter_id=int(chapter_id),
                 learner=request.user)
-            chapter_room.save()
 
             if created:
                 ChapterChatData.objects.create(
@@ -48,7 +47,6 @@ class CourseTake(APIView):
             serializer = ChapterChatSerializer(chapter_room.chat.all(), many=True)
             return Response(serializer.data)
         else:
-            '강의 전체 정보랑 마지막 챕터 정보 반환'
             if created:
                 chapter = course_room.course.chapter_set.first()
                 chapter_room = ChapterRoom.objects.create(
@@ -68,7 +66,16 @@ class CourseTake(APIView):
     
     def post(self, request, course_id):
         '''
-        채팅 보내오면 저장하고 응답생성해서 반환
+        REST POST API for chatting when taking the course.
+
+        query param 'chapter' should be given, otherwise, it returns 400 BAD REQUEST.
+
+        It generates and returns chatbot response using subset of chat history. Also, it updates
+        last_attempt of course and chapter room.
+        The size of subset is defined in class attribute 'CONTEXT_LENGTH'. This attribute is also
+        used to generate feedback. The feedback is generated every 'CONTEXT_LENGTH' chats.
+
+        :param course_id: pk of course
         '''
         serializer = ChapterChatSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -80,6 +87,8 @@ class CourseTake(APIView):
         
         course_room = get_object_or_404(CourseRoom, course_id=course_id, learner=request.user)
         chapter_room = get_object_or_404(ChapterRoom, course_room=course_room, chapter_id=int(chapter_id))
+        course_room.save()
+        chapter_room.save()
         serializer.save(room=chapter_room)
         
         query = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH])
@@ -100,12 +109,7 @@ class QuizTake(APIView):
     serializer_class = QuizChatSerialiezer
 
     def get(self, request, quiz_id):
-        '''
-        퀴즈 배너 등을 눌렀을 때 받는 요청
-        퀴즈 메타 정보와 수강이력을 반환. 만약 처음이면 이력 생성
-        '''
         quiz_room, created = QuizRoom.objects.get_or_create(quiz_id=quiz_id, learner=request.user)
-        quiz_room.save()
 
         if created:
             QuizChatData.objects.create(room=quiz_room, data=quiz_room.quiz.question, bot=True)
@@ -114,12 +118,10 @@ class QuizTake(APIView):
         return Response({ 'quiz': QuizSerializer(quiz_room.quiz).data, 'chat': serializer.data })
     
     def post(self, request, quiz_id):
-        '''
-        채팅 보내오면 저장하고 응답생성해서 반환
-        '''
         serializer = QuizChatSerialiezer(data=request.data)
         serializer.is_valid(raise_exception=True)
         quiz_room = get_object_or_404(QuizRoom, quiz_id=quiz_id, learner=request.user)
+        quiz_room.save()
         serializer.save(room=quiz_room)
         
         query = make_query_string(quiz_room.chat.all())
