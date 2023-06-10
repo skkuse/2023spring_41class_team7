@@ -66,10 +66,10 @@ function AddCourse(props) {
     if (courseTitle && courseIntroduction && courseLanguageTag !== 0) {
       try {
         const formData = new FormData();
-        formData.append("title", courseTitle)
-        formData.append("tag", courseLanguageTag)
-        formData.append("intro", courseIntroduction)
-        formData.append("thumbnail", courseThumbnail)
+        formData.append("title", courseTitle);
+        formData.append("tag", courseLanguageTag);
+        formData.append("intro", courseIntroduction);
+        formData.append("thumbnail", courseThumbnail);
         /* Course title, introduction POST */
         await serverAxios
           .post("/course/course/", formData, {

@@ -29,7 +29,7 @@ export const NonButtonContainer = styled.div`
 
 export const CourseLogo = styled.img`
   width: 238px;
-  height: 145px;
+  height: 100%;
 `;
 
 export const CourseInfoContainer = styled.div`

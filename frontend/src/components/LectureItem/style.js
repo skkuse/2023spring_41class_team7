@@ -16,10 +16,9 @@ export const ItemContainer = styled.div`
 `;
 
 // 임시용 썸네일
-export const TmpThumnail = styled.div`
+export const Thumbnail = styled.img`
   width: 200px;
   height: 100%;
-  background: #d9d9d9;
 `;
 
 export const ContentsContainer = styled.div`
@@ -65,7 +64,7 @@ export const Tag = styled.div`
   align-items: center;
   padding: 10px 15px;
   background: ${(props) => props.background || "#E1E7F5"};
-  border-radius: 10px;
+  border-radius: 5px;
   font-weight: 500;
   font-size: 12px;
 `;
