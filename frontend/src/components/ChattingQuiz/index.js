@@ -37,9 +37,9 @@ function MessageBox(props) {
   }
 }
 
-function ChattingInterface(props) {
+function ChattingInterfaceQuiz(props) {
   const { chattingData, setChatting } = props;
-  const { courseid, chapterid } = useParams(); // course id , chapter id 받기
+  const { quizid } = useParams(); // course id , chapter id 받기
   const [inputs, setInputs] = useState("");
   const onChange = (e) => {
     setInputs(e.target.value);
@@ -48,13 +48,15 @@ function ChattingInterface(props) {
   const sendStudentData = async (body) => {
     // student input 보내기
     await serverAxios
-      .post(`/learn/course/${courseid}/?chapter=${chapterid}`, body, {
+      .post(`/learn/quiz/${quizid}/`, body, {
         withCredentials: true,
       })
       .then((res) => {
-        //console.log(`respose :` + res.data + " @@"  + res.bot + " @@ " + res.timestamp);
-        setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
+        console.log(`respose :` + res.data.data);
+        //setChatting((prev) => [...prev, res.data]); // 학생 input을 chatting data에 저장
+        setChatting((prev) => [...prev, res.data]);
         props.setClickFlag(!props.clickFlag);
+        console.log(chattingData);
         
       })
       .catch((err) => {
@@ -81,8 +83,8 @@ function ChattingInterface(props) {
     <Container>
       {/* msg part*/}
       <TextingContainer>
-        {chattingData.map((item, idx) => {
-          return item.bot == true ? (
+        { chattingData.map((item, idx) => {
+            return item.bot == true ? (
             <MessageBox
               key={idx}
               msgID={idx}
@@ -117,4 +119,4 @@ MessageBox.defaultProps = {
   isStudent: false,
 };
 
-export default ChattingInterface;
+export default ChattingInterfaceQuiz;
