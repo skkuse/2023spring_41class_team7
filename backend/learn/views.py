@@ -91,7 +91,7 @@ class CourseTake(APIView):
         chapter_room.save()
         serializer.save(room=chapter_room)
         
-        query = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH])
+        query = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH:-1])
         response = get_chatbot_answer(chapter_room.chapter.index, query)
 
         serializer = ChapterChatSerializer(data={'data': response, 'bot': True})
@@ -99,7 +99,7 @@ class CourseTake(APIView):
         serializer.save(room=chapter_room)
 
         if chapter_room.chat.count() % CourseTake.CONTEXT_LENGTH < 2:
-            history = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH])
+            history = make_query_string(chapter_room.chat.order_by('-timestamp')[:CourseTake.CONTEXT_LENGTH:-1])
             create_feedback.delay(history, course_room.course.id, chapter_id)
 
         return Response(serializer.data)
@@ -136,7 +136,7 @@ class QuizTake(APIView):
 def make_query_string(history):
     query_str = ''
     for chat in history:
-        query_str += 'AI: ' if chat.bot else 'Human: '
+        query_str += 'AI:\n' if chat.bot else 'Human:\n'
         query_str += chat.data
         query_str += '\n\n'
     return query_str
