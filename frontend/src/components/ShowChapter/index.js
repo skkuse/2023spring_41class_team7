@@ -56,6 +56,7 @@ function ShowChapter(props) {
         // props.setClickFlag(!props.clickFlag);
         setInnerClickFlag(!innerClickFlag);
         props.setClickFlag(innerClickFlag);
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);

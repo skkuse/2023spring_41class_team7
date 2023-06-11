@@ -35,12 +35,10 @@ function LearningPage() {
     //console.log(courseid);
 
     getLearningInfo(courseid);
-    
-      
   }, [clickFlag]);
 
   const chapterClick = (course_id, chapter_id, e) => {
-    getChapterData(course_id, chapter_id);
+    //    getChapterData(course_id, chapter_id);
     navigate("/learning/" + course_id + "/" + chapter_id + "/");
   };
 
@@ -50,8 +48,9 @@ function LearningPage() {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
-        setChatting((prev) => [...prev, res.data]);
+        //console.log(res.data);
+        //setChatting((prev) => [...prev, res.data]);
+        setChatting(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -60,14 +59,15 @@ function LearningPage() {
     await serverAxios
       .get(`/learn/course/${courseid}/`, { withCredentials: true })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setLearning(res.data);
-        setChatting(res.data.chat);
-        if(chapterid > 0){}
-        else{
-          navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/"); 
+
+        if (chapterid > 0) {
+          getChapterData(courseid, chapterid);
+        } else {
+          setChatting(res.data.chat);
+          navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/");
         }
-        
       })
       .catch((err) => console.log(err));
   };
@@ -127,11 +127,11 @@ function LearningPage() {
                 />
               </ChatContainer>
               {/* code editor */}
-              <CodeEditor 
-              chattingData={chattingData}
-              setChatting={setChatting}
-              clickFlag={clickFlag}
-              setClickFlag={setClickFlag}
+              <CodeEditor
+                chattingData={chattingData}
+                setChatting={setChatting}
+                clickFlag={clickFlag}
+                setClickFlag={setClickFlag}
               />
             </LecContainer>
           </ContentContainer>
