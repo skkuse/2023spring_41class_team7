@@ -109,6 +109,43 @@ def answer_user_question(index_filepath, query_str):
     return answer.response
 
 
+def answer_quiz_question(index_filepath, query_str):
+    '''
+    Queries over the index given with filepath to generate chatbot ai
+    response regarding query_str from user;
+
+    args:
+        -index_filepath (str): the file path to the pre-stored index regarding current lecture chapter content
+        -query_str (str): string containing user question
+    returns:
+        -response (str): response from chatbot ai
+    '''
+    service_context = get_service_ctx()
+
+    storage_context = StorageContext.from_defaults(persist_dir=index_filepath)
+    index = load_index_from_storage(storage_context=storage_context, service_context=service_context)
+
+    QA_PROMPT_TMPL = (
+        "당신은 퀴즈를 출제하고 코딩과 관련한 질문들에 답해주는 친절한 AI입니다.\n"
+        "다음은 퀴즈가 제출된 챕터에서 학생들이 배우는 프로그래밍 관련 내용들입니다.\n"
+        "{context_str}"
+        "\n위 내용을 바탕으로 퀴즈가 출제되었고, 이를 Human이 맞추는 상황입니다. 당신은 AI로써 질문에 답하거나, 답이 틀렸다면 힌트를 제공하고,"
+        "답이 맞았다면 격려의 말을 전해주세요.\n"
+        "위의 내용을 바탕으로 Human과의 대화 내용을 완성해주세요. 한국말로, 마치 친한 친구가 알려주는 것처럼 말해주세요.\n"
+        "'니다'로 끝나는 말보다는 '요'나 '요!'로 끝나는 말을 사용하여 답해주세요.\n"
+        "예를 들어 '입니다' 보다는 '인거에요!'로 말을 해주세요.\n"
+        "{query_str}"
+    )
+
+    QA_PROMPT = QuestionAnswerPrompt(QA_PROMPT_TMPL)
+
+    query_engine = index.as_query_engine(text_qa_template=QA_PROMPT)
+    answer = query_engine.query(query_str)
+
+    return answer.response
+
+
+
 def generate_feedback(chat_history):
     '''
     Generates and returns feedback to report to lecturer;

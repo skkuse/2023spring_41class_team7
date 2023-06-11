@@ -7,46 +7,72 @@ services:
       dockerfile: backend/Dockerfile
     image: backend
     container_name: api
+
+    depends_on:
+      - db
+  
     volumes:
       - ./backend:/app/backend
     ports:
       - 8000:8000
+
     entrypoint: ["/bin/bash", "-c"]
     command:
       - |
         python ./manage.py makemigrations
         python ./manage.py migrate
         python ./manage.py runserver 0.0.0.0:8000
+    
+
+  db:
+    image: postgres:14-alpine
+    container_name: db
+
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./backend/database/:/var/lib/postgresql/data/
   
+
   broker:
     image: redis:5.0-alpine
     container_name: broker
     ports: 
       - 6379:6379
   
+
   worker:
     build:
       context: .
       dockerfile: backend/Dockerfile
     image: backend
     container_name: worker
-    entrypoint: celery -A config worker -l info
+    
     depends_on:
       - broker
     volumes:
       - ./backend:/app/backend
+
+    entrypoint: celery -A config worker -l info
   
+
   web:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     image: frontend
     container_name: web
+
     ports:
       - 3000:3000
     volumes:
       - ./frontend:/app/frontend
       - /app/frontend/node_modules
+
     entrypoint: ['/bin/bash', '-c']
     command: 
       - |

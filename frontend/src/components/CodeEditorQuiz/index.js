@@ -72,7 +72,7 @@ export function CodeEditorQuiz(props) {
       return;
     } else{
       const body = {
-        data: "If this code is grammatically correct, Execute this code\n\n" + code,
+        data: code,
         bot: false,
       };
       codeExecution(body);
@@ -84,7 +84,7 @@ export function CodeEditorQuiz(props) {
       return;
     } else{
       const body = {
-        data: "Here is the answer\n\n" + code,
+        data: code,
         bot: false,
       };
       codeExecution(body);
