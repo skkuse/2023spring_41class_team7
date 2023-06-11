@@ -11,7 +11,7 @@ from feedback.serializers import QuizSerializer
 
 from .task import create_feedback
 
-from chatbot.chatbot_interface import answer_user_question
+from chatbot.chatbot_interface import answer_user_question, answer_quiz_question
 
 # Create your views here.
 class CourseTake(APIView):
@@ -125,7 +125,8 @@ class QuizTake(APIView):
         serializer.save(room=quiz_room)
         
         query = make_query_string(quiz_room.chat.all())
-        response = get_chatbot_answer(quiz_room.quiz.chapter.index, query)
+        query = f'\n참고로 문제의 답은 {quiz_room.quiz.answer}입니다.\n'
+        response = get_chatbot_answer_for_quiz(quiz_room.quiz.chapter.index, query)
 
         serializer = QuizChatSerialiezer(data={'data': response, 'bot': True})
         serializer.is_valid(raise_exception=True)
@@ -143,6 +144,13 @@ def make_query_string(history):
 
 def get_chatbot_answer(index, history):
     response = answer_user_question(index, history)
+    st = response.rfind('AI:')
+    st = st + len('AI:') if st >= 0 else 0
+    return response[st:].strip()
+
+
+def get_chatbot_answer_for_quiz(index, history):
+    response = answer_quiz_question(index, history)
     st = response.rfind('AI:')
     st = st + len('AI:') if st >= 0 else 0
     return response[st:].strip()

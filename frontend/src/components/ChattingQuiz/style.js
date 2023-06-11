@@ -42,6 +42,7 @@ export const MsgContainer = styled.div`
   align-items: flex-start;
   font-size: 18px;
   gap: 20px;
+  white-space: pre-wrap
 `;
 
 export const StuMsgBox = styled.div`
