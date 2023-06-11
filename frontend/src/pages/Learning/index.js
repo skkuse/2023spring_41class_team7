@@ -35,8 +35,6 @@ function LearningPage() {
     //console.log(courseid);
 
     getLearningInfo(courseid);
-    
-      
   }, [clickFlag]);
 
   const chapterClick = (course_id, chapter_id, e) => {
@@ -71,7 +69,6 @@ function LearningPage() {
           setChatting(res.data.chat);
           navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/"); 
         }
-        
       })
       .catch((err) => console.log(err));
   };
@@ -131,11 +128,11 @@ function LearningPage() {
                 />
               </ChatContainer>
               {/* code editor */}
-              <CodeEditor 
-              chattingData={chattingData}
-              setChatting={setChatting}
-              clickFlag={clickFlag}
-              setClickFlag={setClickFlag}
+              <CodeEditor
+                chattingData={chattingData}
+                setChatting={setChatting}
+                clickFlag={clickFlag}
+                setClickFlag={setClickFlag}
               />
             </LecContainer>
           </ContentContainer>
