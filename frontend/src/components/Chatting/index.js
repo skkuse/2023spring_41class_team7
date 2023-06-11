@@ -82,6 +82,7 @@ function ChattingInterface(props) {
       {/* msg part*/}
       <TextingContainer>
         {chattingData.map((item, idx) => {
+          
           return item.bot == true ? (
             <MessageBox
               key={idx}
