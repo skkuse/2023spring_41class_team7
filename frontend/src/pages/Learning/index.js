@@ -38,7 +38,6 @@ function LearningPage() {
   }, [clickFlag]);
 
   const chapterClick = (course_id, chapter_id, e) => {
-//    getChapterData(course_id, chapter_id);
     navigate("/learning/" + course_id + "/" + chapter_id + "/");
   };
 
@@ -61,13 +60,12 @@ function LearningPage() {
       .then((res) => {
         //console.log(res.data);
         setLearning(res.data);
-        
-        if(chapterid > 0){
+
+        if (chapterid > 0) {
           getChapterData(courseid, chapterid);
-        }
-        else{
+        } else {
           setChatting(res.data.chat);
-          navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/"); 
+          navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/");
         }
       })
       .catch((err) => console.log(err));
