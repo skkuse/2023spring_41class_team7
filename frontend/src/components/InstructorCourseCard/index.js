@@ -63,7 +63,6 @@ function InstructorCourseCard(props) {
       })
       .then((response) => {
         alert("강의 삭제 완료");
-        props.setClickFlag(!props.clickFlag);
         window.location.reload();
       })
       .catch((e) => {

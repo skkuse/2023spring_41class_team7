@@ -28,7 +28,7 @@ function ModifyCourse(props) {
   const [courseChapters, setCourseChapters] = useState([]);
   const [isReady, setIsReady] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
-  const [clickFlag, setClickFlag] = useState(false);
+
   const [modifyClickFlag, setModifyClickFlag] = useState(false);
 
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ function ModifyCourse(props) {
   };
   useEffect(() => {
     getCourseInfoFunction();
-  }, [isEntered, clickFlag, modifyClickFlag]);
+  }, [isEntered, modifyClickFlag]);
 
   const handleModifyCourseSubmit = (e) => {
     e.preventDefault();
@@ -152,8 +152,6 @@ function ModifyCourse(props) {
                   chapterTitle={value.title}
                   chapterIntro={value.intro}
                   chapterContent={value.content}
-                  clickFlag={clickFlag}
-                  setClickFlag={setClickFlag}
                   isModify={true}
                 ></ShowChapter>
               ))}

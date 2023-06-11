@@ -21,7 +21,6 @@ import { serverAxios } from "../../utils/commonAxios";
 function UserInstructor(props) {
   const [courses, setCourses] = useState();
   const [isReady, setIsReady] = useState(false);
-  const [clickFlag, setClickFlag] = useState(false);
 
   const navigate = useNavigate();
 
@@ -43,7 +42,7 @@ function UserInstructor(props) {
 
   useEffect(() => {
     getCoursesFunction();
-  }, [clickFlag]);
+  }, []);
 
   const handleAddClick = () => {
     navigate("/add");
@@ -81,11 +80,7 @@ function UserInstructor(props) {
               {isReady &&
                 courses.map((value, key) => {
                   return (
-                    <InstructorCourseCard
-                      course={value}
-                      clickFlag={clickFlag}
-                      setClickFlag={setClickFlag}
-                    ></InstructorCourseCard>
+                    <InstructorCourseCard course={value}></InstructorCourseCard>
                   );
                 })}
             </CourseContainer>

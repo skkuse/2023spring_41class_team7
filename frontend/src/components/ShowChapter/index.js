@@ -17,9 +17,6 @@ function ShowChapter(props) {
   const [showContent, setShowContent] = useState(false);
   const [courseid, setCourseid] = useState();
   const [chapterid, setChapterid] = useState();
-  const [innerClickFlag, setInnerClickFlag] = useState(
-    props.clickFlag ? true : false
-  );
 
   useEffect(() => {
     setCourseid(props.courseid);
@@ -53,9 +50,6 @@ function ShowChapter(props) {
       })
       .then((response) => {
         alert("단원 수정 완료");
-        // props.setClickFlag(!props.clickFlag);
-        setInnerClickFlag(!innerClickFlag);
-        props.setClickFlag(innerClickFlag);
         window.location.reload();
       })
       .catch((e) => {
@@ -75,9 +69,6 @@ function ShowChapter(props) {
       })
       .then((response) => {
         alert("단원 삭제 완료");
-        // props.setClickFlag(!props.clickFlag);
-        setInnerClickFlag(!innerClickFlag);
-        props.setClickFlag(innerClickFlag);
         window.location.reload();
       })
       .catch((e) => {

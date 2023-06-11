@@ -27,7 +27,6 @@ function AddCourse(props) {
   const [isCourseInitialized, setIsCourseInitialized] = useState(false);
   const [isEntered, setIsEntered] = useState(true);
   const [chapters, setChapters] = useState([]);
-  const [clickFlag, setClickFlag] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,7 +49,7 @@ function AddCourse(props) {
 
   useEffect(() => {
     getChaptersFunction();
-  }, [isEntered, clickFlag]);
+  }, [isEntered]);
   const handleAddCourseSubmit = (e) => {};
 
   const handleDoneClick = () => {
@@ -175,8 +174,6 @@ function AddCourse(props) {
                     chapterTitle={value.title}
                     chapterIntro={value.intro}
                     chapterContent={value.content}
-                    clickFlag={clickFlag}
-                    setClickFlag={setClickFlag}
                   ></ShowChapter>
                 ))}
               </ShowCourseContainer>
