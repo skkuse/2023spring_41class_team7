@@ -28,7 +28,7 @@ function LearningPage() {
   const { courseid } = useParams();
   const { chapterid } = useParams();
   const [learningInfo, setLearning] = useState(null);
-  const [chattingData, setChatting] = useState(null);
+  const [chattingData, setChatting] = useState([]);
   const [clickFlag, setClickFlag] = useState(false);
   let move = true;
   useEffect(() => {
@@ -63,6 +63,7 @@ function LearningPage() {
 
         if (chapterid > 0) {
           getChapterData(courseid, chapterid);
+          navigate("/learning/" + courseid + "/" + chapterid + "/");
         } else {
           setChatting(res.data.chat);
           navigate("/learning/" + courseid + "/" + res.data.last_chapter + "/");
