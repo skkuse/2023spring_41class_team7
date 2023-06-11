@@ -67,17 +67,17 @@ function ModifyCourse(props) {
 
   const handleCourseInfoModifyClick = async (e) => {
     e.preventDefault();
-    if (courseTitle && courseIntroduction) {
+    if (courseTitle && courseIntroduction && courseThumbnail) {
       let targeturl = "/course/course/" + courseid + "/";
-      const body = {
-        id: courseid,
-        title: courseTitle,
-        intro: courseIntroduction,
-        tag: courseLanguageTag,
-        thumbnail: courseThumbnail,
-      };
+
+      const formData = new FormData();
+      formData.append("title", courseTitle);
+      formData.append("tag", courseLanguageTag);
+      formData.append("intro", courseIntroduction);
+      formData.append("thumbnail", courseThumbnail);
+
       await serverAxios
-        .put(targeturl, body, {
+        .put(targeturl, formData, {
           withCredentials: true,
         })
         .then((response) => {
