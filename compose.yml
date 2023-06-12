@@ -9,7 +9,9 @@ services:
     container_name: api
 
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: always
   
     volumes:
       - ./backend:/app/backend
@@ -36,6 +38,12 @@ services:
       - 5432:5432
     volumes:
       - ./backend/database/:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
   
 
   broker:
