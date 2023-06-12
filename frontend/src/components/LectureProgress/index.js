@@ -34,13 +34,16 @@ function LectureProgress(props) {
     navigate("/learning/" + course_id);
   }
 
+  let thumbnailurl =
+    "http://localhost:3000/api/media/" + props.data.thumbnail;
+
   
   //console.log(props.data);
   return (
     <Container onClick={lectureClick}>
       {/* lecture image */}
       {/*<ImageContainer style={{backgroundImage: `url(${props.thumbnail})`}}></ImageContainer>*/}
-      <ImageContainer></ImageContainer>
+      <ImageContainer src={thumbnailurl}></ImageContainer>
       {/* lecture info */}
       <InfoContainer>
         <TitleContainer >{props.data.title}</TitleContainer>
